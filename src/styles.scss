@@ -1,0 +1,126 @@
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: rgb(61, 68, 81);
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-item .accordion-title {
+  padding-right: 35px;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: transparent;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+  @media (max-width: 920px) {
+    align-items: flex-start;
+  }
+
+  & img {
+    @media (max-width: 920px) {
+      height: 90%;
+    }
+  }
+}
+
+.swiper-pagination-bullets {
+  text-align: left !important;
+
+  @media (max-width: 1440px) {
+    left: 20px !important;
+  }
+}
+
+.swiper-button-prev {
+  color: #2a2e37 !important;
+
+  @media (max-width: 920px) {
+    display: none !important;
+  }
+}
+
+.swiper-button-next {
+  color: #2a2e37 !important;
+
+  @media (max-width: 920px) {
+    display: none !important;
+  }
+}
+
+.swiper-pagination-bullet {
+  background: #2a2e37 !important;
+}
+
+.modal-w {
+  transition: opacity 0.25s ease;
+}
+
+body.modal-active {
+  // overflow-x: hidden;
+  // overflow-y: visible !important;
+}
+
+.modal-img {
+  height: 85vh;
+
+  @media (max-width: 1536px) {
+    height: auto;
+  }
+
+  @media (orientation: landscape) {
+    align-items: flex-start;
+  }
+}
+
+.modal-container {
+  @media only screen and (max-width: 1024px) and (orientation: landscape) {
+    align-items: flex-start;
+    width: 80%;
+  }
+}
+
+.mockup-window {
+  padding-top: 0.5rem;
+
+  &::before {
+    margin-bottom: 0.5rem;
+  }
+
+  & img {
+    min-height: 180px;
+    cursor: zoom-in;
+  }
+}
+
+.tools__item {
+  width: 12.5%;
+}
