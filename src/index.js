@@ -6,16 +6,16 @@ import { disablePageScroll, enablePageScroll } from "scroll-lock";
 const mainTextarea = document.querySelector("#main-textarea");
 const allTabs = document.querySelectorAll(".tab");
 
-const autoHeight = () => {
-  let allTextareas = document.querySelectorAll("textarea[data-expandable]");
+// const autoHeight = () => {
+//   let allTextareas = document.querySelectorAll("textarea[data-expandable]");
 
-  allTextareas.forEach((textarea) => {
-    textarea.style.removeProperty("height");
-    textarea.style.height = textarea.scrollHeight + 2 + "px";
-  });
-};
+//   allTextareas.forEach((textarea) => {
+//     textarea.style.removeProperty("height");
+//     textarea.style.height = textarea.scrollHeight + 2 + "px";
+//   });
+// };
 
-autoHeight();
+// autoHeight();
 
 // mainTextarea.addEventListener("change", autoHeight);
 
@@ -82,3 +82,11 @@ function toggleModal(index) {
 const modal = document.querySelector(".modal-w");
 
 // disablePageScroll(modal);
+
+const textarea = document.querySelector(".textarea");
+const textareaTitle = document.querySelector(".textarea-title");
+
+textarea.addEventListener("focus", () => {
+  textareaTitle.style.opacity = "0";
+  textarea.style.paddingTop = "1rem";
+});

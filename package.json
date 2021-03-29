@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
+    "browser-sync": "2.26.14",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
