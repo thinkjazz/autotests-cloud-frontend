@@ -70,8 +70,8 @@ body {
 
 .textarea {
   &::placeholder {
-    font-size: 1.25rem;
-
+    font-size: 1rem;
+    line-height: 1.25rem;
     @media (max-width: 1024px) {
       font-size: 1rem;
     }
@@ -87,11 +87,16 @@ body {
 }
 
 .textarea-title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   opacity: 1;
 }
 
 .btn {
   font-size: 1.25rem;
   text-transform: inherit;
+}
+
+.leading-normal a {
+  text-decoration: underline;
+  color: #59B998
 }
