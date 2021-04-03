@@ -1,10 +1,13 @@
+import { disablePageScroll, enablePageScroll } from "scroll-lock";
+
+import { initForm } from "./js/modules/initForm";
+
 import "./styles.css";
 import "./styles.scss";
 
-import { disablePageScroll, enablePageScroll } from "scroll-lock";
-
-const mainTextarea = document.querySelector("#main-textarea");
 const allTabs = document.querySelectorAll(".tab");
+
+initForm();
 
 // const autoHeight = () => {
 //   let allTextareas = document.querySelectorAll("textarea[data-expandable]");
