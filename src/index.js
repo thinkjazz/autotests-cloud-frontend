@@ -1,6 +1,7 @@
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 
 import { initForm } from "./js/modules/initForm";
+import { removeSlash } from "./js/utils/removeSlash";
 
 import "./styles.css";
 import "./styles.scss";
@@ -86,10 +87,4 @@ const modal = document.querySelector(".modal-w");
 
 // disablePageScroll(modal);
 
-const textarea = document.querySelector(".textarea");
-const textareaTitle = document.querySelector(".textarea-title");
-
-textarea.addEventListener("focus", () => {
-  textareaTitle.style.opacity = "0";
-  textarea.style.paddingTop = "1rem";
-});
+removeSlash();
