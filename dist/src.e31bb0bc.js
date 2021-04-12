@@ -1746,9 +1746,8 @@ var textareaTitle = document.querySelector(".textarea-title");
 var alert = document.querySelector(".alert");
 
 var initForm = function initForm() {
-  mainTextarea.addEventListener("focus", function () {
-    textareaTitle.style.opacity = "0";
-    mainTextarea.style.paddingTop = "1rem";
+  mainTextarea.addEventListener("focus", function () {// textareaTitle.style.opacity = "0";
+    // mainTextarea.style.paddingTop = "1rem";
   });
 
   function submitForm(event) {
@@ -1758,9 +1757,9 @@ var initForm = function initForm() {
 
     if (!!values.objectives) {
       (0, _sendData.sendData)(url, JSON.stringify(values));
-      console.log(values);
-      textareaTitle.style.opacity = "1";
-      mainTextarea.style.paddingTop = "3rem";
+      console.log(values); // textareaTitle.style.opacity = "1";
+      // mainTextarea.style.paddingTop = "3rem";
+
       alert.style.opacity = "1";
       setTimeout(function () {
         alert.style.opacity = "0";
@@ -2021,7 +2020,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58872" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56766" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

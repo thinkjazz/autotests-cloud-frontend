@@ -10,8 +10,8 @@ const alert = document.querySelector(".alert");
 
 const initForm = () => {
   mainTextarea.addEventListener("focus", () => {
-    textareaTitle.style.opacity = "0";
-    mainTextarea.style.paddingTop = "1rem";
+    // textareaTitle.style.opacity = "0";
+    // mainTextarea.style.paddingTop = "1rem";
   });
 
   function submitForm(event) {
@@ -25,8 +25,8 @@ const initForm = () => {
 
       console.log(values);
 
-      textareaTitle.style.opacity = "1";
-      mainTextarea.style.paddingTop = "3rem";
+      // textareaTitle.style.opacity = "1";
+      // mainTextarea.style.paddingTop = "3rem";
       alert.style.opacity = "1";
 
       setTimeout(() => {
