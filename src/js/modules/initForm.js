@@ -1,7 +1,7 @@
 import { sendData } from "../utils/sendData";
 
 // const url = "https://jsonplaceholder.typicode.com/posts";
-const url = "https://api.autotests.cloud/order";
+const url = "https://api.autotests.cloud/orders";
 
 const mainForm = document.querySelector("#objective");
 const mainTextarea = document.querySelector("#main-textarea");
