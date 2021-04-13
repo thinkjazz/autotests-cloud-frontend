@@ -1694,7 +1694,10 @@ var sendData = /*#__PURE__*/function () {
             _context.next = 2;
             return fetch(url, {
               method: "POST",
-              body: JSON.stringify(data)
+              body: data,
+              headers: {
+                "Content-Type": "application/json"
+              }
             });
 
           case 2:
@@ -1739,11 +1742,12 @@ exports.initForm = void 0;
 var _sendData = require("../utils/sendData");
 
 // const url = "https://jsonplaceholder.typicode.com/posts";
-var url = "https://api.autotests.cloud/order";
+var url = "https://api.autotests.cloud/orders";
 var mainForm = document.querySelector("#objective");
 var mainTextarea = document.querySelector("#main-textarea");
 var textareaTitle = document.querySelector(".textarea-title");
 var alert = document.querySelector(".alert");
+var telegramFrame = document.querySelector("#telegram_frame");
 
 var initForm = function initForm() {
   mainTextarea.addEventListener("focus", function () {// textareaTitle.style.opacity = "0";
@@ -1755,9 +1759,12 @@ var initForm = function initForm() {
     var formData = new FormData(mainForm);
     var values = Object.fromEntries(formData.entries());
 
-    if (!!values.objectives) {
-      (0, _sendData.sendData)(url, JSON.stringify(values));
-      console.log(values); // textareaTitle.style.opacity = "1";
+    if (!!values.content) {
+      values.price = "free";
+      values.email = "admin@qa.guru";
+      console.log(values);
+      var response = (0, _sendData.sendData)(url, JSON.stringify(values));
+      telegramFrame.innerHTML = '<iframe id="telegram-post-autotests_cloud-17" src="https://t.me/autotests_cloud/' + response + '?embed=1" width="100%" frameborder="0" scrolling="no" style="overflow: hidden; border: none; min-width: 320px; height: 159px;"></iframe>'; // textareaTitle.style.opacity = "1";
       // mainTextarea.style.paddingTop = "3rem";
 
       alert.style.opacity = "1";
@@ -2020,7 +2027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51804" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54136" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
