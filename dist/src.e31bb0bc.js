@@ -1764,7 +1764,9 @@ var initForm = function initForm() {
       values.email = "admin@qa.guru";
       console.log(values);
       var response = (0, _sendData.sendData)(url, JSON.stringify(values));
-      telegramFrame.innerHTML = '<iframe id="telegram-post-autotests_cloud-17" src="https://t.me/autotests_cloud/' + response + '?embed=1" width="100%" frameborder="0" scrolling="no" style="overflow: hidden; border: none; min-width: 320px; height: 159px;"></iframe>'; // textareaTitle.style.opacity = "1";
+      response.then(function (resp) {
+        telegramFrame.innerHTML = '<iframe id="telegram-post-autotests_cloud-17" src="https://t.me/autotests_cloud/' + resp + '?embed=1" width="100%" frameborder="0" scrolling="no" style="overflow: hidden; border: none; min-width: 320px; height: 159px;"></iframe>';
+      }); // textareaTitle.style.opacity = "1";
       // mainTextarea.style.paddingTop = "3rem";
 
       alert.style.opacity = "1";
@@ -2027,7 +2029,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54136" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

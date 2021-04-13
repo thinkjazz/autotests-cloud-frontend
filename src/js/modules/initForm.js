@@ -27,8 +27,9 @@ const initForm = () => {
       console.log(values);
 
       const response = sendData(url, JSON.stringify(values));
-
-      telegramFrame.innerHTML = '<iframe id="telegram-post-autotests_cloud-17" src="https://t.me/autotests_cloud/' + response + '?embed=1" width="100%" frameborder="0" scrolling="no" style="overflow: hidden; border: none; min-width: 320px; height: 159px;"></iframe>';
+      response.then(resp => {
+        telegramFrame.innerHTML = '<iframe id="telegram-post-autotests_cloud-17" src="https://t.me/autotests_cloud/' + resp + '?embed=1" width="100%" frameborder="0" scrolling="no" style="overflow: hidden; border: none; min-width: 320px; height: 159px;"></iframe>';
+      });
 
       // textareaTitle.style.opacity = "1";
       // mainTextarea.style.paddingTop = "3rem";
