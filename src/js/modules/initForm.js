@@ -24,7 +24,7 @@ const initForm = () => {
     if (!!values.content) {
       values.price = "free";
       values.email = "admin@qa.guru";
-      console.log(values);x
+      console.log(values);
 
       const response = sendData(url, JSON.stringify(values));
 
