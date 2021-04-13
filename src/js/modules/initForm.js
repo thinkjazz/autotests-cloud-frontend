@@ -20,7 +20,9 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
-    if (!!values.objectives) {
+    if (!!values.content) {
+      values.price = "free";
+      values.email = "admin@qa.guru";
       sendData(url, JSON.stringify(values));
 
       console.log(values);
