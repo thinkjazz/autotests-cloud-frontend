@@ -1741,13 +1741,27 @@ exports.initForm = void 0;
 
 var _sendData = require("../utils/sendData");
 
+// import { iFrameResize } from "iframe-resizer";
 // const url = "https://jsonplaceholder.typicode.com/posts";
 var url = "https://api.autotests.cloud/orders";
 var mainForm = document.querySelector("#objective");
+var button = mainForm.querySelector(".btn");
 var mainTextarea = document.querySelector("#main-textarea");
 var textareaTitle = document.querySelector(".textarea-title");
 var alert = document.querySelector(".alert");
 var telegramFrame = document.querySelector("#telegram_frame");
+setTimeout(function () {// const ifc = telegramFrame.querySelector("iframe");
+  // const base = ifc.querySelector(".widget_frame_base");
+  // console.log(telegramFrame);
+  // console.log(base);
+  // ifc.addEventListener("onload", () => {
+  //   ifc.style.height = ifc.contentWindow.document.body.scrollHeight + "px";
+  // });
+}, 1500);
+
+function resizeIframe(obj) {
+  obj.style.height = obj.contentWindow.document.body.scrollHeight + "px";
+}
 
 var initForm = function initForm() {
   mainTextarea.addEventListener("focus", function () {// textareaTitle.style.opacity = "0";
@@ -1761,11 +1775,28 @@ var initForm = function initForm() {
 
     if (!!values.content) {
       values.price = "free";
-      values.email = "admin@qa.guru";
-      console.log(values);
+      values.email = "admin@qa.guru"; // console.log(values);
+
       var response = (0, _sendData.sendData)(url, JSON.stringify(values));
+      button.classList.add("loading");
       response.then(function (resp) {
-        telegramFrame.innerHTML = '<iframe id="telegram-post-autotests_cloud-17" src="https://t.me/autotests_cloud/' + resp + '?embed=1" width="100%" frameborder="0" scrolling="no" style="overflow: hidden; border: none; min-width: 320px; height: 159px;"></iframe>';
+        if (window.screen.width < 768) {
+          telegramFrame.style.minHeight = "260px";
+        }
+
+        telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\"\n          class=\"telegram-iframe absolute h-full right-0 bottom-0\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
+        button.classList.remove("loading"); // let ifc = telegramFrame.querySelector("iframe");
+        // // let base = document.querySelector(".widget_frame_base");
+        // let base = ifc.contentWindow.document.querySelector(
+        //   ".widget_frame_base"
+        // );
+        // // iFrameResize({ log: true }, "ifc");
+        // console.log(ifc);
+        // console.log(base);
+        // ifc.addEventListener("onload", () => {
+        //   ifc.style.height =
+        //     ifc.contentWindow.document.body.scrollHeight + "px";
+        // });
       }); // textareaTitle.style.opacity = "1";
       // mainTextarea.style.paddingTop = "3rem";
 
@@ -1937,50 +1968,38 @@ var allTabs = document.querySelectorAll(".tab");
 // };
 // autoHeight();
 // mainTextarea.addEventListener("change", autoHeight);
+// let openmodal = document.querySelectorAll(".modal-open");
+// for (let i = 0; i < openmodal.length; i++) {
+//   openmodal[i].addEventListener("click", function (event) {
+//     event.preventDefault();
+//     toggleModal(i);
+//   });
+// }
+// const allOverlays = document.querySelectorAll(".modal-overlay");
+// allOverlays.forEach((overlay) => {
+//   overlay.addEventListener("click", () => {
+//     toggleModal(currentModal);
+//   });
+// });
+// let closemodal = document.querySelectorAll(".modal-close");
+// for (let i = 0; i < closemodal.length; i++) {
+//   closemodal[i].addEventListener("click", () => {
+//     toggleModal(currentModal);
+//   });
+// }
 
-var openmodal = document.querySelectorAll(".modal-open");
-
-var _loop = function _loop(i) {
-  openmodal[i].addEventListener("click", function (event) {
-    event.preventDefault();
-    toggleModal(i);
-  });
-};
-
-for (var i = 0; i < openmodal.length; i++) {
-  _loop(i);
-}
-
-var allOverlays = document.querySelectorAll(".modal-overlay");
-allOverlays.forEach(function (overlay) {
-  overlay.addEventListener("click", function () {
-    toggleModal(currentModal);
-  });
-});
-var closemodal = document.querySelectorAll(".modal-close");
-
-for (var _i = 0; _i < closemodal.length; _i++) {
-  closemodal[_i].addEventListener("click", function () {
-    toggleModal(currentModal);
-  });
-}
-
-var currentModal;
-
-document.onkeydown = function (evt) {
-  evt = evt || window.event;
-  var isEscape = false;
-
-  if ("key" in evt) {
-    isEscape = evt.key === "Escape" || evt.key === "Esc";
-  } else {
-    isEscape = evt.keyCode === 27;
-  }
-
-  if (isEscape && document.body.classList.contains("modal-active")) {
-    toggleModal(currentModal);
-  }
-};
+var currentModal; // document.onkeydown = function (evt) {
+//   evt = evt || window.event;
+//   let isEscape = false;
+//   if ("key" in evt) {
+//     isEscape = evt.key === "Escape" || evt.key === "Esc";
+//   } else {
+//     isEscape = evt.keyCode === 27;
+//   }
+//   if (isEscape && document.body.classList.contains("modal-active")) {
+//     toggleModal(currentModal);
+//   }
+// };
 
 function toggleModal(index) {
   var body = document.querySelector("body");
@@ -2029,7 +2048,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57559" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58036" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

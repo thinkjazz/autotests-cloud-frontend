@@ -69,7 +69,6 @@ body {
 }
 
 .textarea {
-  width: 650px;
   &::placeholder {
     font-size: 1rem;
     line-height: 1.25rem;
@@ -79,7 +78,7 @@ body {
   }
 
   @media (max-width: 645px) {
-    padding-top: 5rem;
+    // padding-top: 5rem;
   }
 
   @media (max-width: 345px) {
@@ -112,4 +111,31 @@ body {
 
 .btn--custom {
   font-size: 1rem;
+}
+
+.telegram-iframe-container {
+  // height: 100%;
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: 767px) {
+    position: relative;
+    margin-top: 1rem;
+  }
+}
+
+.telegram-iframe {
+  // height: 100%;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+.loading {
+  position: relative;
+  &::before {
+    position: absolute;
+    right: 0;
+    margin-left: 0.5rem;
+  }
 }
