@@ -46,7 +46,6 @@ const initForm = () => {
     if (!!values.content && values.content_telegram) {
       values.price = "free";
       values.email = "admin@qa.guru";
-      console.log(values.content);
 
       const response = sendData(url, JSON.stringify(values));
 
@@ -75,7 +74,7 @@ const initForm = () => {
 
         button.classList.remove("loading");
 
-        buttonTelegram.href = `https://t.me/autotests_cloud/${resp}?embed=1 `;
+        buttonTelegram.href = `https://t.me/autotests_cloud/${resp}`;
 
         let iframe = document.querySelector(
           "#telegram-post-autotests_cloud-17"
@@ -89,17 +88,9 @@ const initForm = () => {
           // iframe.style.height =
           //   iframe.contentDocument.body.scrollHeight + "px";
           // iframe.style.width = iframe.contentDocument.body.scrollWidth + "px";
-
           // console.log("ЗАГРУЗИЛСЯ");
-
           // console.log(iframe);
-
           // console.log(iframe.contentDocument);
-
-          setTimeout(() => {
-            // console.log(iframe);
-            // console.log(iframe.contentDocument);
-          }, 1000);
         });
 
         // // let base = document.querySelector(".widget_frame_base");

@@ -1781,7 +1781,6 @@ var initForm = function initForm() {
     if (!!values.content && values.content_telegram) {
       values.price = "free";
       values.email = "admin@qa.guru";
-      console.log(values.content);
       var response = (0, _sendData.sendData)(url, JSON.stringify(values));
       button.classList.add("loading");
       mainTextarea.style.opacity = "0";
@@ -1799,10 +1798,9 @@ var initForm = function initForm() {
         mainForm.reset();
         telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
         button.classList.remove("loading");
-        buttonTelegram.href = "https://t.me/autotests_cloud/".concat(resp, "?embed=1 ");
+        buttonTelegram.href = "https://t.me/autotests_cloud/".concat(resp);
         var iframe = document.querySelector("#telegram-post-autotests_cloud-17");
-        iframe.addEventListener("load", function () {
-          // setInterval(function() {
+        iframe.addEventListener("load", function () {// setInterval(function() {
           //   iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
           //   iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
           // }, 500);
@@ -1812,9 +1810,6 @@ var initForm = function initForm() {
           // console.log("ЗАГРУЗИЛСЯ");
           // console.log(iframe);
           // console.log(iframe.contentDocument);
-          setTimeout(function () {// console.log(iframe);
-            // console.log(iframe.contentDocument);
-          }, 1000);
         }); // // let base = document.querySelector(".widget_frame_base");
         // let base = ifc.contentWindow.document.querySelector(
         //   ".widget_frame_base"
