@@ -1741,11 +1741,12 @@ exports.initForm = void 0;
 
 var _sendData = require("../utils/sendData");
 
-// import { iFrameResize } from "iframe-resizer";
 // const url = "https://jsonplaceholder.typicode.com/posts";
 var url = "https://api.autotests.cloud/orders";
 var mainForm = document.querySelector("#objective");
 var button = mainForm.querySelector(".btn");
+var buttonTelegram = mainForm.querySelector(".btn--telegram");
+var titleTextarea = document.querySelector("#title-textarea");
 var mainTextarea = document.querySelector("#main-textarea");
 var textareaTitle = document.querySelector(".textarea-title");
 var alert = document.querySelector(".alert");
@@ -1759,39 +1760,62 @@ setTimeout(function () {// const ifc = telegramFrame.querySelector("iframe");
   // });
 }, 1500);
 
-function resizeIframe(obj) {
-  obj.style.height = obj.contentWindow.document.body.scrollHeight + "px";
+function hide(element) {
+  element.style.opacity = "0";
+  element.style.display = "none";
 }
 
-var initForm = function initForm() {
-  mainTextarea.addEventListener("focus", function () {// textareaTitle.style.opacity = "0";
-    // mainTextarea.style.paddingTop = "1rem";
-  });
+button.addEventListener("click", function (event) {// event.preventDefault();
+});
 
+var initForm = function initForm() {
+  // mainTextarea.addEventListener("focus", () => {
+  //   textareaTitle.style.opacity = "0";
+  //   mainTextarea.style.paddingTop = "1rem";
+  // });
   function submitForm(event) {
     event.preventDefault();
     var formData = new FormData(mainForm);
     var values = Object.fromEntries(formData.entries());
 
-    if (!!values.content) {
+    if (!!values.content && values.content_telegram) {
       values.price = "free";
-      values.email = "admin@qa.guru"; // console.log(values);
-
+      values.email = "admin@qa.guru";
+      console.log(values.content);
       var response = (0, _sendData.sendData)(url, JSON.stringify(values));
       button.classList.add("loading");
       mainTextarea.style.opacity = "0";
+      titleTextarea.style.opacity = "0";
+      button.style.opacity = "0";
       response.then(function (resp) {
-        if (window.screen.width < 768) {
-          telegramFrame.style.minHeight = "260px";
-        }
-
-        mainTextarea.style.opacity = "0";
-        mainTextarea.style.display = "none";
+        // if (window.screen.width < 768) {
+        //   telegramFrame.style.minHeight = "260px";
+        // }
+        hide(mainTextarea);
+        hide(titleTextarea);
+        hide(button);
+        buttonTelegram.classList.remove("hidden");
         telegramFrame.style.display = "block";
         mainForm.reset();
-        telegramFrame.innerHTML = "</iframe><iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
-        button.classList.remove("loading"); // let ifc = telegramFrame.querySelector("iframe");
-        // // let base = document.querySelector(".widget_frame_base");
+        telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
+        button.classList.remove("loading");
+        buttonTelegram.href = "https://t.me/autotests_cloud/".concat(resp, "?embed=1 ");
+        var iframe = document.querySelector("#telegram-post-autotests_cloud-17");
+        iframe.addEventListener("load", function () {
+          // setInterval(function() {
+          //   iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
+          //   iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
+          // }, 500);
+          // iframe.style.height =
+          //   iframe.contentDocument.body.scrollHeight + "px";
+          // iframe.style.width = iframe.contentDocument.body.scrollWidth + "px";
+          // console.log("ЗАГРУЗИЛСЯ");
+          // console.log(iframe);
+          // console.log(iframe.contentDocument);
+          setTimeout(function () {// console.log(iframe);
+            // console.log(iframe.contentDocument);
+          }, 1000);
+        }); // // let base = document.querySelector(".widget_frame_base");
         // let base = ifc.contentWindow.document.querySelector(
         //   ".widget_frame_base"
         // );
@@ -1810,9 +1834,17 @@ var initForm = function initForm() {
         alert.style.opacity = "0";
       }, 2000);
     } else {
-      mainTextarea.classList.add("border-red-500");
+      if (!mainTextarea.value) {
+        mainTextarea.classList.add("border-red-500");
+      }
+
+      if (!titleTextarea.value) {
+        titleTextarea.classList.add("border-red-500");
+      }
+
       setTimeout(function () {
         mainTextarea.classList.remove("border-red-500");
+        titleTextarea.classList.remove("border-red-500");
       }, 2000);
     }
   }

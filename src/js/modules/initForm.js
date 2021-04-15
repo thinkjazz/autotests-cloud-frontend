@@ -1,11 +1,12 @@
 import { sendData } from "../utils/sendData";
-// import { iFrameResize } from "iframe-resizer";
 
 // const url = "https://jsonplaceholder.typicode.com/posts";
 const url = "https://api.autotests.cloud/orders";
 
 const mainForm = document.querySelector("#objective");
 const button = mainForm.querySelector(".btn");
+const buttonTelegram = mainForm.querySelector(".btn--telegram");
+const titleTextarea = document.querySelector("#title-textarea");
 const mainTextarea = document.querySelector("#main-textarea");
 const textareaTitle = document.querySelector(".textarea-title");
 const alert = document.querySelector(".alert");
@@ -21,14 +22,20 @@ setTimeout(() => {
   // });
 }, 1500);
 
-function resizeIframe(obj) {
-  obj.style.height = obj.contentWindow.document.body.scrollHeight + "px";
+function hide(element) {
+  element.style.opacity = "0";
+  element.style.display = "none";
 }
+
+button.addEventListener("click", (event) => {
+  // event.preventDefault();
+});
+
 const initForm = () => {
-  mainTextarea.addEventListener("focus", () => {
-    // textareaTitle.style.opacity = "0";
-    // mainTextarea.style.paddingTop = "1rem";
-  });
+  // mainTextarea.addEventListener("focus", () => {
+  //   textareaTitle.style.opacity = "0";
+  //   mainTextarea.style.paddingTop = "1rem";
+  // });
 
   function submitForm(event) {
     event.preventDefault();
@@ -36,32 +43,65 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
-    if (!!values.content) {
+    if (!!values.content && values.content_telegram) {
       values.price = "free";
       values.email = "admin@qa.guru";
-      // console.log(values);
+      console.log(values.content);
 
       const response = sendData(url, JSON.stringify(values));
 
       button.classList.add("loading");
-      mainTextarea.style.opacity = "0";
-      response.then((resp) => {
-        if (window.screen.width < 768) {
-          telegramFrame.style.minHeight = "260px";
-        }
 
-        mainTextarea.style.opacity = "0";
-        mainTextarea.style.display = "none";
+      mainTextarea.style.opacity = "0";
+      titleTextarea.style.opacity = "0";
+      button.style.opacity = "0";
+
+      response.then((resp) => {
+        // if (window.screen.width < 768) {
+        //   telegramFrame.style.minHeight = "260px";
+        // }
+        hide(mainTextarea);
+        hide(titleTextarea);
+        hide(button);
+
+        buttonTelegram.classList.remove("hidden");
+
         telegramFrame.style.display = "block";
 
         mainForm.reset();
 
-        telegramFrame.innerHTML = `</iframe><iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full"
+        telegramFrame.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full"
           src="https://t.me/autotests_cloud/${resp}?embed=1" frameborder="0" scrolling="yes"></iframe>`;
 
         button.classList.remove("loading");
 
-        // let ifc = telegramFrame.querySelector("iframe");
+        buttonTelegram.href = `https://t.me/autotests_cloud/${resp}?embed=1 `;
+
+        let iframe = document.querySelector(
+          "#telegram-post-autotests_cloud-17"
+        );
+
+        iframe.addEventListener("load", function () {
+          // setInterval(function() {
+          //   iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
+          //   iframe.style.width = iframe.contentDocument.body.scrollWidth + 'px';
+          // }, 500);
+          // iframe.style.height =
+          //   iframe.contentDocument.body.scrollHeight + "px";
+          // iframe.style.width = iframe.contentDocument.body.scrollWidth + "px";
+
+          // console.log("ЗАГРУЗИЛСЯ");
+
+          // console.log(iframe);
+
+          // console.log(iframe.contentDocument);
+
+          setTimeout(() => {
+            // console.log(iframe);
+            // console.log(iframe.contentDocument);
+          }, 1000);
+        });
+
         // // let base = document.querySelector(".widget_frame_base");
         // let base = ifc.contentWindow.document.querySelector(
         //   ".widget_frame_base"
@@ -85,10 +125,17 @@ const initForm = () => {
         alert.style.opacity = "0";
       }, 2000);
     } else {
-      mainTextarea.classList.add("border-red-500");
+      if (!mainTextarea.value) {
+        mainTextarea.classList.add("border-red-500");
+      }
+
+      if (!titleTextarea.value) {
+        titleTextarea.classList.add("border-red-500");
+      }
 
       setTimeout(() => {
         mainTextarea.classList.remove("border-red-500");
+        titleTextarea.classList.remove("border-red-500");
       }, 2000);
     }
   }
