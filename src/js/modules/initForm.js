@@ -44,13 +44,19 @@ const initForm = () => {
       const response = sendData(url, JSON.stringify(values));
 
       button.classList.add("loading");
+      mainTextarea.style.opacity = "0";
       response.then((resp) => {
         if (window.screen.width < 768) {
           telegramFrame.style.minHeight = "260px";
         }
 
-        telegramFrame.innerHTML = `<iframe id="telegram-post-autotests_cloud-17"
-          class="telegram-iframe absolute h-full right-0 bottom-0"
+        mainTextarea.style.opacity = "0";
+        mainTextarea.style.display = "none";
+        telegramFrame.style.display = "block";
+
+        mainForm.reset();
+
+        telegramFrame.innerHTML = `</iframe><iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full"
           src="https://t.me/autotests_cloud/${resp}?embed=1" frameborder="0" scrolling="yes"></iframe>`;
 
         button.classList.remove("loading");
@@ -78,8 +84,6 @@ const initForm = () => {
       setTimeout(() => {
         alert.style.opacity = "0";
       }, 2000);
-
-      mainForm.reset();
     } else {
       mainTextarea.classList.add("border-red-500");
 
