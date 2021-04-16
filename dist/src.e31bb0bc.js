@@ -1778,7 +1778,7 @@ var initForm = function initForm() {
     var formData = new FormData(mainForm);
     var values = Object.fromEntries(formData.entries());
 
-    if (!!values.content && values.content_telegram) {
+    if (!!values.steps && values.title) {
       values.price = "free";
       values.email = "admin@qa.guru";
       var response = (0, _sendData.sendData)(url, JSON.stringify(values));

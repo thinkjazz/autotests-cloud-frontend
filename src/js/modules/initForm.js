@@ -43,7 +43,7 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
-    if (!!values.content && values.content_telegram) {
+    if (!!values.steps && values.title) {
       values.price = "free";
       values.email = "admin@qa.guru";
 
