@@ -8,7 +8,6 @@ const button = mainForm.querySelector(".btn");
 const buttonTelegram = mainForm.querySelector(".btn--telegram");
 const titleTextarea = document.querySelector("#title-textarea");
 const mainTextarea = document.querySelector("#main-textarea");
-const textareaTitle = document.querySelector(".textarea-title");
 const alert = document.querySelector(".alert");
 const telegramFrame = document.querySelector("#telegram_frame");
 
