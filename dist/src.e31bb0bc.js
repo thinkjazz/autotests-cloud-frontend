@@ -1748,7 +1748,6 @@ var button = mainForm.querySelector(".btn");
 var buttonTelegram = mainForm.querySelector(".btn--telegram");
 var titleTextarea = document.querySelector("#title-textarea");
 var mainTextarea = document.querySelector("#main-textarea");
-var textareaTitle = document.querySelector(".textarea-title");
 var alert = document.querySelector(".alert");
 var telegramFrame = document.querySelector("#telegram_frame");
 setTimeout(function () {// const ifc = telegramFrame.querySelector("iframe");
@@ -1796,7 +1795,7 @@ var initForm = function initForm() {
         buttonTelegram.classList.remove("hidden");
         telegramFrame.style.display = "block";
         mainForm.reset();
-        telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
+        telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full h-80\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1&dark=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
         button.classList.remove("loading");
         buttonTelegram.href = "https://t.me/autotests_cloud/".concat(resp);
         var iframe = document.querySelector("#telegram-post-autotests_cloud-17");

@@ -30,16 +30,27 @@ body {
 }
 
 body {
-  background: #fff;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  background: #1e1e1f;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
   font-size: 14px;
-  color: rgb(61, 68, 81);
+  color: rgb(224, 224, 224);
   margin: 0;
   padding: 0;
 }
 
 .accordion-item .accordion-title {
   padding-right: 35px;
+}
+
+img.invert {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+
+img.invertl {
+  -webkit-filter: invert(25%);
+  filter: invert(25%);
 }
 
 .features {
@@ -69,9 +80,10 @@ body {
 }
 
 .textarea {
+  background: #3c4850;
   &::placeholder {
     font-size: 1rem;
-    line-height: 1.25rem;
+    line-height: 1.4rem;
     @media (max-width: 1024px) {
       font-size: 1rem;
     }
@@ -96,6 +108,16 @@ body {
   }
 }
 
+//.notes {
+//  background-attachment: local;
+//  background-image:
+//          linear-gradient(to right, white 10px, transparent 10px),
+//          linear-gradient(to left, white 10px, transparent 10px),
+//          repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+//  line-height: 31px;
+//  padding: 8px 10px;
+//}
+
 .textarea-title {
   font-size: 1rem;
   opacity: 1;
@@ -116,9 +138,18 @@ body {
   }
 }
 
-.leading-normal a {
+.green-link {
   text-decoration: underline;
   color: #59b998;
+}
+
+.blue-link {
+  text-decoration: underline;
+  color: #3eb5e2;
+}
+
+.list-auto {
+  color: #b9c2ca;
 }
 
 .questions {
@@ -126,7 +157,7 @@ body {
 }
 
 .questions a {
-  color: #3d4451;
+  color: #2388ba;
 }
 
 .btn--custom {
@@ -141,7 +172,6 @@ body {
 }
 
 .telegram-iframe {
-  // height: 100%;
   @media (max-width: 767px) {
     width: 100%;
     height: 100%;
