@@ -4,12 +4,14 @@ import { sendData } from "../utils/sendData";
 const url = "https://api.autotests.cloud/orders";
 
 const mainForm = document.querySelector("#objective");
-const button = mainForm.querySelector(".btn");
+const buttonSubmitForm = mainForm.querySelector(".btn");
 const buttonTelegram = mainForm.querySelector(".btn--telegram");
-const titleTextarea = document.querySelector("#title-textarea");
-const mainTextarea = document.querySelector("#main-textarea");
+const headerTextarea = document.querySelector(".textarea-header");
+const titleTextarea = document.querySelector("#textarea-title");
+const mainTextarea = document.querySelector("#textarea-main");
+const loadingBlock = document.querySelector("#loading-block");
 const alert = document.querySelector(".alert");
-const telegramFrame = document.querySelector("#telegram_frame");
+const telegramFrame = document.querySelector("#telegram-frame");
 
 setTimeout(() => {
   // const ifc = telegramFrame.querySelector("iframe");
@@ -26,7 +28,7 @@ function hide(element) {
   element.style.display = "none";
 }
 
-button.addEventListener("click", (event) => {
+buttonSubmitForm.addEventListener("click", (event) => {
   // event.preventDefault();
 });
 
@@ -47,12 +49,14 @@ const initForm = () => {
       values.email = "admin@qa.guru";
 
       const response = sendData(url, JSON.stringify(values));
+      headerTextarea.innerHTML = "In progress...";
 
-      button.classList.add("loading");
+      loadingBlock.classList.remove("hidden");
+      buttonSubmitForm.classList.add("loading");
 
       mainTextarea.style.opacity = "0";
       titleTextarea.style.opacity = "0";
-      button.style.opacity = "0";
+      buttonSubmitForm.style.opacity = "0";
 
       response.then((resp) => {
         // if (window.screen.width < 768) {
@@ -60,18 +64,21 @@ const initForm = () => {
         // }
         hide(mainTextarea);
         hide(titleTextarea);
-        hide(button);
+        hide(buttonSubmitForm);
+        hide(loadingBlock);
 
         buttonTelegram.classList.remove("hidden");
 
         telegramFrame.style.display = "block";
 
         mainForm.reset();
+        headerTextarea.innerHTML =
+          "Telegram discussion, Github repo & Jira issue created!";
 
         telegramFrame.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
           src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
 
-        button.classList.remove("loading");
+        buttonSubmitForm.classList.remove("loading");
 
         buttonTelegram.href = `https://t.me/autotests_cloud/${resp}`;
 

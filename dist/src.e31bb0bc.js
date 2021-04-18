@@ -1744,12 +1744,14 @@ var _sendData = require("../utils/sendData");
 // const url = "https://jsonplaceholder.typicode.com/posts";
 var url = "https://api.autotests.cloud/orders";
 var mainForm = document.querySelector("#objective");
-var button = mainForm.querySelector(".btn");
+var buttonSubmitForm = mainForm.querySelector(".btn");
 var buttonTelegram = mainForm.querySelector(".btn--telegram");
-var titleTextarea = document.querySelector("#title-textarea");
-var mainTextarea = document.querySelector("#main-textarea");
+var headerTextarea = document.querySelector(".textarea-header");
+var titleTextarea = document.querySelector("#textarea-title");
+var mainTextarea = document.querySelector("#textarea-main");
+var loadingBlock = document.querySelector("#loading-block");
 var alert = document.querySelector(".alert");
-var telegramFrame = document.querySelector("#telegram_frame");
+var telegramFrame = document.querySelector("#telegram-frame");
 setTimeout(function () {// const ifc = telegramFrame.querySelector("iframe");
   // const base = ifc.querySelector(".widget_frame_base");
   // console.log(telegramFrame);
@@ -1764,7 +1766,7 @@ function hide(element) {
   element.style.display = "none";
 }
 
-button.addEventListener("click", function (event) {// event.preventDefault();
+buttonSubmitForm.addEventListener("click", function (event) {// event.preventDefault();
 });
 
 var initForm = function initForm() {
@@ -1781,22 +1783,26 @@ var initForm = function initForm() {
       values.price = "free";
       values.email = "admin@qa.guru";
       var response = (0, _sendData.sendData)(url, JSON.stringify(values));
-      button.classList.add("loading");
+      headerTextarea.innerHTML = "In progress...";
+      loadingBlock.classList.remove("hidden");
+      buttonSubmitForm.classList.add("loading");
       mainTextarea.style.opacity = "0";
       titleTextarea.style.opacity = "0";
-      button.style.opacity = "0";
+      buttonSubmitForm.style.opacity = "0";
       response.then(function (resp) {
         // if (window.screen.width < 768) {
         //   telegramFrame.style.minHeight = "260px";
         // }
         hide(mainTextarea);
         hide(titleTextarea);
-        hide(button);
+        hide(buttonSubmitForm);
+        hide(loadingBlock);
         buttonTelegram.classList.remove("hidden");
         telegramFrame.style.display = "block";
         mainForm.reset();
+        headerTextarea.innerHTML = "Telegram discussion, Github repo & Jira issue created!";
         telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full h-80\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1&dark=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
-        button.classList.remove("loading");
+        buttonSubmitForm.classList.remove("loading");
         buttonTelegram.href = "https://t.me/autotests_cloud/".concat(resp);
         var iframe = document.querySelector("#telegram-post-autotests_cloud-17");
         iframe.addEventListener("load", function () {// setInterval(function() {
