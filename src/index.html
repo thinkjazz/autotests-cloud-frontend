@@ -90,17 +90,22 @@
                 <form onsubmit="event.preventDefault();" id="objective" class="text-left">
 
                     <div class="relative form-control mb-2">
+
+                        <label class="label hidden" for="input-title">
+                            <span class="label-text">Test title</span>
+                        </label>
+                        <input type="text" placeholder="Test title" id="input-title" name="title"
+                            class="input input-bordered w-full md:w-3/5 lg:w-2/3 textarea textarea-bordered resize-none mb-4">
+
                         <textarea
-                            class="textarea max-h-96 w-full md:w-3/5 lg:w-2/3 textarea textarea-bordered resize-none mb-4 transition-all"
-                            id="textarea-title" name="title" placeholder="Test title"></textarea>
-                        <textarea
-                            class="textarea notes h-64 max-h-96 w-full md:w-3/5 lg:w-2/3 textarea textarea-bordered pt-4 transition-all"
+                            class="textarea notes h-64 max-h-96 w-full md:w-3/5 lg:w-2/3 textarea textarea-bordered pt-4"
                             id="textarea-main" name="steps"
                             placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Verify successful authorization as 'Alex'"></textarea>
                         <div id="loading-block" class="hidden"></div>
                         <div id="telegram-frame"
                             class="telegram-iframe-container w-full md:w-1/2 h-80 transition-all hidden">
                         </div>
+
                     </div>
 
                     <button class="btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8">

@@ -7,7 +7,7 @@ const mainForm = document.querySelector("#objective");
 const buttonSubmitForm = mainForm.querySelector(".btn");
 const buttonTelegram = mainForm.querySelector(".btn--telegram");
 const headerTextarea = document.querySelector(".textarea-header");
-const titleTextarea = document.querySelector("#textarea-title");
+const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const loadingBlock = document.querySelector("#loading-block");
 const alert = document.querySelector(".alert");
@@ -34,7 +34,10 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
+    console.log(values);
+
     if (!!values.steps && values.title) {
+      console.log(values);
       values.price = "free";
       values.email = "admin@qa.guru";
 
@@ -46,7 +49,7 @@ const initForm = () => {
 
       mainTextarea.style.opacity = "0";
       titleTextarea.style.opacity = "0";
-      buttonSubmitForm.style.opacity = "0";
+      // buttonSubmitForm.style.opacity = "0";
 
       response.then((resp) => {
         // if (window.screen.width < 768) {
