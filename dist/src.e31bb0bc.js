@@ -1752,14 +1752,6 @@ var mainTextarea = document.querySelector("#textarea-main");
 var loadingBlock = document.querySelector("#loading-block");
 var alert = document.querySelector(".alert");
 var telegramFrame = document.querySelector("#telegram-frame");
-setTimeout(function () {// const ifc = telegramFrame.querySelector("iframe");
-  // const base = ifc.querySelector(".widget_frame_base");
-  // console.log(telegramFrame);
-  // console.log(base);
-  // ifc.addEventListener("onload", () => {
-  //   ifc.style.height = ifc.contentWindow.document.body.scrollHeight + "px";
-  // });
-}, 1500);
 
 function hide(element) {
   element.style.opacity = "0";
@@ -1800,7 +1792,7 @@ var initForm = function initForm() {
         buttonTelegram.classList.remove("hidden");
         telegramFrame.style.display = "block";
         mainForm.reset();
-        headerTextarea.innerHTML = "Telegram discussion, Github repo & Jira issue created!";
+        headerTextarea.innerHTML = "Telegram discussion, Github repository, Jenkins job & Jira issue created!";
         telegramFrame.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full h-80\"\n          src=\"https://t.me/autotests_cloud/".concat(resp, "?embed=1&dark=1\" frameborder=\"0\" scrolling=\"yes\"></iframe>");
         buttonSubmitForm.classList.remove("loading");
         buttonTelegram.href = "https://t.me/autotests_cloud/".concat(resp);

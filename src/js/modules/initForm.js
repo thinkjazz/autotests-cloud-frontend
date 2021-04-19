@@ -13,16 +13,6 @@ const loadingBlock = document.querySelector("#loading-block");
 const alert = document.querySelector(".alert");
 const telegramFrame = document.querySelector("#telegram-frame");
 
-setTimeout(() => {
-  // const ifc = telegramFrame.querySelector("iframe");
-  // const base = ifc.querySelector(".widget_frame_base");
-  // console.log(telegramFrame);
-  // console.log(base);
-  // ifc.addEventListener("onload", () => {
-  //   ifc.style.height = ifc.contentWindow.document.body.scrollHeight + "px";
-  // });
-}, 1500);
-
 function hide(element) {
   element.style.opacity = "0";
   element.style.display = "none";
