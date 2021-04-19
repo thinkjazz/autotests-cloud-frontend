@@ -73,7 +73,7 @@ const initForm = () => {
 
         mainForm.reset();
         headerTextarea.innerHTML =
-          "Telegram discussion, Github repo & Jira issue created!";
+          "Telegram discussion, Github repository, Jenkins job & Jira issue created!";
 
         telegramFrame.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
           src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
