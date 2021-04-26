@@ -5,8 +5,8 @@ const sendData = async (url, data) => {
     method: "POST",
     body: data,
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   if (!response.ok) {

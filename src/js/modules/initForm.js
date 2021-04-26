@@ -4,29 +4,24 @@ import { sendData } from "../utils/sendData";
 const url = "https://api.autotests.cloud/orders";
 
 const mainForm = document.querySelector("#objective");
-const button = mainForm.querySelector(".btn");
+const buttonSubmitForm = mainForm.querySelector(".btn");
 const buttonTelegram = mainForm.querySelector(".btn--telegram");
-const titleTextarea = document.querySelector("#title-textarea");
-const mainTextarea = document.querySelector("#main-textarea");
+const headerTextarea = document.querySelector(".textarea-header");
+const titleTextarea = document.querySelector("#input-title");
+const mainTextarea = document.querySelector("#textarea-main");
+const loadingBlock = document.querySelector("#loading-block");
 const alert = document.querySelector(".alert");
-const telegramFrame = document.querySelector("#telegram_frame");
+const telegramFrame = document.querySelector("#telegram-frame");
 
-setTimeout(() => {
-  // const ifc = telegramFrame.querySelector("iframe");
-  // const base = ifc.querySelector(".widget_frame_base");
-  // console.log(telegramFrame);
-  // console.log(base);
-  // ifc.addEventListener("onload", () => {
-  //   ifc.style.height = ifc.contentWindow.document.body.scrollHeight + "px";
-  // });
-}, 1500);
+const codeBlock = document.querySelector(".mockup-code");
+const iframeBlock = document.querySelector(".iframe-block");
 
 function hide(element) {
   element.style.opacity = "0";
   element.style.display = "none";
 }
 
-button.addEventListener("click", (event) => {
+buttonSubmitForm.addEventListener("click", (event) => {
   // event.preventDefault();
 });
 
@@ -42,17 +37,26 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
+    console.log(values);
+
     if (!!values.steps && values.title) {
+      console.log(values);
       values.price = "free";
       values.email = "admin@qa.guru";
 
       const response = sendData(url, JSON.stringify(values));
+      headerTextarea.innerHTML = "In progress...";
 
-      button.classList.add("loading");
+      // loadingBlock.classList.remove("hidden");
+      // buttonSubmitForm.classList.add("loading");
 
       mainTextarea.style.opacity = "0";
       titleTextarea.style.opacity = "0";
-      button.style.opacity = "0";
+      // buttonSubmitForm.style.opacity = "0";
+
+      codeBlock.classList.remove("hidden");
+      mainForm.classList.add("hidden");
+      iframeBlock.classList.remove("hidden");
 
       response.then((resp) => {
         // if (window.screen.width < 768) {
@@ -60,18 +64,21 @@ const initForm = () => {
         // }
         hide(mainTextarea);
         hide(titleTextarea);
-        hide(button);
+        hide(buttonSubmitForm);
+        hide(loadingBlock);
 
-        buttonTelegram.classList.remove("hidden");
+        // buttonTelegram.classList.remove("hidden");
 
-        telegramFrame.style.display = "block";
+        // telegramFrame.style.display = "block";
 
         mainForm.reset();
+        headerTextarea.innerHTML =
+          "Telegram discussion, Github repository, Jenkins job & Jira issue created!";
 
-        telegramFrame.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-          src="https://t.me/autotests_cloud/${resp}?embed=1" frameborder="0" scrolling="yes"></iframe>`;
+        iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
+          src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
 
-        button.classList.remove("loading");
+        buttonSubmitForm.classList.remove("loading");
 
         buttonTelegram.href = `https://t.me/autotests_cloud/${resp}`;
 
@@ -91,20 +98,6 @@ const initForm = () => {
           // console.log(iframe);
           // console.log(iframe.contentDocument);
         });
-
-        // // let base = document.querySelector(".widget_frame_base");
-        // let base = ifc.contentWindow.document.querySelector(
-        //   ".widget_frame_base"
-        // );
-
-        // // iFrameResize({ log: true }, "ifc");
-        // console.log(ifc);
-        // console.log(base);
-
-        // ifc.addEventListener("onload", () => {
-        //   ifc.style.height =
-        //     ifc.contentWindow.document.body.scrollHeight + "px";
-        // });
       });
 
       // textareaTitle.style.opacity = "1";
