@@ -194,3 +194,25 @@ input:focus {
 textarea:focus {
   box-shadow: 0px 0px 0px 2px #607482 !important;
 }
+
+.iframe-block {
+  // background: red;
+  min-width: 100px;
+  height: 630px;
+  margin-top: -195px;
+}
+
+.mockup-code {
+  max-height: 411px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.mockup-code::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.mockup-code {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

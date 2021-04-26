@@ -13,6 +13,9 @@ const loadingBlock = document.querySelector("#loading-block");
 const alert = document.querySelector(".alert");
 const telegramFrame = document.querySelector("#telegram-frame");
 
+const codeBlock = document.querySelector(".mockup-code");
+const iframeBlock = document.querySelector(".iframe-block");
+
 function hide(element) {
   element.style.opacity = "0";
   element.style.display = "none";
@@ -44,12 +47,16 @@ const initForm = () => {
       const response = sendData(url, JSON.stringify(values));
       headerTextarea.innerHTML = "In progress...";
 
-      loadingBlock.classList.remove("hidden");
-      buttonSubmitForm.classList.add("loading");
+      // loadingBlock.classList.remove("hidden");
+      // buttonSubmitForm.classList.add("loading");
 
       mainTextarea.style.opacity = "0";
       titleTextarea.style.opacity = "0";
       // buttonSubmitForm.style.opacity = "0";
+
+      codeBlock.classList.remove("hidden");
+      mainForm.classList.add("hidden");
+      iframeBlock.classList.remove("hidden");
 
       response.then((resp) => {
         // if (window.screen.width < 768) {
@@ -60,15 +67,15 @@ const initForm = () => {
         hide(buttonSubmitForm);
         hide(loadingBlock);
 
-        buttonTelegram.classList.remove("hidden");
+        // buttonTelegram.classList.remove("hidden");
 
-        telegramFrame.style.display = "block";
+        // telegramFrame.style.display = "block";
 
         mainForm.reset();
         headerTextarea.innerHTML =
           "Telegram discussion, Github repository, Jenkins job & Jira issue created!";
 
-        telegramFrame.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
+        iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
           src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
 
         buttonSubmitForm.classList.remove("loading");
@@ -91,20 +98,6 @@ const initForm = () => {
           // console.log(iframe);
           // console.log(iframe.contentDocument);
         });
-
-        // // let base = document.querySelector(".widget_frame_base");
-        // let base = ifc.contentWindow.document.querySelector(
-        //   ".widget_frame_base"
-        // );
-
-        // // iFrameResize({ log: true }, "ifc");
-        // console.log(ifc);
-        // console.log(base);
-
-        // ifc.addEventListener("onload", () => {
-        //   ifc.style.height =
-        //     ifc.contentWindow.document.body.scrollHeight + "px";
-        // });
       });
 
       // textareaTitle.style.opacity = "1";
