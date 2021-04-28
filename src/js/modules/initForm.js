@@ -3,13 +3,10 @@ import { Stomp } from "../sockets/stomp.min";
 
 const mainForm = document.querySelector("#objective");
 const buttonSubmitForm = mainForm.querySelector(".btn");
-const buttonTelegram = mainForm.querySelector(".btn--telegram");
 const headerTextarea = document.querySelector(".textarea-header");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
-const loadingBlock = document.querySelector("#loading-block");
 const alert = document.querySelector(".alert");
-const telegramFrame = document.querySelector("#telegram-frame");
 
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
@@ -17,21 +14,57 @@ const iframeBlock = document.querySelector(".iframe-block");
 let stompClient = null;
 
 function connect() {
-  const socket = new SockJS("http://localhost:8080/gs-guide-websocket"); // add exception
+  const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
   stompClient = Stomp.over(socket);
-  stompClient.connect({}, function (frame) {
-    console.log("Connected: " + frame);
-    stompClient.subscribe("/topic/greetings", function (greeting) {
-      // add exception
-      showGreeting(JSON.parse(greeting.body).content);
+  stompClient.connect({}, function (status) {
+    console.log("Connected: " + status);
+    stompClient.subscribe("/topic/greetings", function (message) {
+      console.log("Message: " + message);
+      // todo add exception
+      addSocketEvent(JSON.parse(message.body));
     });
   });
 }
 
-function showGreeting(message) {
-  document
-    .querySelector("#greetings")
-    .append("<tr><td>" + message + "</td></tr>");
+function addSocketEvent(message) {
+  let pre = document.createElement("pre");
+  pre.innerHTML = `<code>${message.content}</code>`;
+
+  switch (message.contentType) {
+    case "started":
+      pre.className = "flex";
+      pre.setAttribute("data-prefix", "$");
+      pre.innerHTML = `<code>${message.content}</code>`;
+      break;
+    case "generated":
+      pre.className = "text-success flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code>${message.content}</code></pre><pre><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      break;
+    case "in progress":
+      pre.className = "text-warning flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code>${message.content} <a class="questions" href="${message.url}">${message.url}</a></code>`;
+      break;
+    case "notification":
+      pre.className = "text-info flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code>${message.content} <a class="questions" href="${message.url}">${message.url}</a></code>`;
+      displayNotification(message.url);
+      break;
+    case "error":
+      pre.className = "text-error flex";
+      pre.setAttribute("data-prefix", "x");
+      pre.innerHTML = `<code>${message.content}</code>`;
+      break;
+  }
+  document.querySelector("#console").append(pre);
+}
+
+function displayNotification(url) {
+  iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
+          src=${url}&dark=1&embed=1"></iframe>`;
+  // src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
 }
 
 function hide(element) {
@@ -39,9 +72,9 @@ function hide(element) {
   element.style.display = "none";
 }
 
-buttonSubmitForm.addEventListener("click", (event) => {
-  // event.preventDefault();
-});
+// buttonSubmitForm.addEventListener("click", (event) => {
+//   // event.preventDefault();
+// });
 
 const initForm = () => {
   // mainTextarea.addEventListener("focus", () => {
@@ -63,10 +96,10 @@ const initForm = () => {
       values.email = "admin@qa.guru";
       console.log(values);
 
-      let a = stompClient.send("/1app/hello", {}, JSON.stringify(values));
+      let a = stompClient.send("/app/hello", {}, JSON.stringify(values));
       console.log(a);
       // const response = sendData(url, JSON.stringify(values));
-      headerTextarea.innerHTML = "In progress..."; // add exception
+      headerTextarea.innerHTML = "In progress..."; // todo add exception
       codeBlock.classList.remove("hidden");
       mainForm.classList.add("hidden");
       iframeBlock.classList.remove("hidden");
@@ -74,18 +107,9 @@ const initForm = () => {
       hide(mainTextarea);
       hide(titleTextarea);
       hide(buttonSubmitForm);
-      hide(loadingBlock);
+      hide(headerTextarea);
 
       mainForm.reset();
-      headerTextarea.innerHTML =
-        "Telegram discussion, Github repository, Jenkins job & Jira issue created!";
-
-      iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-          src="https://t.me/autotests_cloud_chat/596?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
-      // src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
-
-      // textareaTitle.style.opacity = "1";
-      // mainTextarea.style.paddingTop = "3rem";
       alert.style.opacity = "1";
 
       setTimeout(() => {

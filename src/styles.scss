@@ -152,12 +152,13 @@ img.invertl {
   color: #b9c2ca;
 }
 
-.questions {
-  color: #7f848d;
-}
+//.questions {
+//  color: #7f848d;
+//}
 
-.questions a {
+a.questions {
   color: #2388ba;
+  text-decoration: underline;
 }
 
 .btn--custom {
