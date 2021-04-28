@@ -28,7 +28,6 @@ function connect() {
 
 function addSocketEvent(message) {
   let pre = document.createElement("pre");
-  pre.innerHTML = `<code>${message.content}</code>`;
 
   switch (message.contentType) {
     case "started":
@@ -39,17 +38,17 @@ function addSocketEvent(message) {
     case "generated":
       pre.className = "text-success flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content}</code></pre><pre><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
       break;
     case "in progress":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
       break;
     case "notification":
       pre.className = "text-info flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
       displayNotification(message.url);
       break;
     case "error":
@@ -63,7 +62,7 @@ function addSocketEvent(message) {
 
 function displayNotification(url) {
   iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-          src=${url}&dark=1&embed=1"></iframe>`;
+          src="tg://resolve?domain=autotests_cloud&post=462&comment=692"></iframe>`;
   // src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
 }
 
