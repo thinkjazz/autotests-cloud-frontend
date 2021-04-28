@@ -2,12 +2,9 @@ import SockJS from "../sockets/sockjs.min";
 import { Stomp } from "../sockets/stomp.min";
 
 const mainForm = document.querySelector("#objective");
-const buttonSubmitForm = mainForm.querySelector(".btn");
-const headerTextarea = document.querySelector(".textarea-header");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const alert = document.querySelector(".alert");
-
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
 
@@ -71,15 +68,7 @@ function hide(element) {
   element.style.display = "none";
 }
 
-// buttonSubmitForm.addEventListener("click", (event) => {
-//   // event.preventDefault();
-// });
-
 const initForm = () => {
-  // mainTextarea.addEventListener("focus", () => {
-  //   textareaTitle.style.opacity = "0";
-  //   mainTextarea.style.paddingTop = "1rem";
-  // });
   connect();
 
   function submitForm(event) {
@@ -96,16 +85,10 @@ const initForm = () => {
       console.log(values);
 
       stompClient.send("/app/hello", {}, JSON.stringify(values));
-      // const response = sendData(url, JSON.stringify(values));
-      headerTextarea.innerHTML = "In progress..."; // todo add exception
+
       codeBlock.classList.remove("hidden");
       mainForm.classList.add("hidden");
       iframeBlock.classList.remove("hidden");
-      // response.then((resp) => {
-      hide(mainTextarea);
-      hide(titleTextarea);
-      hide(buttonSubmitForm);
-      hide(headerTextarea);
 
       mainForm.reset();
       alert.style.opacity = "1";
