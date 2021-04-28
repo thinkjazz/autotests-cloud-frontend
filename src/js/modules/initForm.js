@@ -62,7 +62,7 @@ function addSocketEvent(message) {
 
 function displayNotification(url) {
   iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-          src="tg://resolve?domain=autotests_cloud&post=462&comment=692"></iframe>`;
+          src="https://t.me/autotests_cloud/465?dark=1&comment=701&embed=1"></iframe>`;
   // src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
 }
 
@@ -95,8 +95,7 @@ const initForm = () => {
       values.email = "admin@qa.guru";
       console.log(values);
 
-      let a = stompClient.send("/app/hello", {}, JSON.stringify(values));
-      console.log(a);
+      stompClient.send("/app/hello", {}, JSON.stringify(values));
       // const response = sendData(url, JSON.stringify(values));
       headerTextarea.innerHTML = "In progress..."; // todo add exception
       codeBlock.classList.remove("hidden");
