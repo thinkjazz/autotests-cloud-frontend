@@ -1,0 +1,35 @@
+.mockup-code {
+  max-height: 411px;
+
+  @media (max-width: 1023px) {
+    min-height: 411px;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.mockup-code::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.mockup-code {
+  border-radius: 0.5rem;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.mockup-code code {
+  text-align: left;
+}
+
+.mockup-code pre[data-prefix]:before {
+  width: auto;
+}
+
+pre {
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla*/
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}

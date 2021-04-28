@@ -1,4 +1,5 @@
 @import "scss/blocks/modal.scss";
+@import "scss/blocks/code-block.scss";
 
 :root {
   --p: 259 94% 51%;
@@ -197,23 +198,12 @@ textarea:focus {
 }
 
 .iframe-block {
-  // background: red;
   min-width: 100px;
-  height: 630px;
+  height: 640px;
   margin-top: -195px;
-}
 
-.mockup-code {
-  max-height: 411px;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.mockup-code::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.mockup-code {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  @media (max-width: 1023px) {
+    margin-top: 0;
+    height: 650px;
+  }
 }
