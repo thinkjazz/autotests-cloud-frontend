@@ -29,7 +29,7 @@ function addSocketEvent(message) {
   switch (message.contentType) {
     case "started":
       pre.className = "flex";
-      pre.setAttribute("data-prefix", "$");
+      pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
     case "generated":
@@ -43,9 +43,9 @@ function addSocketEvent(message) {
       pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
       break;
     case "notification":
-      pre.className = "text-info flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      // pre.className = "text-info flex";
+      // pre.setAttribute("data-prefix", ">");
+      // pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
       displayNotification(message.url);
       break;
     case "error":
@@ -57,10 +57,9 @@ function addSocketEvent(message) {
   document.querySelector("#console").append(pre);
 }
 
-function displayNotification(url) {
+function displayNotification(messagePath) {
   iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-          src="https://t.me/autotests_cloud/465?dark=1&comment=701&embed=1"></iframe>`;
-  // src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
+          src="https://t.me/${messagePath}?embed=1&discussion=1&comments_limit=5&dark=1"></iframe>`;
 }
 
 function hide(element) {
@@ -84,7 +83,7 @@ const initForm = () => {
       values.email = "admin@qa.guru";
       console.log(values);
 
-      stompClient.send("/app/hello", {}, JSON.stringify(values));
+      stompClient.send("/app/orders", {}, JSON.stringify(values));
 
       codeBlock.classList.remove("hidden");
       mainForm.classList.add("hidden");
