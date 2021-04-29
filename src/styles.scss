@@ -127,6 +127,10 @@ img.invertl {
   font-size: 1.25rem;
   text-transform: inherit;
 
+  &--custom {
+    min-width: 214px;
+  }
+
   &--telegram {
     background-color: #28a7e9;
     border-color: #28a7e9;
@@ -209,4 +213,8 @@ textarea:focus {
     margin-top: 0;
     height: 650px;
   }
+}
+
+.translate--active {
+  color: #59b998;
 }

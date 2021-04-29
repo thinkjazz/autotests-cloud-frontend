@@ -117,7 +117,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/sockets/sockjs.min.js":[function(require,module,exports) {
+})({"../node_modules/daisyui/dist/resets/general.js":[function(require,module,exports) {
+module.exports = {"html":{"WebkitTapHighlightColor":"transparent"}};
+},{}],"js/sockets/sockjs.min.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -3422,18 +3424,165 @@ var initForm = function initForm() {
 };
 
 exports.initForm = initForm;
-},{"../sockets/sockjs.min":"js/sockets/sockjs.min.js","../sockets/stomp.min":"js/sockets/stomp.min.js"}],"styles.css":[function(require,module,exports) {
+},{"../sockets/sockjs.min":"js/sockets/sockjs.min.js","../sockets/stomp.min":"js/sockets/stomp.min.js"}],"js/modules/LocalLang.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var LocalLang = /*#__PURE__*/function () {
+  function LocalLang() {
+    _classCallCheck(this, LocalLang);
+  }
+
+  _createClass(LocalLang, null, [{
+    key: "saveLocalLang",
+    value: function saveLocalLang(language) {
+      var langs;
+
+      if (localStorage.getItem("langs") === null) {
+        langs = [];
+      } else {
+        langs = JSON.parse(localStorage.getItem("langs"));
+      }
+
+      langs.push(language);
+      localStorage.setItem("langs", JSON.stringify(langs));
+    }
+  }, {
+    key: "getLocalLang",
+    value: function getLocalLang() {
+      var langs;
+
+      if (localStorage.getItem("langs") === null) {
+        langs = [];
+      } else {
+        langs = JSON.parse(localStorage.getItem("langs"));
+      }
+
+      var lang = langs[langs.length - 1];
+      return lang;
+    }
+  }, {
+    key: "getDictionary",
+    value: function getDictionary() {
+      return {
+        en_lang: {
+          title: "Test automation as a service",
+          alert_success: "Automation has started!",
+          description: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a>\n            engineers will automate your tests. Describe step by step",
+          test_title: "Test title",
+          textarea: "Open 'https://github.com/login' \xA0Set username 'Alex' \xA0Set password '12%#5f' \xA0Verify successful authorization as 'Alex'",
+          checkout_button: "Checkout (free now)",
+          copyright: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">qa.guru</a>\n            copyright"
+        },
+        ru_lang: {
+          title: "Тест аутомейшн эс а сервис",
+          alert_success: "Аутомэйшн хэс стартед!",
+          description: "\n            \u0418\u043D\u0436\u0435\u043D\u0435\u0440\u044B <a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a> \u0432\u0438\u043B\u043B \u0430\u0443\u0442\u043E\u043C\u0435\u0439\u0442 \u0451\u0440 \u0442\u0435\u0441\u0442\u0441. \u0414\u0435\u0441\u043A\u0440\u0430\u0439\u0431 \u0441\u0442\u0435\u043F \u0431\u0430\u0439 \u0441\u0442\u0435\u043F",
+          test_title: "Тест тайтл",
+          textarea: "\u041E\u043F\u0435\u043D 'https://github.com/login' <br> \xA0\u0421\u0435\u0442 \u044E\u0437\u0435\u0440\u043D\u0435\u0439\u043C 'Alex' \xA0\u0421\u0435\u0442 \u043F\u0430\u0441\u0441\u0432\u043E\u0440\u0434 '12%#5f' \xA0\u0412\u0435\u0440\u0438\u0444\u0430\u0439 \u0441\u0430\u043A\u0441\u0435\u0441\u0441\u0444\u0443\u043B \u0430\u0443\u0442\u043E\u0440\u0438\u0437\u0435\u0439\u0448\u043D \u044D\u0441 'Alex'",
+          checkout_button: "Чекаут (free now)",
+          copyright: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">qa.guru</a>\n            \u043A\u043E\u043F\u0438\u0440\u0430\u0439\u0442"
+        }
+      };
+    }
+  }]);
+
+  return LocalLang;
+}();
+
+var _default = LocalLang;
+exports.default = _default;
+},{}],"js/modules/initLanguage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initLanguage = void 0;
+
+var _LocalLang = _interopRequireDefault(require("./LocalLang"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var initLanguage = function initLanguage() {
+  document.addEventListener("DOMContentLoaded", changeLanguage);
+  var languageButtons = document.querySelectorAll(".translate");
+  var blocksForTranslate = document.querySelectorAll(".lang");
+  languageButtons.forEach(function (button) {
+    button.addEventListener("click", changeLanguage);
+  });
+
+  function changeLanguage() {
+    var blocksForTranslate = document.querySelectorAll(".lang");
+    var lang = this.tagName === undefined ? _LocalLang.default.getLocalLang() : this.getAttribute("id");
+    blocksForTranslate.forEach(function (block, index) {
+      var currentBlock = block.getAttribute("key"); // console.log(currentBlock);
+      // console.log(block.getAttribute("placeholder"));
+      // console.log(block.tagName === "TEXTAREA");
+      // console.log(languages[lang][currentBlock]);
+
+      if (block.tagName !== "TEXTAREA") {
+        block.innerHTML = _LocalLang.default.getDictionary()[lang][currentBlock];
+      }
+
+      if (block.tagName === "TEXTAREA") {
+        var newTextArea = document.createElement("textarea"); //   const newTextArea = `<textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2" id="textarea-main"
+        //     name="steps" key="textarea"
+        //     placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Verify successful authorization as 'Alex'"></textarea>`;
+        //   block.innerHTML = languages[lang][currentBlock];
+      }
+
+      block.setAttribute("placeholder", _LocalLang.default.getDictionary()[lang][currentBlock]);
+    });
+
+    _LocalLang.default.saveLocalLang(lang);
+
+    languageButtons.forEach(function (button) {
+      button.classList.remove("translate--active");
+
+      if (button.id === _LocalLang.default.getLocalLang()) {
+        button.classList.add("translate--active");
+      }
+    });
+
+    if (this.id === _LocalLang.default.getLocalLang()) {
+      this.classList.add("translate--active");
+    }
+  }
+};
+
+exports.initLanguage = initLanguage;
+},{"./LocalLang":"js/modules/LocalLang.js"}],"styles.css":[function(require,module,exports) {
 
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
+var _general = _interopRequireDefault(require("daisyui/dist/resets/general"));
+
 var _initForm = require("./js/modules/initForm");
+
+var _initLanguage = require("./js/modules/initLanguage");
+
+var _LocalLang = _interopRequireDefault(require("./js/modules/LocalLang"));
 
 require("./styles.css");
 
 require("./styles.scss");
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // import { removeSlash } from "./js/utils/removeSlash";
-(0, _initForm.initForm)(); // removeSlash();
-},{"./js/modules/initForm":"js/modules/initForm.js","./styles.css":"styles.css","./styles.scss":"styles.css"}]},{},["index.js"], null)
+(0, _initForm.initForm)();
+(0, _initLanguage.initLanguage)(); // removeSlash();
+},{"daisyui/dist/resets/general":"../node_modules/daisyui/dist/resets/general.js","./js/modules/initForm":"js/modules/initForm.js","./js/modules/initLanguage":"js/modules/initLanguage.js","./js/modules/LocalLang":"js/modules/LocalLang.js","./styles.css":"styles.css","./styles.scss":"styles.css"}]},{},["index.js"], null)
 //# sourceMappingURL=/src.e31bb0bc.js.map
