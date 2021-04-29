@@ -3557,7 +3557,8 @@ var initLanguage = function initLanguage() {
 
     if (this.id === _LocalLang.default.getLocalLang()) {
       this.classList.add("translate--active");
-    }
+    } // console.log(LocalLang.getDictionary()[LocalLang.getLocalLang()]);
+
   }
 };
 

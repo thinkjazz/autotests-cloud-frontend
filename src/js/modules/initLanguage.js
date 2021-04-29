@@ -54,6 +54,8 @@ const initLanguage = () => {
     if (this.id === LocalLang.getLocalLang()) {
       this.classList.add("translate--active");
     }
+
+    // console.log(LocalLang.getDictionary()[LocalLang.getLocalLang()]);
   }
 };
 
