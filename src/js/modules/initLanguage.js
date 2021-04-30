@@ -17,28 +17,19 @@ const initLanguage = () => {
         ? LocalLang.getLocalLang()
         : this.getAttribute("id");
 
-    blocksForTranslate.forEach((block, index) => {
+    blocksForTranslate.forEach((block) => {
       const currentBlock = block.getAttribute("key");
-      // console.log(currentBlock);
-      // console.log(block.getAttribute("placeholder"));
-      // console.log(block.tagName === "TEXTAREA");
-      // console.log(languages[lang][currentBlock]);
 
       if (block.tagName !== "TEXTAREA") {
         block.innerHTML = LocalLang.getDictionary()[lang][currentBlock];
       }
 
-      if (block.tagName === "TEXTAREA") {
-        const newTextArea = document.createElement("textarea");
-        //   const newTextArea = `<textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2" id="textarea-main"
-        //     name="steps" key="textarea"
-        //     placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Verify successful authorization as 'Alex'"></textarea>`;
-        //   block.innerHTML = languages[lang][currentBlock];
+      if (block.getAttribute("placeholder") !== null) {
+        block.setAttribute(
+          "placeholder",
+          LocalLang.getDictionary()[lang][currentBlock]
+        );
       }
-      block.setAttribute(
-        "placeholder",
-        LocalLang.getDictionary()[lang][currentBlock]
-      );
     });
 
     LocalLang.saveLocalLang(lang);

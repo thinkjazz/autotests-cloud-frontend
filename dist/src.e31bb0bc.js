@@ -3480,7 +3480,7 @@ var LocalLang = /*#__PURE__*/function () {
           alert_success: "Automation has started!",
           description: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a>\n            engineers will automate your tests. Describe step by step",
           test_title: "Test title",
-          textarea: "Open 'https://github.com/login' \xA0Set username 'Alex' \xA0Set password '12%#5f' \xA0Verify successful authorization as 'Alex'",
+          textarea: "Open 'https://github.com/login'\nSet username 'Alex'\nSet password '12%#5f'\nVerify successful authorization as 'Alex'",
           checkout_button: "Checkout (free now)",
           copyright: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">qa.guru</a>\n            copyright"
         },
@@ -3489,7 +3489,7 @@ var LocalLang = /*#__PURE__*/function () {
           alert_success: "Аутомэйшн хэс стартед!",
           description: "\n            \u0418\u043D\u0436\u0435\u043D\u0435\u0440\u044B <a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a> \u0432\u0438\u043B\u043B \u0430\u0443\u0442\u043E\u043C\u0435\u0439\u0442 \u0451\u0440 \u0442\u0435\u0441\u0442\u0441. \u0414\u0435\u0441\u043A\u0440\u0430\u0439\u0431 \u0441\u0442\u0435\u043F \u0431\u0430\u0439 \u0441\u0442\u0435\u043F",
           test_title: "Тест тайтл",
-          textarea: "\u041E\u043F\u0435\u043D 'https://github.com/login' <br> \xA0\u0421\u0435\u0442 \u044E\u0437\u0435\u0440\u043D\u0435\u0439\u043C 'Alex' \xA0\u0421\u0435\u0442 \u043F\u0430\u0441\u0441\u0432\u043E\u0440\u0434 '12%#5f' \xA0\u0412\u0435\u0440\u0438\u0444\u0430\u0439 \u0441\u0430\u043A\u0441\u0435\u0441\u0441\u0444\u0443\u043B \u0430\u0443\u0442\u043E\u0440\u0438\u0437\u0435\u0439\u0448\u043D \u044D\u0441 'Alex'",
+          textarea: "\u041E\u043F\u0435\u043D 'https://github.com/login'\n\u0421\u0435\u0442 \u044E\u0437\u0435\u0440\u043D\u0435\u0439\u043C 'Alex'\n\u0421\u0435\u0442 \u043F\u0430\u0441\u0441\u0432\u043E\u0440\u0434 '12%#5f'\n\u0412\u0435\u0440\u0438\u0444\u0430\u0439 \u0441\u0430\u043A\u0441\u0435\u0441\u0441\u0444\u0443\u043B \u0430\u0443\u0442\u043E\u0440\u0438\u0437\u0435\u0439\u0448\u043D \u044D\u0441 'Alex'",
           checkout_button: "Чекаут (free now)",
           copyright: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">qa.guru</a>\n            \u043A\u043E\u043F\u0438\u0440\u0430\u0439\u0442"
         }
@@ -3525,24 +3525,16 @@ var initLanguage = function initLanguage() {
   function changeLanguage() {
     var blocksForTranslate = document.querySelectorAll(".lang");
     var lang = this.tagName === undefined ? _LocalLang.default.getLocalLang() : this.getAttribute("id");
-    blocksForTranslate.forEach(function (block, index) {
-      var currentBlock = block.getAttribute("key"); // console.log(currentBlock);
-      // console.log(block.getAttribute("placeholder"));
-      // console.log(block.tagName === "TEXTAREA");
-      // console.log(languages[lang][currentBlock]);
+    blocksForTranslate.forEach(function (block) {
+      var currentBlock = block.getAttribute("key");
 
       if (block.tagName !== "TEXTAREA") {
         block.innerHTML = _LocalLang.default.getDictionary()[lang][currentBlock];
       }
 
-      if (block.tagName === "TEXTAREA") {
-        var newTextArea = document.createElement("textarea"); //   const newTextArea = `<textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2" id="textarea-main"
-        //     name="steps" key="textarea"
-        //     placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Verify successful authorization as 'Alex'"></textarea>`;
-        //   block.innerHTML = languages[lang][currentBlock];
+      if (block.getAttribute("placeholder") !== null) {
+        block.setAttribute("placeholder", _LocalLang.default.getDictionary()[lang][currentBlock]);
       }
-
-      block.setAttribute("placeholder", _LocalLang.default.getDictionary()[lang][currentBlock]);
     });
 
     _LocalLang.default.saveLocalLang(lang);
