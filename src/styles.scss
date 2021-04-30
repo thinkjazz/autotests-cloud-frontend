@@ -218,3 +218,33 @@ textarea:focus {
 .translate--active {
   color: #59b998;
 }
+
+.tools__item--disco {
+  z-index: 10;
+}
+
+.disco-element {
+  z-index: 1;
+  max-height: 15rem;
+  width: auto;
+  object-fit: contain;
+
+  // animation-duration: 1s;
+  // animation-name: dance;
+  // animation-iteration-count: infinite;
+  // animation-direction: alternate;
+}
+
+.disco-element--banana {
+  // max-height: 12rem;
+}
+
+@keyframes dance {
+  from {
+    height: 6rem;
+  }
+
+  to {
+    height: 12rem;
+  }
+}

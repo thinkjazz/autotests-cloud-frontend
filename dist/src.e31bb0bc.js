@@ -3555,7 +3555,74 @@ var initLanguage = function initLanguage() {
 };
 
 exports.initLanguage = initLanguage;
-},{"./LocalLang":"js/modules/LocalLang.js"}],"styles.css":[function(require,module,exports) {
+},{"./LocalLang":"js/modules/LocalLang.js"}],"js/modules/initDisco.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.initDisco = void 0;
+
+var initDisco = function initDisco() {
+  var mainContainer = document.querySelector("#app");
+  var mainTitle = document.querySelector("h1");
+  var discoBtn = document.querySelector(".tools__item--disco");
+  var discoElementBanana = document.querySelectorAll(".disco-element--banana");
+  var discoElementWoman = document.querySelectorAll(".disco-element--woman");
+  var dancers = document.querySelectorAll(".disco-element");
+  var mainTitleText;
+  var danceInterval;
+  discoBtn.addEventListener("mouseenter", startDisco);
+  discoBtn.addEventListener("mouseout", stopDisco);
+
+  function startDisco() {
+    mainTitleText = mainTitle.innerHTML;
+    mainTitle.innerHTML = "Test automation as a Discoteka";
+
+    var rand = function rand(multi) {
+      return parseInt(multi * Math.random(), 10);
+    };
+
+    var ww = window.innerWidth / 2;
+    var wh = window.innerHeight;
+    var constraint = Math.min(ww, wh);
+
+    function move() {
+      dancers.forEach(function (dancer) {
+        var w = rand(constraint);
+        var x = rand(ww - w);
+        var y = rand(wh - w);
+        dancer.style.height = w / 2 + "px";
+        dancer.style.top = y + "px";
+        dancer.style.left = x + ww / 4 + "px";
+        dancer.style.transition = rand(100) + 2000 + "ms";
+      });
+    }
+
+    move();
+    discoElementBanana.forEach(function (element) {
+      element.classList.remove("hidden");
+    });
+    discoElementWoman.forEach(function (element) {
+      element.classList.remove("hidden");
+    });
+    danceInterval = window.setInterval(move, 1500);
+  }
+
+  function stopDisco() {
+    mainTitle.innerHTML = mainTitleText;
+    discoElementBanana.forEach(function (element) {
+      element.classList.add("hidden");
+    });
+    discoElementWoman.forEach(function (element) {
+      element.classList.add("hidden");
+    });
+    clearInterval(danceInterval);
+  }
+};
+
+exports.initDisco = initDisco;
+},{}],"styles.css":[function(require,module,exports) {
 
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -3565,6 +3632,8 @@ var _general = _interopRequireDefault(require("daisyui/dist/resets/general"));
 var _initForm = require("./js/modules/initForm");
 
 var _initLanguage = require("./js/modules/initLanguage");
+
+var _initDisco = require("./js/modules/initDisco");
 
 var _LocalLang = _interopRequireDefault(require("./js/modules/LocalLang"));
 
@@ -3576,6 +3645,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // import { removeSlash } from "./js/utils/removeSlash";
 (0, _initForm.initForm)();
-(0, _initLanguage.initLanguage)(); // removeSlash();
-},{"daisyui/dist/resets/general":"../node_modules/daisyui/dist/resets/general.js","./js/modules/initForm":"js/modules/initForm.js","./js/modules/initLanguage":"js/modules/initLanguage.js","./js/modules/LocalLang":"js/modules/LocalLang.js","./styles.css":"styles.css","./styles.scss":"styles.css"}]},{},["index.js"], null)
+(0, _initLanguage.initLanguage)();
+(0, _initDisco.initDisco)(); // removeSlash();
+},{"daisyui/dist/resets/general":"../node_modules/daisyui/dist/resets/general.js","./js/modules/initForm":"js/modules/initForm.js","./js/modules/initLanguage":"js/modules/initLanguage.js","./js/modules/initDisco":"js/modules/initDisco.js","./js/modules/LocalLang":"js/modules/LocalLang.js","./styles.css":"styles.css","./styles.scss":"styles.css"}]},{},["index.js"], null)
 //# sourceMappingURL=/src.e31bb0bc.js.map
