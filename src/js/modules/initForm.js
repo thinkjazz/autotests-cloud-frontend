@@ -29,24 +29,35 @@ function addSocketEvent(message) {
   switch (message.contentType) {
     case "started":
       pre.className = "flex";
+      pre.setAttribute("data-prefix", "$");
+      pre.innerHTML = `<code>${message.content}</code>`;
+      break;
+    case "info":
+      pre.className = "flex";
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content}</code>`;
+      break;
+    case "link":
+      pre.className = "flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code><a class="questions" href="${message.url}">${message.url}</a></code>`;
       break;
     case "generated":
       pre.className = "text-success flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content} <br/></code>`;
       break;
     case "in progress":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content} <br/></code>`;
       break;
-    case "notification":
-      // pre.className = "text-info flex";
-      // pre.setAttribute("data-prefix", ">");
-      // pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
-      displayNotification(message.url);
+    case "telegram-notification":
+      displayNotification(message.content);
+      break;
+    case "empty":
+      pre.className = "flex";
+      pre.innerHTML = `<code> </code>`;
       break;
     case "error":
       pre.className = "text-error flex";
