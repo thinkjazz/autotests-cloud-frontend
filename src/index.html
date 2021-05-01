@@ -11,11 +11,18 @@
 <body class="font-mono">
     <div id="app" class="flex flex-col justify-between h-screen pb-6">
 
-        <header class="container max-w-screen-xl mx-auto flex flex-wrap flex-col justify-start items-start my-6 mt-0">
-            <h1 class="max-w-screen-md mx-auto md:mx-0 font-bold text-3xl text-center px-6 py-6 md:py-10 pb-1 md:pb-0 lang"
+        <header
+            class="container relative max-w-screen-xl mx-auto flex flex-wrap flex-col justify-start items-start my-6 mt-0">
+            <h1 class="max-w-screen-md mx-auto md:mx-0 font-bold text-3xl text-center px-6 py-10 md:py-10 pb-1 md:pb-0 lang"
                 key="title">
                 Test automation as a Service
             </h1>
+
+            <div class="language px-6 absolute right-0 top-0 mt-0 md:mt-14">
+                <button id="en_lang" class="translate translate--active focus:outline-none">en</button>
+                <span>/</span>
+                <button id="ru_lang" class="translate focus:outline-none">ru</button>
+            </div>
 
             <ul
                 class="tools list-inside flex mx-auto md:mx-0 flex-wrap sm:flex-nowrap justify-between md:justify-center w-full md:w-1/2 px-6">
@@ -75,12 +82,6 @@
                     <img alt="Slack" src="./img/Slack.svg" class="h-8  xl:h-12">
                 </li>
             </ul>
-
-            <div class="alert alert-success absolute right-0 opacity-0 px-12 transition-all">
-                <div class="flex-1">
-                    <label class="lang" key="alert_success">Automation has started!</label>
-                </div>
-            </div>
         </header>
 
 
@@ -105,7 +106,7 @@
 
                         <textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2 resize-none"
                             id="textarea-main" name="steps" key="textarea"
-                          placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Submit form &#10;Verify successful authorization as 'Alex'"></textarea>
+                            placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Submit form &#10;Verify successful authorization as 'Alex'"></textarea>
 
                         <div id="loading-block" class="hidden"></div>
                         <div id="telegram-frame"
@@ -150,18 +151,14 @@
 
         </main>
 
-        <footer class="container max-w-screen-xl mx-auto mt-12 py-6 px-6 flex justify-between items-center">
-            <div class="language">
-                <button id="en_lang" class="translate translate--active focus:outline-none">en</button>
-                <span>/</span>
-                <button id="ru_lang" class="translate focus:outline-none">ru</button>
-            </div>
+        <footer class="container max-w-screen-xl mx-auto mt-12 py-6 px-6 flex justify-end items-center">
             <h3 class="lang textarea-header font-bold text-base text-right transition-all" key="copyright">
-                <a title="Test automation school" target="_blank" class="green-link" href="https://qa.guru">qa.guru</a> &middot;
+                <a title="Test automation school" target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
+                &middot;
                 <a title="Telegram Test automation community" target="_blank" class="red-link"
-                   href="tg://resolve?domain=qa_automation">@qa_automation</a> &middot;
+                    href="tg://resolve?domain=qa_automation">@qa_automation</a> &middot;
                 <a title="Have a rest here, bro" target="_blank" class="blue-link"
-                   href="https://relax.baby">relax.baby</a>
+                    href="https://relax.baby">relax.baby</a>
             </h3>
         </footer>
 

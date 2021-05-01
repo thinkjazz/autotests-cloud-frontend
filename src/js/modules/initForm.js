@@ -5,7 +5,6 @@ import { create_UUID } from "../utils/StringUtils";
 const mainForm = document.querySelector("#objective");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
-const alert = document.querySelector(".alert");
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
 
@@ -108,11 +107,6 @@ const initForm = () => {
       iframeBlock.classList.remove("hidden");
 
       mainForm.reset();
-      alert.style.opacity = "1";
-
-      setTimeout(() => {
-        alert.style.opacity = "0";
-      }, 2000);
     } else {
       if (!mainTextarea.value) {
         mainTextarea.classList.add("border-red-500");

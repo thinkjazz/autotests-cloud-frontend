@@ -220,7 +220,19 @@ textarea:focus {
   }
 }
 
+.translate {
+  color: #59b998;
+  text-decoration: underline;
+}
+
 .translate--active {
+  color: #ffffff !important;
+  text-decoration: none;
+  cursor: none;
+  pointer-events: none;
+}
+
+.translate {
   color: #59b998;
 }
 
