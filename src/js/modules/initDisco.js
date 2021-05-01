@@ -1,7 +1,10 @@
 const initDisco = () => {
   const mainContainer = document.querySelector("#app");
+  const console = document.querySelector("#console");
+  const mainForm = document.querySelector("#objective");
   const mainTitle = document.querySelector("h1");
   const discoBtn = document.querySelector(".tools__item--disco");
+  const catParty = document.querySelector("#party");
 
   const discoElementBanana = document.querySelectorAll(
     ".disco-element--banana"
@@ -17,7 +20,7 @@ const initDisco = () => {
 
   function startDisco() {
     mainTitleText = mainTitle.innerHTML;
-    mainTitle.innerHTML = "Test automation as a Discoteka";
+    mainTitle.innerHTML = "Test automation as a Disco";
 
     const rand = (multi) => {
       return parseInt(multi * Math.random(), 10);
@@ -45,6 +48,10 @@ const initDisco = () => {
 
     move();
 
+    catParty.classList.remove("hidden");
+    console.classList.add("hidden");
+    mainForm.classList.add("hidden");
+
     discoElementBanana.forEach((element) => {
       element.classList.remove("hidden");
     });
@@ -56,6 +63,8 @@ const initDisco = () => {
   }
 
   function stopDisco() {
+    let iframe = document.querySelector("iframe");
+
     mainTitle.innerHTML = mainTitleText;
 
     discoElementBanana.forEach((element) => {
@@ -65,6 +74,14 @@ const initDisco = () => {
     discoElementWoman.forEach((element) => {
       element.classList.add("hidden");
     });
+
+    if (iframe) {
+      console.classList.remove("hidden");
+    } else {
+      mainForm.classList.remove("hidden");
+    }
+
+    catParty.classList.add("hidden");
 
     clearInterval(danceInterval);
   }

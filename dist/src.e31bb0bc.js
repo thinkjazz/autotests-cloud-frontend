@@ -3565,8 +3565,11 @@ exports.initDisco = void 0;
 
 var initDisco = function initDisco() {
   var mainContainer = document.querySelector("#app");
+  var console = document.querySelector("#console");
+  var mainForm = document.querySelector("#objective");
   var mainTitle = document.querySelector("h1");
   var discoBtn = document.querySelector(".tools__item--disco");
+  var catParty = document.querySelector("#party");
   var discoElementBanana = document.querySelectorAll(".disco-element--banana");
   var discoElementWoman = document.querySelectorAll(".disco-element--woman");
   var dancers = document.querySelectorAll(".disco-element");
@@ -3577,7 +3580,7 @@ var initDisco = function initDisco() {
 
   function startDisco() {
     mainTitleText = mainTitle.innerHTML;
-    mainTitle.innerHTML = "Test automation as a Discoteka";
+    mainTitle.innerHTML = "Test automation as a Disco";
 
     var rand = function rand(multi) {
       return parseInt(multi * Math.random(), 10);
@@ -3600,6 +3603,9 @@ var initDisco = function initDisco() {
     }
 
     move();
+    catParty.classList.remove("hidden");
+    console.classList.add("hidden");
+    mainForm.classList.add("hidden");
     discoElementBanana.forEach(function (element) {
       element.classList.remove("hidden");
     });
@@ -3610,6 +3616,7 @@ var initDisco = function initDisco() {
   }
 
   function stopDisco() {
+    var iframe = document.querySelector("iframe");
     mainTitle.innerHTML = mainTitleText;
     discoElementBanana.forEach(function (element) {
       element.classList.add("hidden");
@@ -3617,6 +3624,14 @@ var initDisco = function initDisco() {
     discoElementWoman.forEach(function (element) {
       element.classList.add("hidden");
     });
+
+    if (iframe) {
+      console.classList.remove("hidden");
+    } else {
+      mainForm.classList.remove("hidden");
+    }
+
+    catParty.classList.add("hidden");
     clearInterval(danceInterval);
   }
 };
