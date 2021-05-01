@@ -3340,6 +3340,7 @@ var uuid = (0, _StringUtils.create_UUID)();
 
 function connect() {
   var socket = new _sockjs.default("https://api.autotests.cloud/ws"); // todo add exception
+  // const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
 
   stompClient = _stomp.Stomp.over(socket);
   stompClient.connect({}, function (status) {
@@ -3356,14 +3357,8 @@ function addSocketEvent(message) {
   var pre = document.createElement("pre");
 
   switch (message.contentType) {
-    case "started":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", "$");
-      pre.innerHTML = "<code>".concat(message.content, "</code>");
-      break;
-
     case "info":
-      pre.className = "flex";
+      pre.className = "list-auto flex";
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = "<code>".concat(message.content, "</code>");
       break;
@@ -3371,25 +3366,19 @@ function addSocketEvent(message) {
     case "generated":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = "<code>".concat(message.content, " <br/></code>");
-      break;
-
-    case "green-link":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = "<code><a target=\"_blank\" class=\"text-success\" href=\"".concat(message.url, "\">").concat(message.url, "</a></code>");
-      break;
-
-    case "blue-link":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = "<code><a target=\"_blank\" class=\"text-info\" href=\"".concat(message.url, "\">").concat(message.url, "</a> \uD83D\uDC48</code>");
+      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"text-success\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a></code>");
       break;
 
     case "in progress":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = "<code>".concat(message.content, " </code>");
+      break;
+
+    case "telegram-info":
+      pre.className = "list-auto flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"text-info\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a> \uD83D\uDC48</code>");
       break;
 
     case "telegram-notification":
@@ -3510,22 +3499,24 @@ var LocalLang = /*#__PURE__*/function () {
     value: function getDictionary() {
       return {
         en_lang: {
-          title: "Test automation as a service",
-          alert_success: "Automation has started!",
+          // title: "Test automation as a Service",
+          // alert_success: "Automation has started!",
           description: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a>\n            engineers will automate your tests. Describe step by step",
           test_title: "Test title",
-          textarea: "Open 'https://github.com/login'\nSet username 'Alex'\nSet password '12%#5f'\nVerify successful authorization as 'Alex'",
-          checkout_button: "Checkout (free now)",
-          copyright: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">qa.guru</a>\n            copyright"
+          textarea: "Open 'https://github.com/login' \n\nSet username 'Alex' \nSet password '12%#5f'\nSubmit form \n\nVerify successful authorization as 'Alex'",
+          checkout_button: "Automate it! (free now)" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
+          //     copyright`,
+
         },
         ru_lang: {
-          title: "Тест аутомейшн эс а сервис",
-          alert_success: "Аутомэйшн хэс стартед!",
+          // title: "Тест аутомейшн эс а сервис",
+          // alert_success: "Аутомэйшн хэс стартед!",
           description: "\n            \u0418\u043D\u0436\u0435\u043D\u0435\u0440\u044B <a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a> \u0432\u0438\u043B\u043B \u0430\u0443\u0442\u043E\u043C\u0435\u0439\u0442 \u0451\u0440 \u0442\u0435\u0441\u0442\u0441. \u0414\u0435\u0441\u043A\u0440\u0430\u0439\u0431 \u0441\u0442\u0435\u043F \u0431\u0430\u0439 \u0441\u0442\u0435\u043F",
-          test_title: "Тест тайтл",
-          textarea: "\u041E\u043F\u0435\u043D 'https://github.com/login'\n\u0421\u0435\u0442 \u044E\u0437\u0435\u0440\u043D\u0435\u0439\u043C 'Alex'\n\u0421\u0435\u0442 \u043F\u0430\u0441\u0441\u0432\u043E\u0440\u0434 '12%#5f'\n\u0412\u0435\u0440\u0438\u0444\u0430\u0439 \u0441\u0430\u043A\u0441\u0435\u0441\u0441\u0444\u0443\u043B \u0430\u0443\u0442\u043E\u0440\u0438\u0437\u0435\u0439\u0448\u043D \u044D\u0441 'Alex'",
-          checkout_button: "Чекаут (free now)",
-          copyright: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">qa.guru</a>\n            \u043A\u043E\u043F\u0438\u0440\u0430\u0439\u0442"
+          test_title: "Название теста",
+          textarea: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C 'https://github.com/login' \n\n\u0412\u0432\u0435\u0441\u0442\u0438 \u043B\u043E\u0433\u0438\u043D 'Alex' \n\u0412\u0432\u0435\u0441\u0442\u0438 \u043F\u0430\u0440\u043E\u043B\u044C '12%#5f' \n\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0440\u043C\u0443 \n\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C \u0443\u0441\u043F\u0435\u0448\u043D\u0443\u044E \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044E \u043F\u043E\u0434 'Alex'",
+          checkout_button: "Автоматизировать! (free now)" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
+          //     копирайт`,
+
         }
       };
     }

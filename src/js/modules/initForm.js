@@ -13,6 +13,7 @@ let uuid = create_UUID();
 
 function connect() {
   const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
+  // const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (status) {
     console.log("Connected: " + status);
@@ -28,35 +29,25 @@ function addSocketEvent(message) {
   let pre = document.createElement("pre");
 
   switch (message.contentType) {
-    case "started":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", "$");
-      pre.innerHTML = `<code>${message.content}</code>`;
-      break;
     case "info":
-      pre.className = "flex";
+      pre.className = "list-auto flex";
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
     case "generated":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/></code>`;
-      break;
-    case "green-link":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code><a target="_blank" class="text-success" href="${message.url}">${message.url}</a></code>`;
-      break;
-    case "blue-link":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code><a target="_blank" class="text-info" href="${message.url}">${message.url}</a> 👈</code>`;
+      pre.innerHTML = `<code>${message.content}<a target="_blank" class="text-success" href="${message.url}">${message.urlText}</a></code>`;
       break;
     case "in progress":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content} </code>`;
+      break;
+    case "telegram-info":
+      pre.className = "list-auto flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code>${message.content}<a target="_blank" class="text-info" href="${message.url}">${message.urlText}</a> 👈</code>`;
       break;
     case "telegram-notification":
       displayNotification(message.content);
