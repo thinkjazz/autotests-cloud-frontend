@@ -113,16 +113,17 @@
 
                 </form>
 
-                <div id="console" class="mockup-code px-4 mb-8 lg:mb-0 w-full lg:w-3/5 lg:w-2/3 overflow-y-auto hidden">
-                    <!--                    <pre data-prefix="$" class="flex">-->
-                    <!--                      <code>npm i daisyui</code>-->
-                    <!--                    </pre>-->
-                    <!--                    <pre data-prefix=">" class="text-warning flex">-->
-                    <!--                      <code>installing...авцууааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа</code>-->
-                    <!--                    </pre>-->
-                    <!--                    <pre data-prefix=">" class="text-success flex">-->
-                    <!--                      <code>Done! вввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв</code>-->
-                    <!--                    </pre>-->
+                <div id="console" class="mockup-code relative px-4 mb-8 lg:mb-0 w-full lg:w-3/5 lg:w-2/3 overflow-y-auto hidden">
+                    <div class="sticky mockup-code__window"></div>
+                    <!-- <pre data-prefix="$" class="flex">
+                                         <code>npm i daisyui</code>
+                                       </pre>
+                    <pre data-prefix=">" class="text-warning flex">
+                                         <code>installing...авцууааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа</code>
+                                       </pre>
+                    <pre data-prefix=">" class="text-success flex">
+                                         <code>Done! вввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв</code>
+                                       </pre> -->
                 </div>
 
                 <div class="iframe-block flex-grow pl-0 lg:pl-4 hidden">
@@ -135,13 +136,13 @@
 
         </main>
 
-        <footer class="container max-w-screen-xl mx-auto mt-12 pb-6 px-6 flex justify-between items-center">
+        <footer class="container max-w-screen-xl mx-auto mt-12 py-6 px-6 flex justify-between items-center">
             <div class="language">
                 <button id="en_lang" class="translate translate--active focus:outline-none">en</button>
                 <span>/</span>
                 <button id="ru_lang" class="translate focus:outline-none">ru</button>
             </div>
-            <h3 class="lang textarea-header font-bold text-base pr-6 text-right transition-all" key="copyright">
+            <h3 class="lang textarea-header font-bold text-base text-right transition-all" key="copyright">
                 <a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
                 copyright
             </h3>
