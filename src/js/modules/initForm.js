@@ -1,5 +1,6 @@
 import SockJS from "../sockets/sockjs.min";
 import { Stomp } from "../sockets/stomp.min";
+import { create_UUID } from "../utils/StringUtils";
 
 const mainForm = document.querySelector("#objective");
 const titleTextarea = document.querySelector("#input-title");
@@ -9,13 +10,14 @@ const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
 
 let stompClient = null;
+let uuid = create_UUID();
 
 function connect() {
   const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (status) {
     console.log("Connected: " + status);
-    stompClient.subscribe("/topic/greetings", function (message) {
+    stompClient.subscribe(`/topic/${uuid}`, function (message) {
       console.log("Message: " + message);
       // todo add exception
       addSocketEvent(JSON.parse(message.body));
@@ -37,20 +39,25 @@ function addSocketEvent(message) {
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
-    case "link":
-      pre.className = "flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code><a class="questions" href="${message.url}">${message.url}</a></code>`;
-      break;
     case "generated":
-      pre.className = "text-success flex";
+      pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content} <br/></code>`;
+      break;
+    case "green-link":
+      pre.className = "flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code><a target="_blank" class="text-success" href="${message.url}">${message.url}</a></code>`;
+      break;
+    case "blue-link":
+      pre.className = "flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code><a target="_blank" class="text-info" href="${message.url}">${message.url}</a> 👈</code>`;
       break;
     case "in progress":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/></code>`;
+      pre.innerHTML = `<code>${message.content} </code>`;
       break;
     case "telegram-notification":
       displayNotification(message.content);
@@ -94,7 +101,7 @@ const initForm = () => {
       values.email = "admin@qa.guru";
       console.log(values);
 
-      stompClient.send("/app/orders", {}, JSON.stringify(values));
+      stompClient.send(`/app/orders/${uuid}`, {}, JSON.stringify(values));
 
       codeBlock.classList.remove("hidden");
       mainForm.classList.add("hidden");
