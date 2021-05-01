@@ -27,8 +27,7 @@ class LocalLang {
       en_lang: {
         // title: "Test automation as a Service",
         // alert_success: "Automation has started!",
-        description: `<a target="_blank" class="green-link" href="https://qa.guru">QA.GURU</a>
-            engineers will automate your tests. Describe step by step`,
+        description: `Describe your manual test step by step`,
         test_title: "Test title",
         textarea: `Open 'https://github.com/login' 
 
@@ -45,7 +44,7 @@ Verify successful authorization as 'Alex'`,
         // title: "Тест аутомейшн эс а сервис",
         // alert_success: "Аутомэйшн хэс стартед!",
         description: `
-            Инженеры <a target="_blank" class="green-link" href="https://qa.guru">QA.GURU</a> вилл аутомейт ёр тестс. Дескрайб степ бай степ`,
+            Распишите ручной тест шаг за шагом`,
         test_title: "Название теста",
         textarea: `Открыть 'https://github.com/login' 
 
@@ -53,7 +52,7 @@ Verify successful authorization as 'Alex'`,
 Ввести пароль '12%#5f' 
 Отправить форму 
 Проверить успешную авторизацию под 'Alex'`,
-        checkout_button: "Автоматизировать! (free now)",
+        checkout_button: "Автоматизировать!",
         // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
         //     копирайт`,
       },

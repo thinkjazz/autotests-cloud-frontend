@@ -3335,6 +3335,7 @@ var titleTextarea = document.querySelector("#input-title");
 var mainTextarea = document.querySelector("#textarea-main");
 var codeBlock = document.querySelector(".mockup-code");
 var iframeBlock = document.querySelector(".iframe-block");
+var loader = document.querySelector(".loader");
 var stompClient = null;
 var uuid = (0, _StringUtils.create_UUID)();
 
@@ -3355,44 +3356,58 @@ function connect() {
 
 function addSocketEvent(message) {
   var pre = document.createElement("pre");
+  pre.setAttribute("data-prefix", message.prefix);
 
   switch (message.contentType) {
     case "info":
       pre.className = "list-auto flex";
-      pre.setAttribute("data-prefix", ">");
       pre.innerHTML = "<code>".concat(message.content, "</code>");
       break;
 
     case "generated":
       pre.className = "text-warning flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"text-success\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a></code>");
+      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"green-link\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a></div></code>");
+      break;
+
+    case "launched":
+      pre.className = "text-warning flex";
+      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"green-link\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a> </code> <label class=\"loader\"></label>");
+      break;
+
+    case "finished":
+      pre.className = "text-warning flex";
+      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"green-link\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a></div></code>");
+      document.querySelector(".loader").remove();
       break;
 
     case "in progress":
       pre.className = "text-warning flex";
-      pre.setAttribute("data-prefix", ">");
       pre.innerHTML = "<code>".concat(message.content, " </code>");
       break;
 
+    case "can-automate":
+      pre.className = "flex";
+      pre.innerHTML = "<code>".concat(message.content, "</code>");
+      break;
+
     case "telegram-info":
-      pre.className = "list-auto flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"text-info\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a> \uD83D\uDC48</code>");
+      pre.className = "flex";
+      pre.innerHTML = "<code>".concat(message.content, "<a target=\"_blank\" class=\"blue-link\" href=\"").concat(message.url, "\">").concat(message.urlText, "</a> \uD83D\uDC48</code>");
       break;
 
     case "telegram-notification":
+      pre.className = "flex";
+      pre.innerHTML = "<code> </code>";
       displayNotification(message.content);
       break;
 
     case "empty":
-      pre.className = "flex";
+      pre.className = "list-auto flex";
       pre.innerHTML = "<code> </code>";
       break;
 
     case "error":
       pre.className = "text-error flex";
-      pre.setAttribute("data-prefix", "x");
       pre.innerHTML = "<code>".concat(message.content, "</code>");
       break;
   }
@@ -3402,11 +3417,6 @@ function addSocketEvent(message) {
 
 function displayNotification(messagePath) {
   iframeBlock.innerHTML = "<iframe id=\"telegram-post-autotests_cloud-17\" class=\"telegram-iframe w-full h-full h-80\"\n          src=\"https://t.me/".concat(messagePath, "?embed=1&discussion=1&comments_limit=5&dark=1\"></iframe>");
-}
-
-function hide(element) {
-  element.style.opacity = "0";
-  element.style.display = "none";
 }
 
 var initForm = function initForm() {
@@ -3501,7 +3511,7 @@ var LocalLang = /*#__PURE__*/function () {
         en_lang: {
           // title: "Test automation as a Service",
           // alert_success: "Automation has started!",
-          description: "<a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a>\n            engineers will automate your tests. Describe step by step",
+          description: "Describe your manual test step by step",
           test_title: "Test title",
           textarea: "Open 'https://github.com/login' \n\nSet username 'Alex' \nSet password '12%#5f'\nSubmit form \n\nVerify successful authorization as 'Alex'",
           checkout_button: "Automate it! (free now)" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
@@ -3511,10 +3521,10 @@ var LocalLang = /*#__PURE__*/function () {
         ru_lang: {
           // title: "Тест аутомейшн эс а сервис",
           // alert_success: "Аутомэйшн хэс стартед!",
-          description: "\n            \u0418\u043D\u0436\u0435\u043D\u0435\u0440\u044B <a target=\"_blank\" class=\"green-link\" href=\"https://qa.guru\">QA.GURU</a> \u0432\u0438\u043B\u043B \u0430\u0443\u0442\u043E\u043C\u0435\u0439\u0442 \u0451\u0440 \u0442\u0435\u0441\u0442\u0441. \u0414\u0435\u0441\u043A\u0440\u0430\u0439\u0431 \u0441\u0442\u0435\u043F \u0431\u0430\u0439 \u0441\u0442\u0435\u043F",
+          description: "\n            \u0420\u0430\u0441\u043F\u0438\u0448\u0438\u0442\u0435 \u0440\u0443\u0447\u043D\u043E\u0439 \u0442\u0435\u0441\u0442 \u0448\u0430\u0433 \u0437\u0430 \u0448\u0430\u0433\u043E\u043C",
           test_title: "Название теста",
           textarea: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C 'https://github.com/login' \n\n\u0412\u0432\u0435\u0441\u0442\u0438 \u043B\u043E\u0433\u0438\u043D 'Alex' \n\u0412\u0432\u0435\u0441\u0442\u0438 \u043F\u0430\u0440\u043E\u043B\u044C '12%#5f' \n\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0440\u043C\u0443 \n\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C \u0443\u0441\u043F\u0435\u0448\u043D\u0443\u044E \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044E \u043F\u043E\u0434 'Alex'",
-          checkout_button: "Автоматизировать! (free now)" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
+          checkout_button: "Автоматизировать!" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
           //     копирайт`,
 
         }

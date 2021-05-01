@@ -7,6 +7,7 @@ const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
+const loader = document.querySelector(".loader");
 
 let stompClient = null;
 let uuid = create_UUID();
@@ -27,38 +28,49 @@ function connect() {
 
 function addSocketEvent(message) {
   let pre = document.createElement("pre");
+  pre.setAttribute("data-prefix", message.prefix);
 
   switch (message.contentType) {
     case "info":
       pre.className = "list-auto flex";
-      pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
     case "generated":
       pre.className = "text-warning flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content}<a target="_blank" class="text-success" href="${message.url}">${message.urlText}</a></code>`;
+      pre.innerHTML = `<code>${message.content}<a target="_blank" class="green-link" href="${message.url}">${message.urlText}</a></div></code>`;
+      break;
+    case "launched":
+      pre.className = "text-warning flex";
+      pre.innerHTML = `<code>${message.content}<a target="_blank" class="green-link" href="${message.url}">${message.urlText}</a> </code> <label class="loader"></label>`;
+      break;
+    case "finished":
+      pre.className = "text-warning flex";
+      pre.innerHTML = `<code>${message.content}<a target="_blank" class="green-link" href="${message.url}">${message.urlText}</a></div></code>`;
+      document.querySelector(".loader").remove();
       break;
     case "in progress":
       pre.className = "text-warning flex";
-      pre.setAttribute("data-prefix", ">");
       pre.innerHTML = `<code>${message.content} </code>`;
       break;
+    case "can-automate":
+      pre.className = "flex";
+      pre.innerHTML = `<code>${message.content}</code>`;
+      break;
     case "telegram-info":
-      pre.className = "list-auto flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content}<a target="_blank" class="text-info" href="${message.url}">${message.urlText}</a> 👈</code>`;
+      pre.className = "flex";
+      pre.innerHTML = `<code>${message.content}<a target="_blank" class="blue-link" href="${message.url}">${message.urlText}</a> 👈</code>`;
       break;
     case "telegram-notification":
+      pre.className = "flex";
+      pre.innerHTML = `<code> </code>`;
       displayNotification(message.content);
       break;
     case "empty":
-      pre.className = "flex";
+      pre.className = "list-auto flex";
       pre.innerHTML = `<code> </code>`;
       break;
     case "error":
       pre.className = "text-error flex";
-      pre.setAttribute("data-prefix", "x");
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
   }
@@ -68,11 +80,6 @@ function addSocketEvent(message) {
 function displayNotification(messagePath) {
   iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
           src="https://t.me/${messagePath}?embed=1&discussion=1&comments_limit=5&dark=1"></iframe>`;
-}
-
-function hide(element) {
-  element.style.opacity = "0";
-  element.style.display = "none";
 }
 
 const initForm = () => {
