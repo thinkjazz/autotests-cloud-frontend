@@ -1,5 +1,6 @@
 import SockJS from "../sockets/sockjs.min";
 import { Stomp } from "../sockets/stomp.min";
+import { create_UUID } from "../utils/StringUtils";
 
 const mainForm = document.querySelector("#objective");
 const titleTextarea = document.querySelector("#input-title");
@@ -9,13 +10,14 @@ const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
 
 let stompClient = null;
+let uuid = create_UUID();
 
 function connect() {
-  const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
+  const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (status) {
     console.log("Connected: " + status);
-    stompClient.subscribe("/topic/greetings", function (message) {
+    stompClient.subscribe(`/topic/${uuid}`, function (message) {
       console.log("Message: " + message);
       // todo add exception
       addSocketEvent(JSON.parse(message.body));
@@ -32,21 +34,37 @@ function addSocketEvent(message) {
       pre.setAttribute("data-prefix", "$");
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
-    case "generated":
-      pre.className = "text-success flex";
+    case "info":
+      pre.className = "flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content}</code>`;
+      break;
+    case "generated":
+      pre.className = "text-warning flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code>${message.content} <br/></code>`;
+      break;
+    case "green-link":
+      pre.className = "flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code><a target="_blank" class="text-success" href="${message.url}">${message.url}</a></code>`;
+      break;
+    case "blue-link":
+      pre.className = "flex";
+      pre.setAttribute("data-prefix", ">");
+      pre.innerHTML = `<code><a target="_blank" class="text-info" href="${message.url}">${message.url}</a> 👈</code>`;
       break;
     case "in progress":
       pre.className = "text-warning flex";
       pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
+      pre.innerHTML = `<code>${message.content} </code>`;
       break;
-    case "notification":
-      pre.className = "text-info flex";
-      pre.setAttribute("data-prefix", ">");
-      pre.innerHTML = `<code>${message.content} <br/><a class="questions" href="${message.url}">${message.url}</a></code>`;
-      displayNotification(message.url);
+    case "telegram-notification":
+      displayNotification(message.content);
+      break;
+    case "empty":
+      pre.className = "flex";
+      pre.innerHTML = `<code> </code>`;
       break;
     case "error":
       pre.className = "text-error flex";
@@ -57,10 +75,9 @@ function addSocketEvent(message) {
   document.querySelector("#console").append(pre);
 }
 
-function displayNotification(url) {
+function displayNotification(messagePath) {
   iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-          src="https://t.me/autotests_cloud/465?dark=1&comment=701&embed=1"></iframe>`;
-  // src="https://t.me/autotests_cloud/${resp}?embed=1&dark=1" frameborder="0" scrolling="yes"></iframe>`;
+          src="https://t.me/${messagePath}?embed=1&discussion=1&comments_limit=5&dark=1"></iframe>`;
 }
 
 function hide(element) {
@@ -84,7 +101,7 @@ const initForm = () => {
       values.email = "admin@qa.guru";
       console.log(values);
 
-      stompClient.send("/app/hello", {}, JSON.stringify(values));
+      stompClient.send(`/app/orders/${uuid}`, {}, JSON.stringify(values));
 
       codeBlock.classList.remove("hidden");
       mainForm.classList.add("hidden");

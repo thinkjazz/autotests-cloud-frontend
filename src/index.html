@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Autotests.cloud - test automation as a service</title>
+    <title>Autotests.cloud - Test automation as a Service</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon.ico">
@@ -14,7 +14,7 @@
         <header class="container max-w-screen-xl mx-auto flex flex-wrap flex-col justify-start items-start my-6 mt-0">
             <h1 class="max-w-screen-md mx-auto md:mx-0 font-bold text-3xl text-center px-6 py-6 md:py-10 pb-1 md:pb-0 lang"
                 key="title">
-                Test automation as a service
+                Test automation as a Service
             </h1>
 
             <ul
@@ -40,11 +40,12 @@
                 <li class="tools__item">
                     <img alt="Appium" src="./img/Appium.svg" class="h-8  xl:h-12">
                 </li>
-                <li class="tools__item">
-                    <img alt="Selenide" src="./img/Selenide.svg" class="h-8  xl:h-12">
+                <li class="tools__item flex">
+                    <img alt="Selenide" src="./img/Selenide.png" class="max-h-7 md:max-h-5 h-auto self-center">
                 </li>
-                <li class="tools__item">
-                    <img alt="Allure Report" src="./img/Allure_Report.svg" class="h-8  xl:h-12">
+                <li class="tools__item flex">
+                    <img alt="Allure Report" src="./img/Allure_Report.png"
+                        class="max-h-7 md:max-h-5 h-auto self-center">
                 </li>
                 <li class="tools__item">
                     <img alt="Github" src="./img/Github.svg" class="h-8 invert xl:h-12">
@@ -104,7 +105,7 @@
 
                         <textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2 resize-none"
                             id="textarea-main" name="steps" key="textarea"
-                            placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Verify successful authorization as 'Alex'"></textarea>
+                          placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Submit form &#10;Verify successful authorization as 'Alex'"></textarea>
 
                         <div id="loading-block" class="hidden"></div>
                         <div id="telegram-frame"
@@ -141,8 +142,8 @@
 
                 <div class="iframe-block flex-grow pl-0 lg:pl-4 hidden">
                     <!-- <iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
-                        src="https://t.me/autotests_cloud_chat/596?embed=1&dark=1" frameborder="0"
-                        scrolling="yes"></iframe> -->
+                    src="https://t.me/autotests_cloud_chat/596?embed=1&dark=1" frameborder="0"
+                    scrolling="yes"></iframe> -->
                 </div>
 
             </div>
@@ -156,12 +157,13 @@
                 <button id="ru_lang" class="translate focus:outline-none">ru</button>
             </div>
             <h3 class="lang textarea-header font-bold text-base text-right transition-all" key="copyright">
-                <a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
-                copyright
+                <a title="Test automation school" target="_blank" class="green-link" href="https://qa.guru">qa.guru</a> &middot;
+                <a title="Telegram Test automation community" target="_blank" class="red-link"
+                   href="tg://resolve?domain=qa_automation">@qa_automation</a> &middot;
+                <a title="Have a rest here, bro" target="_blank" class="blue-link"
+                   href="https://relax.baby">relax.baby</a>
             </h3>
         </footer>
-
-
 
         <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element--banana absolute hidden">
         <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element--banana absolute hidden">
@@ -171,7 +173,6 @@
         <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element--woman absolute right-0 hidden">
     </div>
     <script src="index.js"></script>
-
 </body>
 
 </html>

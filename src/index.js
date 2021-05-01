@@ -3,7 +3,6 @@ import { initForm } from "./js/modules/initForm";
 import { initLanguage } from "./js/modules/initLanguage";
 import { initDisco } from "./js/modules/initDisco";
 import LocalLang from "./js/modules/LocalLang";
-// import { removeSlash } from "./js/utils/removeSlash";
 
 import "./styles.css";
 import "./styles.scss";
@@ -11,4 +10,3 @@ import "./styles.scss";
 initForm();
 initLanguage();
 initDisco();
-// removeSlash();

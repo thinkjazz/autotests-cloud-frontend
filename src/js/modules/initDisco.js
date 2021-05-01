@@ -15,8 +15,7 @@ const initDisco = () => {
   let mainTitleText;
   let danceInterval;
 
-  discoBtn.addEventListener("mouseenter", startDisco);
-  discoBtn.addEventListener("mouseout", stopDisco);
+  discoBtn.addEventListener("click", startDisco);
 
   function startDisco() {
     mainTitleText = mainTitle.innerHTML;
