@@ -25,7 +25,6 @@ function connect() {
   });
 }
 
-
 function addSocketEvent(message) {
   let pre = document.createElement("pre");
 
