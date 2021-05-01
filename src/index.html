@@ -2,9 +2,9 @@
 <html>
 
 <head>
-    <title>Autotests.cloud - test automation as a service</title>
+    <title>Autotests.cloud - Test automation as a Service</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0">
     <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon.ico">
 </head>
 
@@ -12,8 +12,9 @@
     <div id="app" class="flex flex-col justify-between h-screen pb-6">
 
         <header class="container max-w-screen-xl mx-auto flex flex-wrap flex-col justify-start items-start my-6 mt-0">
-            <h1 class="max-w-screen-md mx-auto md:mx-0 font-bold text-3xl text-center px-6 py-6 md:py-10 pb-1 md:pb-0">
-                Test automation as a service
+            <h1 class="max-w-screen-md mx-auto md:mx-0 font-bold text-3xl text-center px-6 py-6 md:py-10 pb-1 md:pb-0 lang"
+                key="title">
+                Test automation as a Service
             </h1>
 
             <ul
@@ -61,7 +62,7 @@
                 <li class="tools__item">
                     <img alt="Browserstack" src="./img/Browserstack.svg" class="h-8  xl:h-12">
                 </li>
-                <li class="tools__item">
+                <li class="tools__item tools__item--disco">
                     <img alt="Allure TestOps" src="./img/Allure_TestOps.svg" class="h-8  xl:h-12">
                 </li>
                 <li class="tools__item">
@@ -77,7 +78,7 @@
 
             <div class="alert alert-success absolute right-0 opacity-0 px-12 transition-all">
                 <div class="flex-1">
-                    <label>Automation has started!</label>
+                    <label class="lang" key="alert_success">Automation has started!</label>
                 </div>
             </div>
         </header>
@@ -87,7 +88,8 @@
 
             <div
                 class="relative w-full md:w-full p-3 md:p-10 px-6 md:px-6 pb-3 pt-0 md:pt-0 text-center transition-all flex flex-wrap justify-start">
-                <h2 class="textarea-header font-bold text-base my-4 mb-3 w-full text-left transition-all">
+                <h2 class="lang textarea-header font-bold text-base my-4 mb-3 w-full text-left transition-all"
+                    key="description">
                     <a target="_blank" class="green-link" href="https://qa.guru">QA.GURU</a>
                     engineers will automate your tests. Describe step by step
                 </h2>
@@ -98,12 +100,13 @@
                         <label class="label hidden" for="input-title">
                             <span class="label-text">Test title</span>
                         </label>
-                        <input type="text" placeholder="Test title" id="input-title" name="title"
-                            class="input input-bordered mb-4">
+                        <input type="text" placeholder="Test title" id="input-title" name="title" key="test_title"
+                            class="lang input input-bordered mb-4">
 
-                        <textarea class="textarea notes textarea textarea-bordered pt-4 mb-2" id="textarea-main"
-                            name="steps"
-                            placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Submit form &#10;Verify successful authorization as 'Alex'"></textarea>
+                        <textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2 resize-none"
+                            id="textarea-main" name="steps" key="textarea"
+                          placeholder="Open 'https://github.com/login' &#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Submit form &#10;Verify successful authorization as 'Alex'"></textarea>
+
                         <div id="loading-block" class="hidden"></div>
                         <div id="telegram-frame"
                             class="telegram-iframe-container w-full md:w-1/2 h-80 transition-all hidden">
@@ -111,25 +114,30 @@
 
                     </div>
 
-                    <button class="btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8">
+                    <button class="lang btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8"
+                        key="checkout_button">
                         Checkout (free now)
                     </button>
                     <a href="/" target="_blank" rel="nofollow noopener"
                         class="btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8 btn--telegram hidden">
                         Ok, go to Telegram discussion </a>
-
                 </form>
 
-                <div id="console" class="mockup-code px-4 mb-8 lg:mb-0 w-full lg:w-3/5 lg:w-2/3 overflow-y-auto hidden">
-                    <!--                    <pre data-prefix="$" class="flex">-->
-                    <!--                      <code>npm i daisyui</code>-->
-                    <!--                    </pre>-->
-                    <!--                    <pre data-prefix=">" class="text-warning flex">-->
-                    <!--                      <code>installing...авцууааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа</code>-->
-                    <!--                    </pre>-->
-                    <!--                    <pre data-prefix=">" class="text-success flex">-->
-                    <!--                      <code>Done! вввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв</code>-->
-                    <!--                    </pre>-->
+                <img src="./img/party.gif" alt=""
+                    class="party w-full lg:w-3/5 lg:w-2/3  mb-8 lg:mb-0 object-contain hidden" id="party">
+
+                <div id="console"
+                    class="mockup-code relative px-4 mb-8 lg:mb-0 w-full lg:w-3/5 lg:w-2/3 overflow-y-auto hidden">
+                    <div class="sticky mockup-code__window"></div>
+                    <!-- <pre data-prefix="$" class="flex">
+                                         <code>npm i daisyui</code>
+                                       </pre>
+                    <pre data-prefix=">" class="text-warning flex">
+                                         <code>installing...авцууааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа</code>
+                                       </pre>
+                    <pre data-prefix=">" class="text-success flex">
+                                         <code>Done! вввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв ввввввввввввввввввввввввввввввввввв</code>
+                                       </pre> -->
                 </div>
 
                 <div class="iframe-block flex-grow pl-0 lg:pl-4 hidden">
@@ -142,16 +150,27 @@
 
         </main>
 
-        <footer class="container max-w-screen-xl mx-auto flex flex-wrap flex-col justify-start items-start">
-            <h3 class="textarea-header font-bold text-base w-full pr-6 pb-6 text-right transition-all">
-                <a title="Test automation school" target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
-                &middot;
+        <footer class="container max-w-screen-xl mx-auto mt-12 py-6 px-6 flex justify-between items-center">
+            <div class="language">
+                <button id="en_lang" class="translate translate--active focus:outline-none">en</button>
+                <span>/</span>
+                <button id="ru_lang" class="translate focus:outline-none">ru</button>
+            </div>
+            <h3 class="lang textarea-header font-bold text-base text-right transition-all" key="copyright">
+                <a title="Test automation school" target="_blank" class="green-link" href="https://qa.guru">qa.guru</a> &middot;
                 <a title="Telegram Test automation community" target="_blank" class="red-link"
-                    href="tg://resolve?domain=qa_automation">@qa_automation</a> &middot;
+                   href="tg://resolve?domain=qa_automation">@qa_automation</a> &middot;
                 <a title="Have a rest here, bro" target="_blank" class="blue-link"
-                    href="https://relax.baby">relax.baby</a>
+                   href="https://relax.baby">relax.baby</a>
             </h3>
         </footer>
+
+        <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element--banana absolute hidden">
+        <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element--banana absolute hidden">
+        <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element--banana absolute hidden">
+        <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element--woman absolute right-0 hidden">
+        <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element--woman absolute right-0 hidden">
+        <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element--woman absolute right-0 hidden">
     </div>
     <script src="index.js"></script>
 </body>

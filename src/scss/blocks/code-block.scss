@@ -1,6 +1,7 @@
 .mockup-code {
   height: 512px;
   max-height: 512px;
+
   background: #3c4850;
 
   @media (max-width: 1023px) {
@@ -26,6 +27,38 @@
 
 .mockup-code pre[data-prefix]:before {
   width: auto;
+}
+
+.mockup-code::before {
+  display: none;
+}
+
+.mockup-code__window {
+  width: 150%;
+  height: 7%;
+  background: #607482;
+  transform: translateX(-30px) translateY(-20px);
+  opacity: 1;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  &::before {
+    content: "";
+    border-radius: 9999px;
+    display: block;
+    height: 0.75rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+    width: 0.75rem;
+    box-shadow: 1.4em 0, 2.8em 0, 4.2em 0;
+    transform: translateX(40px) translateY(10px);
+
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+  }
 }
 
 pre {
