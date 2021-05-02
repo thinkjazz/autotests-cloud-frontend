@@ -199,15 +199,6 @@ a.questions {
   }
 }
 
-.loading {
-  position: relative;
-  &::before {
-    position: absolute;
-    right: 0;
-    margin-left: 0.5rem;
-  }
-}
-
 input {
   background: #3c4850 !important;
 }
