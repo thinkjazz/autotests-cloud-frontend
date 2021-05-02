@@ -1,4 +1,5 @@
 @import "scss/blocks/modal.scss";
+@import "scss/blocks/tailwind-important.scss";
 @import "scss/blocks/code-block.scss";
 
 :root {
@@ -159,12 +160,12 @@ img.invertl {
 
 .yellow-text {
   font-style: italic;
-  color: #A8C023;
+  color: #a8c023;
 }
 
 .violet-text {
   font-weight: bold;
-  color: #D861BE;
+  color: #d861be;
 }
 
 .list-auto {
@@ -281,7 +282,7 @@ textarea:focus {
   border-radius: 50%;
   border-top: 4px solid RGB(148, 202, 102);
   border-right: 4px solid RGB(255, 87, 68);
-  border-bottom: 4px solid #D861BE;
+  border-bottom: 4px solid #d861be;
   border-left: 4px solid RGB(255, 206, 87);
 
   width: 20px;
@@ -291,11 +292,19 @@ textarea:focus {
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

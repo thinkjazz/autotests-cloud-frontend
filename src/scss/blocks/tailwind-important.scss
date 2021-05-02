@@ -1,0 +1,25 @@
+.border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgba(239, 68, 68, var(--tw-border-opacity));
+}
+
+.text-success {
+  --tw-text-opacity: 1;
+  color: hsla(var(--su, 174 100% 29%) / var(--tw-text-opacity));
+}
+
+.text-warning {
+  --tw-text-opacity: 1;
+  color: hsla(var(--wa, 36 100% 50%) / var(--tw-text-opacity));
+}
+
+.text-error {
+  --tw-text-opacity: 1;
+  color: hsla(var(--er, 14 100% 57%) / var(--tw-text-opacity));
+}
+
+@media (min-width: 1024px) {
+  .lg\:w-2\/5 {
+    width: 40%;
+  }
+}

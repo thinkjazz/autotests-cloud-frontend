@@ -1,5 +1,6 @@
 const initDisco = () => {
   const mainContainer = document.querySelector("#app");
+  const consoleContainer = document.querySelector(".console-container");
   const console = document.querySelector("#console");
   const mainForm = document.querySelector("#objective");
   const mainTitle = document.querySelector("h1");
@@ -48,7 +49,7 @@ const initDisco = () => {
     move();
 
     catParty.classList.remove("hidden");
-    console.classList.add("hidden");
+    consoleContainer.classList.add("hidden");
     mainForm.classList.add("hidden");
 
     discoElementBanana.forEach((element) => {
@@ -75,7 +76,7 @@ const initDisco = () => {
     });
 
     if (iframe) {
-      console.classList.remove("hidden");
+      consoleContainer.classList.remove("hidden");
     } else {
       mainForm.classList.remove("hidden");
     }

@@ -5,6 +5,7 @@ import { create_UUID } from "../utils/StringUtils";
 const mainForm = document.querySelector("#objective");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
+const consoleContainer = document.querySelector(".console-container");
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
 const loader = document.querySelector(".loader");
@@ -100,7 +101,7 @@ const initForm = () => {
 
       stompClient.send(`/app/orders/${uuid}`, {}, JSON.stringify(values));
 
-      codeBlock.classList.remove("hidden");
+      consoleContainer.classList.remove("hidden");
       mainForm.classList.add("hidden");
       iframeBlock.classList.remove("hidden");
 
