@@ -3336,7 +3336,6 @@ var mainTextarea = document.querySelector("#textarea-main");
 var consoleContainer = document.querySelector(".console-container");
 var codeBlock = document.querySelector(".mockup-code");
 var iframeBlock = document.querySelector(".iframe-block");
-var loader = document.querySelector(".loader");
 var stompClient = null;
 var uuid = (0, _StringUtils.create_UUID)();
 
@@ -3600,16 +3599,18 @@ Object.defineProperty(exports, "__esModule", {
 exports.initDisco = void 0;
 
 var initDisco = function initDisco() {
-  var mainContainer = document.querySelector("#app");
-  var consoleContainer = document.querySelector(".console-container");
-  var console = document.querySelector("#console");
+  // const mainContainer = document.querySelector("#app");
+  var consoleContainer = document.querySelector(".console-container"); // const console = document.querySelector("#console");
+
   var mainForm = document.querySelector("#objective");
   var mainTitle = document.querySelector("h1");
   var discoBtn = document.querySelector(".tools__item--disco");
-  var catParty = document.querySelector("#party");
-  var discoElementBanana = document.querySelectorAll(".disco-element--banana");
-  var discoElementWoman = document.querySelectorAll(".disco-element--woman");
-  var dancers = document.querySelectorAll(".disco-element");
+  var catParty = document.querySelector("#party"); // const discoElementBanana = document.querySelectorAll(
+  //   ".disco-element--banana"
+  // );
+  // const discoElementWoman = document.querySelectorAll(".disco-element--woman");
+  // const dancers = document.querySelectorAll(".disco-element");
+
   var mainTitleText;
   var danceInterval;
   var colorInterval;
@@ -3624,52 +3625,50 @@ var initDisco = function initDisco() {
 
   function startDisco() {
     mainTitleText = mainTitle.innerHTML;
-    mainTitle.innerHTML = "Test automation as a <span class=\"disco__word disco__word--1\">D</span><span class=\"disco__word disco__word--2\">i</span><span class=\"disco__word disco__word--3\">s</span><span class=\"disco__word disco__word--4\">c</span><span class=\"disco__word disco__word--5\">o</span>";
+    mainTitle.innerHTML = "Test automation as a <span class=\"disco__word disco__word--1\">D</span><span class=\"disco__word disco__word--2\">i</span><span class=\"disco__word disco__word--3\">s</span><span class=\"disco__word disco__word--4\">c</span><span class=\"disco__word disco__word--5\">o</span>"; // const rand = (multi) => {
+    //   return parseInt(multi * Math.random(), 10);
+    // };
+    // let ww = window.innerWidth / 2;
+    // let wh = window.innerHeight;
+    // let constraint = Math.min(ww, wh);
+    // function move() {
+    //   dancers.forEach((dancer) => {
+    //     let w = rand(constraint);
+    //
+    //     let x = rand(ww - w);
+    //     let y = rand(wh - w);
+    //
+    //     dancer.style.height = w / 3 + "px";
+    //     dancer.style.top = y + "px";
+    //     dancer.style.left = x + ww / 4 + "px";
+    //
+    //     dancer.style.transition = rand(100) + 2000 + "ms";
+    //   });
+    // }
+    // move();
 
-    var rand = function rand(multi) {
-      return parseInt(multi * Math.random(), 10);
-    };
-
-    var ww = window.innerWidth / 2;
-    var wh = window.innerHeight;
-    var constraint = Math.min(ww, wh);
-
-    function move() {
-      dancers.forEach(function (dancer) {
-        var w = rand(constraint);
-        var x = rand(ww - w);
-        var y = rand(wh - w);
-        dancer.style.height = w / 3 + "px";
-        dancer.style.top = y + "px";
-        dancer.style.left = x + ww / 4 + "px";
-        dancer.style.transition = rand(100) + 2000 + "ms";
-      });
-    }
-
-    move();
     catParty.classList.remove("hidden");
     consoleContainer.classList.add("hidden");
-    mainForm.classList.add("hidden");
-    discoElementBanana.forEach(function (element) {
-      element.classList.remove("hidden");
-    });
-    discoElementWoman.forEach(function (element) {
-      element.classList.remove("hidden");
-    });
-    colorInterval = window.setInterval(changeColors, 500);
-    danceInterval = window.setInterval(move, 1500);
+    mainForm.classList.add("hidden"); // discoElementBanana.forEach((element) => {
+    //   element.classList.remove("hidden");
+    // });
+    // discoElementWoman.forEach((element) => {
+    //   element.classList.remove("hidden");
+    // });
+
+    colorInterval = window.setInterval(changeColors, 500); // danceInterval = window.setInterval(move, 1500);
+
     danceFlag = false;
   }
 
   function stopDisco() {
     var iframe = document.querySelector("iframe");
-    mainTitle.innerHTML = mainTitleText;
-    discoElementBanana.forEach(function (element) {
-      element.classList.add("hidden");
-    });
-    discoElementWoman.forEach(function (element) {
-      element.classList.add("hidden");
-    });
+    mainTitle.innerHTML = mainTitleText; // discoElementBanana.forEach((element) => {
+    //   element.classList.add("hidden");
+    // });
+    // discoElementWoman.forEach((element) => {
+    //   element.classList.add("hidden");
+    // });
 
     if (iframe) {
       consoleContainer.classList.remove("hidden");
@@ -3778,7 +3777,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./img\\tenor.gif":[["tenor.160d12b8.gif","img/tenor.gif"],"img/tenor.gif"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./img/tenor.gif":[["tenor.160d12b8.gif","img/tenor.gif"],"img/tenor.gif"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _general = _interopRequireDefault(require("daisyui/dist/resets/general"));
@@ -3826,7 +3825,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61495" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50805" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

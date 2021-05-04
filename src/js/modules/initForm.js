@@ -8,7 +8,6 @@ const mainTextarea = document.querySelector("#textarea-main");
 const consoleContainer = document.querySelector(".console-container");
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
-const loader = document.querySelector(".loader");
 
 let stompClient = null;
 let uuid = create_UUID();
