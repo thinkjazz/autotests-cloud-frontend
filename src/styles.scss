@@ -259,9 +259,10 @@ textarea:focus {
     &::after {
       content: "";
       position: absolute;
-      right: -60px;
-      width: 40px;
-      height: 40px;
+      right: -40px;
+      transform: translateY(3px);
+      width: 30px;
+      height: 30px;
       background-image: url(./img/tenor.gif);
       background-position: center;
       background-size: cover;
