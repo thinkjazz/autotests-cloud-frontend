@@ -15,12 +15,20 @@ const initDisco = () => {
 
   let mainTitleText;
   let danceInterval;
+  let colorInterval;
+  let danceFlag = true;
 
-  discoBtn.addEventListener("click", startDisco);
+  discoBtn.addEventListener("click", () => {
+    if (danceFlag) {
+      startDisco();
+    } else {
+      stopDisco();
+    }
+  });
 
   function startDisco() {
     mainTitleText = mainTitle.innerHTML;
-    mainTitle.innerHTML = "Test automation as a Disco";
+    mainTitle.innerHTML = `Test automation as a <span class="disco__word disco__word--1">D</span><span class="disco__word disco__word--2">i</span><span class="disco__word disco__word--3">s</span><span class="disco__word disco__word--4">c</span><span class="disco__word disco__word--5">o</span>`;
 
     const rand = (multi) => {
       return parseInt(multi * Math.random(), 10);
@@ -38,7 +46,7 @@ const initDisco = () => {
         let x = rand(ww - w);
         let y = rand(wh - w);
 
-        dancer.style.height = w / 2 + "px";
+        dancer.style.height = w / 3 + "px";
         dancer.style.top = y + "px";
         dancer.style.left = x + ww / 4 + "px";
 
@@ -59,7 +67,9 @@ const initDisco = () => {
       element.classList.remove("hidden");
     });
 
+    colorInterval = window.setInterval(changeColors, 500);
     danceInterval = window.setInterval(move, 1500);
+    danceFlag = false;
   }
 
   function stopDisco() {
@@ -83,7 +93,27 @@ const initDisco = () => {
 
     catParty.classList.add("hidden");
 
+    danceFlag = true;
+
     clearInterval(danceInterval);
+    clearInterval(colorInterval);
+  }
+
+  function randColor(elem) {
+    let code_color = document.querySelector(".code_color"),
+      r = Math.floor(Math.random() * 256),
+      g = Math.floor(Math.random() * 256),
+      b = Math.floor(Math.random() * 256),
+      color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+
+    elem.style.color = color;
+  }
+
+  function changeColors() {
+    let allDiscoLetters = document.querySelectorAll(".disco__word");
+    allDiscoLetters.forEach((element) => {
+      randColor(element);
+    });
   }
 };
 

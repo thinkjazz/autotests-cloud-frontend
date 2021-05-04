@@ -239,7 +239,36 @@ textarea:focus {
 }
 
 .tools__item--disco {
-  z-index: 10;
+  position: relative;
+  z-index: 15;
+}
+
+.disco__word {
+  position: relative;
+
+  text-align: center;
+  // font-size: 6.5em;
+  color: #fff;
+  // letter-spacing: -7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: blur 0.5s ease-out infinite;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
+
+  &--5 {
+    &::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      width: 40px;
+      height: 40px;
+      background-image: url(./img/tenor.gif);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+    }
+  }
 }
 
 .disco-element {
@@ -256,6 +285,17 @@ textarea:focus {
 
 .disco-element--banana {
   // max-height: 12rem;
+}
+
+@keyframes blur {
+  from {
+    text-shadow: 0px 0px 10px #fff, 0px 0px 10px #fff, 0px 0px 25px #fff,
+      0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff, 0px 0px 25px #fff,
+      0px 0px 25px #fff, 0px 0px 50px #fff, 0px 0px 50px #fff,
+      0px 0px 50px #7b96b8, 0px 0px 150px #7b96b8, 0px 10px 100px #7b96b8,
+      0px 10px 100px #7b96b8, 0px 10px 100px #7b96b8, 0px 10px 100px #7b96b8,
+      0px -10px 100px #7b96b8, 0px -10px 100px #7b96b8;
+  }
 }
 
 @keyframes dance {

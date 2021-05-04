@@ -3612,11 +3612,19 @@ var initDisco = function initDisco() {
   var dancers = document.querySelectorAll(".disco-element");
   var mainTitleText;
   var danceInterval;
-  discoBtn.addEventListener("click", startDisco);
+  var colorInterval;
+  var danceFlag = true;
+  discoBtn.addEventListener("click", function () {
+    if (danceFlag) {
+      startDisco();
+    } else {
+      stopDisco();
+    }
+  });
 
   function startDisco() {
     mainTitleText = mainTitle.innerHTML;
-    mainTitle.innerHTML = "Test automation as a Disco";
+    mainTitle.innerHTML = "Test automation as a <span class=\"disco__word disco__word--1\">D</span><span class=\"disco__word disco__word--2\">i</span><span class=\"disco__word disco__word--3\">s</span><span class=\"disco__word disco__word--4\">c</span><span class=\"disco__word disco__word--5\">o</span>";
 
     var rand = function rand(multi) {
       return parseInt(multi * Math.random(), 10);
@@ -3631,7 +3639,7 @@ var initDisco = function initDisco() {
         var w = rand(constraint);
         var x = rand(ww - w);
         var y = rand(wh - w);
-        dancer.style.height = w / 2 + "px";
+        dancer.style.height = w / 3 + "px";
         dancer.style.top = y + "px";
         dancer.style.left = x + ww / 4 + "px";
         dancer.style.transition = rand(100) + 2000 + "ms";
@@ -3648,7 +3656,9 @@ var initDisco = function initDisco() {
     discoElementWoman.forEach(function (element) {
       element.classList.remove("hidden");
     });
+    colorInterval = window.setInterval(changeColors, 500);
     danceInterval = window.setInterval(move, 1500);
+    danceFlag = false;
   }
 
   function stopDisco() {
@@ -3668,7 +3678,25 @@ var initDisco = function initDisco() {
     }
 
     catParty.classList.add("hidden");
+    danceFlag = true;
     clearInterval(danceInterval);
+    clearInterval(colorInterval);
+  }
+
+  function randColor(elem) {
+    var code_color = document.querySelector(".code_color"),
+        r = Math.floor(Math.random() * 256),
+        g = Math.floor(Math.random() * 256),
+        b = Math.floor(Math.random() * 256),
+        color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+    elem.style.color = color;
+  }
+
+  function changeColors() {
+    var allDiscoLetters = document.querySelectorAll(".disco__word");
+    allDiscoLetters.forEach(function (element) {
+      randColor(element);
+    });
   }
 };
 
@@ -3750,7 +3778,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./img\\tenor.gif":[["tenor.160d12b8.gif","img/tenor.gif"],"img/tenor.gif"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _general = _interopRequireDefault(require("daisyui/dist/resets/general"));
@@ -3798,7 +3826,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61916" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54196" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
