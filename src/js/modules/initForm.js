@@ -8,6 +8,7 @@ const mainTextarea = document.querySelector("#textarea-main");
 const consoleContainer = document.querySelector(".console-container");
 const codeBlock = document.querySelector(".mockup-code");
 const iframeBlock = document.querySelector(".iframe-block");
+const infoBlock = document.querySelector(".info");
 
 let stompClient = null;
 let uuid = create_UUID();
@@ -103,6 +104,7 @@ const initForm = () => {
       consoleContainer.classList.remove("hidden");
       mainForm.classList.add("hidden");
       iframeBlock.classList.remove("hidden");
+      infoBlock.classList.add("hidden");
 
       mainForm.reset();
     } else {
