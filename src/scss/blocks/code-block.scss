@@ -16,12 +16,19 @@
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .mockup-code {
-  margin-top: -4%;
-  padding-top: 4%;
-  margin-bottom: 4%;
+  padding-top: 7%;
+
   border-radius: 0.5rem;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+
+  @media (max-width: 600px) {
+    padding-top: 10%;
+  }
+
+  @media (max-width: 400px) {
+    padding-top: 14%;
+  }
 }
 
 .mockup-code code {

@@ -322,6 +322,7 @@ textarea:focus {
   height: 20px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
+  flex-shrink: 0;
 }
 
 @-webkit-keyframes spin {
