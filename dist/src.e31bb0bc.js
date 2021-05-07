@@ -9878,6 +9878,7 @@ function connect() {
 }
 
 function addSocketEvent(message) {
+  var scrollContent = document.querySelector(".simplebar-content");
   var pre = document.createElement("pre");
   pre.setAttribute("data-prefix", message.prefix);
 
@@ -9935,7 +9936,7 @@ function addSocketEvent(message) {
       break;
   }
 
-  scroll.getScrollElement().append(pre);
+  scrollContent.append(pre);
   scroll.getScrollElement().scrollTo({
     top: 5000,
     behavior: "smooth"
@@ -14266,7 +14267,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60443" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49530" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -31,6 +31,7 @@ function connect() {
 }
 
 function addSocketEvent(message) {
+  let scrollContent = document.querySelector(".simplebar-content");
   let pre = document.createElement("pre");
   pre.setAttribute("data-prefix", message.prefix);
 
@@ -78,7 +79,7 @@ function addSocketEvent(message) {
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
   }
-  scroll.getScrollElement().append(pre);
+  scrollContent.append(pre);
   scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
 }
 
