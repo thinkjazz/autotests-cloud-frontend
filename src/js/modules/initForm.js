@@ -17,8 +17,8 @@ let uuid = create_UUID();
 let scroll;
 
 function connect() {
-  const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
-  // const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
+  // const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
+  const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (status) {
     console.log("Connected: " + status);
@@ -99,9 +99,12 @@ const initForm = () => {
 
     console.log(values);
 
-    if (!!values.steps && values.title) {
+    if (!!values.steps && values.title && values["g-recaptcha-response"]) {
       values.price = "free";
       values.email = "admin@qa.guru";
+      values.captcha = values["g-recaptcha-response"];
+      delete values["g-recaptcha-response"];
+
       console.log(values);
 
       stompClient.send(`/app/orders/${uuid}`, {}, JSON.stringify(values));

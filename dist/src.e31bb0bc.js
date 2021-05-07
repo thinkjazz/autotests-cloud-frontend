@@ -9863,8 +9863,8 @@ var uuid = (0, _StringUtils.create_UUID)();
 var scroll;
 
 function connect() {
-  var socket = new _sockjs.default("https://api.autotests.cloud/ws"); // todo add exception
-  // const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
+  // const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
+  var socket = new _sockjs.default("http://localhost:8080/ws"); // todo add exception
 
   stompClient = _stomp.Stomp.over(socket);
   stompClient.connect({}, function (status) {
@@ -9956,9 +9956,11 @@ var initForm = function initForm() {
     var values = Object.fromEntries(formData.entries());
     console.log(values);
 
-    if (!!values.steps && values.title) {
+    if (!!values.steps && values.title && values["g-recaptcha-response"]) {
       values.price = "free";
       values.email = "admin@qa.guru";
+      values.captcha = values["g-recaptcha-response"];
+      delete values["g-recaptcha-response"];
       console.log(values);
       stompClient.send("/app/orders/".concat(uuid), {}, JSON.stringify(values));
       consoleContainer.classList.remove("hidden");
@@ -14214,7 +14216,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./img\\tenor.gif":[["tenor.160d12b8.gif","img/tenor.gif"],"img/tenor.gif"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./img/tenor.gif":[["tenor.160d12b8.gif","img/tenor.gif"],"img/tenor.gif"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _general = _interopRequireDefault(require("daisyui/dist/resets/general"));
@@ -14267,7 +14269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49530" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58976" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
