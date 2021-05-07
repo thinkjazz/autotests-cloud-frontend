@@ -9,18 +9,10 @@
   }
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.mockup-code::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
 .mockup-code {
   padding-top: 7%;
 
   border-radius: 0.5rem;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 
   @media (max-width: 600px) {
     padding-top: 10%;

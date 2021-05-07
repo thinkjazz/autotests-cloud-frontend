@@ -1,6 +1,7 @@
 import SockJS from "../sockets/sockjs.min";
 import { Stomp } from "../sockets/stomp.min";
 import { create_UUID } from "../utils/StringUtils";
+import SimpleBar from "simplebar"; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
 
 const mainForm = document.querySelector("#objective");
 const titleTextarea = document.querySelector("#input-title");
@@ -13,6 +14,7 @@ const infoBlock = document.querySelector(".info");
 
 let stompClient = null;
 let uuid = create_UUID();
+let scroll;
 
 function connect() {
   const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
@@ -78,6 +80,8 @@ function addSocketEvent(message) {
   }
   consoleWindow.append(pre);
   consoleWindow.scrollTop = consoleWindow.scrollHeight;
+
+  scroll.recalculate();
 }
 
 function displayNotification(messagePath) {
@@ -107,6 +111,13 @@ const initForm = () => {
       mainForm.classList.add("hidden");
       iframeBlock.classList.remove("hidden");
       infoBlock.classList.add("hidden");
+
+      scroll = new SimpleBar(consoleWindow, { autoHide: false });
+
+      console.log(consoleWindow);
+      setTimeout(() => {
+        consoleWindow.scrollTop = consoleWindow.scrollHeight;
+      }, 1500);
 
       mainForm.reset();
     } else {
