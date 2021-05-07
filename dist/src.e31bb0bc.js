@@ -9969,6 +9969,20 @@ var initForm = function initForm() {
       setTimeout(function () {
         consoleWindow.scrollTop = consoleWindow.scrollHeight;
       }, 1500);
+
+      function add() {
+        var pre = document.createElement("pre");
+        var scrollContent = document.querySelector(".simplebar-content");
+        pre.setAttribute("data-prefix", "$");
+        pre.innerHTML = "<code>npm i daisyui</code>";
+        scrollContent.append(pre);
+        scroll.getScrollElement().scrollTo({
+          top: 5000,
+          behavior: "smooth"
+        }); // scroll.getScrollElement().scrollTop = scroll.getScrollElement().scrollHeight;
+      } // window.setInterval(add, 2500);
+
+
       mainForm.reset();
     } else {
       if (!mainTextarea.value) {
@@ -14254,7 +14268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58328" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59200" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

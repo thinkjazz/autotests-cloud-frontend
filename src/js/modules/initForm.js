@@ -119,6 +119,21 @@ const initForm = () => {
         consoleWindow.scrollTop = consoleWindow.scrollHeight;
       }, 1500);
 
+      function add() {
+        let pre = document.createElement("pre");
+        let scrollContent = document.querySelector(".simplebar-content");
+        pre.setAttribute("data-prefix", "$");
+
+        pre.innerHTML = `<code>npm i daisyui</code>`;
+
+        scrollContent.append(pre);
+
+        scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
+        // scroll.getScrollElement().scrollTop = scroll.getScrollElement().scrollHeight;
+      }
+
+      // window.setInterval(add, 2500);
+
       mainForm.reset();
     } else {
       if (!mainTextarea.value) {
