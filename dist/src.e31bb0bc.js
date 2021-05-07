@@ -9935,9 +9935,11 @@ function addSocketEvent(message) {
       break;
   }
 
-  consoleWindow.append(pre);
-  consoleWindow.scrollTop = consoleWindow.scrollHeight;
-  scroll.recalculate();
+  scroll.getScrollElement().append(pre);
+  scroll.getScrollElement().scrollTo({
+    top: 5000,
+    behavior: "smooth"
+  });
 }
 
 function displayNotification(messagePath) {
@@ -9965,10 +9967,6 @@ var initForm = function initForm() {
       scroll = new _simplebar.default(consoleWindow, {
         autoHide: false
       });
-      console.log(consoleWindow);
-      setTimeout(function () {
-        consoleWindow.scrollTop = consoleWindow.scrollHeight;
-      }, 1500);
 
       function add() {
         var pre = document.createElement("pre");
@@ -14268,7 +14266,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59200" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60443" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

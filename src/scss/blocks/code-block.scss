@@ -10,16 +10,22 @@
 }
 
 .mockup-code {
-  padding-top: 7%;
+  // padding-top: 7%;
 
+  margin-top: 35px;
+  padding-top: 0.5rem;
   border-radius: 0.5rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  // -ms-overflow-style: none; /* IE and Edge */
+  // scrollbar-width: none; /* Firefox */
 
   @media (max-width: 600px) {
-    padding-top: 10%;
+    // padding-top: 10%;
   }
 
   @media (max-width: 400px) {
-    padding-top: 14%;
+    // padding-top: 14%;
   }
 }
 
@@ -43,7 +49,7 @@
 
 .mockup-code__window {
   width: 100%;
-  height: 7%;
+  height: 35px;
   background: #607482;
   // transform: translateX(-30px) translateY(-20px);
   opacity: 1;

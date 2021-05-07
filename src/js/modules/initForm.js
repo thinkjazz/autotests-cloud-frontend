@@ -78,10 +78,8 @@ function addSocketEvent(message) {
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
   }
-  consoleWindow.append(pre);
-  consoleWindow.scrollTop = consoleWindow.scrollHeight;
-
-  scroll.recalculate();
+  scroll.getScrollElement().append(pre);
+  scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
 }
 
 function displayNotification(messagePath) {
@@ -113,11 +111,6 @@ const initForm = () => {
       infoBlock.classList.add("hidden");
 
       scroll = new SimpleBar(consoleWindow, { autoHide: false });
-
-      console.log(consoleWindow);
-      setTimeout(() => {
-        consoleWindow.scrollTop = consoleWindow.scrollHeight;
-      }, 1500);
 
       function add() {
         let pre = document.createElement("pre");
