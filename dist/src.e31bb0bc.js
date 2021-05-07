@@ -3335,6 +3335,7 @@ var titleTextarea = document.querySelector("#input-title");
 var mainTextarea = document.querySelector("#textarea-main");
 var consoleContainer = document.querySelector(".console-container");
 var codeBlock = document.querySelector(".mockup-code");
+var consoleWindow = document.querySelector("#console");
 var iframeBlock = document.querySelector(".iframe-block");
 var infoBlock = document.querySelector(".info");
 var stompClient = null;
@@ -3413,7 +3414,8 @@ function addSocketEvent(message) {
       break;
   }
 
-  document.querySelector("#console").append(pre);
+  consoleWindow.append(pre);
+  consoleWindow.scrollTop = consoleWindow.scrollHeight;
 }
 
 function displayNotification(messagePath) {
@@ -3826,7 +3828,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58245" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53655" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

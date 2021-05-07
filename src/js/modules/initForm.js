@@ -7,6 +7,7 @@ const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const consoleContainer = document.querySelector(".console-container");
 const codeBlock = document.querySelector(".mockup-code");
+const consoleWindow = document.querySelector("#console");
 const iframeBlock = document.querySelector(".iframe-block");
 const infoBlock = document.querySelector(".info");
 
@@ -75,7 +76,8 @@ function addSocketEvent(message) {
       pre.innerHTML = `<code>${message.content}</code>`;
       break;
   }
-  document.querySelector("#console").append(pre);
+  consoleWindow.append(pre);
+  consoleWindow.scrollTop = consoleWindow.scrollHeight;
 }
 
 function displayNotification(messagePath) {
