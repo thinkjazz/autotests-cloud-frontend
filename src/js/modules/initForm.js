@@ -17,8 +17,8 @@ let uuid = create_UUID();
 let scroll;
 
 function connect() {
-  // const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
-  const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
+  const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
+  // const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (status) {
     console.log("Connected: " + status);
