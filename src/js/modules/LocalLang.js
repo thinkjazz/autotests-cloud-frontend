@@ -36,7 +36,7 @@ Set password '12%#5f'
 Submit form 
 
 Verify successful authorization as 'Alex'`,
-        checkout_button: "Automate it! (free now)",
+        checkout_button: "Automate it!",
         // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
         //     copyright`,
       },

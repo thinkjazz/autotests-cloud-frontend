@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Autotests.cloud - Test automation as a Service</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0">
+    <link rel="icon" type="image/png" sizes="16x16" href="5b55ba198f825a21f182f8533faf5ea3">
+    <script src="289b6ed6873cf8cd2fa54ed7301e590b"></script>
+</head>
+
+<body class="font-mono">
+<div id="app" class="flex flex-col justify-between h-screen pb-6">
+
+    <header class="container relative max-w-screen-xl mx-auto flex flex-wrap flex-col justify-start items-start mb-12">
+        <h1 class="max-w-screen-md mx-auto md:mx-0 font-bold text-3xl text-center px-6 py-10 md:py-10 pb-1 md:pb-0" key="title">
+            Test automation as a Service
+        </h1>
+
+        <div class="language px-6 absolute right-0 top-0 mt-0 md:mt-14">
+            <button id="en_lang" class="translate translate--active focus:outline-none">en</button>
+            <span>/</span>
+            <button id="ru_lang" class="translate focus:outline-none">ru</button>
+        </div>
+
+        <ul class="tools list-inside flex mx-auto md:mx-0 flex-wrap sm:flex-nowrap justify-between md:justify-center w-full md:w-1/2 px-6">
+            <li class="tools__item">
+                <img alt="IntelliJ IDEA" src="e757d9b8c3343432d2f0b6a13dd05fa4" class="h-8 xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Java" src="f3a39a42ff50b8ada8ca98e3d87326b9" class="h-8 xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Gradle" src="5aaa4faf3b9d4fa3e816ca019cf6cce6" class="h-8 invertl xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="JUnit5" src="db347dd65152f0e7a19e48da140021ea" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Rest-Assured" src="9773e4815efe6410e9e973292d135e7e" class="h-8 invertl xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Selenium" src="e31505d3aa7d104cef3c04ac5039c51f" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Appium" src="d724a9dc0a159750e944212bf89edc5d" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item flex">
+                <img alt="Selenide" src="249536b3cfe5f54aa827ed6296047183" class="max-h-7 md:max-h-5 h-auto self-center">
+            </li>
+            <li class="tools__item flex">
+                <img alt="Allure Report" src="b4607b02107053d4c5aa4188e3b968bc" class="max-h-7 md:max-h-5 h-auto self-center">
+            </li>
+            <li class="tools__item">
+                <img alt="Github" src="342b13a762b26a23f7fd52d79bd61dda" class="h-8 invert xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Jenkins" src="573be72d23b778f0abdeb770d07ee3a1" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Docker" src="ef8540ab19ce87705e6ad89831ebba5c" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Selenoid" src="6fd31f6acf801ec8618c167766b65cad" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Browserstack" src="747b76973fa8cd8a349873f8c7b7edcb" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item tools__item--disco">
+                <img alt="Allure TestOps" src="75489d812ceb590050c56f2a17132aaf" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Jira" src="4b4cecba061779a9b4539bdc996ac955" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Telegram" src="9f80b6b8d3722196e843e8d29ecf3681" class="h-8  xl:h-12">
+            </li>
+            <li class="tools__item">
+                <img alt="Slack" src="3628bdac9c2407791e46b475f95793e1" class="h-8  xl:h-12">
+            </li>
+        </ul>
+    </header>
+
+    <main class="container max-w-screen-xl mx-auto flex flex-wrap flex-col md:flex-row justify-between items-start">
+
+        <div class="relative w-full md:w-full px-6 md:px-6 text-center transition-all flex flex-wrap justify-start">
+            <h2 class="lang textarea-header font-bold text-base my-4 mb-3 w-full text-left transition-all list-auto" key="description">
+                Describe your manual test step by step
+            </h2>
+            <form onsubmit="event.preventDefault();" id="objective" class="text-left w-full lg:w-3/5 lg:w-2/3">
+
+                <div class="relative form-control mb-2">
+
+                    <label class="label hidden" for="input-title">
+                        <span class="label-text">Test title</span>
+                    </label>
+                    <input type="text" placeholder="Test title" id="input-title" name="title" key="test_title" class="lang input input-bordered mb-4">
+
+                    <textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2 resize-none" id="textarea-main" name="steps" key="textarea" placeholder="Open 'https://github.com/login' &#10;&#10;Set username 'Alex' &#10;Set password '12%#5f' &#10;Submit form &#10;&#10;Verify successful authorization as 'Alex'"></textarea>
+
+                    <div id="loading-block" class="hidden"></div>
+                    <div id="telegram-frame" class="telegram-iframe-container w-full md:w-1/2 h-80 transition-all hidden">
+                    </div>
+
+                </div>
+
+                <button class="lang btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8" key="checkout_button">
+                    Automate it!
+                </button>
+                <div class="my-4">
+                    <div class="g-recaptcha" data-theme="dark" data-sitekey="6LfGt8caAAAAALiwMqXHiwZnq1eKtBUa7wK_axWt"></div>
+                    <span id="captchaError" class="alert alert-danger col-sm-4" style="1c9973ea4af4196446159d909eb0cef1"></span>
+                </div>
+
+                <a href="/" target="_blank" rel="nofollow noopener" class="btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8 btn--telegram hidden">
+                    Ok, go to Telegram discussion </a>
+            </form>
+
+            <img src="f048c3f8089b5e648317b978fc6c9512" alt="" class="party w-full lg:w-3/5 lg:w-2/3  mb-8 lg:mb-0 object-contain hidden" id="party">
+
+                <div class="console-container relative mb-8 lg:mb-0 w-full lg:w-3/5 hidden">
+                    <div class="absolute mockup-code__window"></div>
+                    <div id="console" class="mockup-code px-4 overflow-y-auto overflow-x-auto">
+                    </div>
+
+            </div>
+
+            <!-- <div id="console"
+                class="mockup-code relative px-4 mb-8 lg:mb-0 w-full lg:w-3/5 lg:w-2/3 overflow-y-auto overflow-x-auto hidden"> -->
+
+                <div class="iframe-block flex-grow pl-0 lg:pl-4 w-full lg:w-2/5">
+                    <!-- <iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
+                        src="https://t.me/autotests_cloud_chat/596?embed=1&dark=1" frameborder="0"
+                        scrolling="yes"></iframe> -->
+
+                    <div class="info w-full pl-4 mt-4 lg:mt-0">
+                        <h3 class="info__title font-bold text-base text-left mb-3">How to use</h3>
+                        <p class="info__text text-left mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Fugit
+                            est nulla
+                            amet a at eligendi
+                            eveniet, quos fuga possimus? Dicta beatae debitis dolorem natus nemo repudiandae iure!
+                            Ducimus, autem saepe!</p>
+
+                        <ul class="info__list list-decimal list-inside">
+                            <li class="info__item text-left">Lorem ipsum dolor</li>
+                            <li class="info__item text-left">It amet consectetur adipisicing elit</li>
+                            <li class="info__item text-left">Debitis dolorem natus nemo</li>
+                            <li class="info__item text-left">Ducimus, autem saepe!</li>
+                        </ul>
+                    </div>
+                </div>
+
+        </div>
+
+    </main>
+
+    <footer class="container max-w-screen-xl mx-auto mt-6 py-6 px-6 flex justify-end items-center">
+        <h3 class="textarea-header font-bold text-base text-right transition-all" key="copyright">
+            <a title="Test automation school" target="_blank" class="green-link" href="d437235e103d7527755895bb75e40684">qa.guru</a>
+            &middot;
+            <a title="Telegram Test automation community" target="_blank" class="red-link" href="tg://resolve?domain=qa_automation">@qa_automation</a> &middot;
+            <a title="Have a rest here, bro" target="_blank" class="blue-link" href="902a92ef00a0b433ebbe83060484bf12">relax.baby</a>
+        </h3>
+    </footer>
+
+    <!--        <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element&#45;&#45;banana absolute hidden">-->
+    <!--        <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element&#45;&#45;banana absolute hidden">-->
+    <!--        <img alt="banana-dance" src="./img/banana.gif" class="disco-element disco-element&#45;&#45;banana absolute hidden">-->
+    <!--        <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element&#45;&#45;woman absolute right-0 hidden">-->
+    <!--        <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element&#45;&#45;woman absolute right-0 hidden">-->
+    <!--        <img alt="woman-dance" src="./img/dance.gif" class="disco-element disco-element&#45;&#45;woman absolute right-0 hidden">-->
+</div>
+<script src="1905321a5222ae493c9d6fa0f6d2dead"></script>
+</body>
+
+</html>
