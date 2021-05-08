@@ -73,7 +73,7 @@ const initDisco = () => {
   }
 
   function stopDisco() {
-    let iframe = document.querySelector("iframe");
+    let iframe = document.querySelector("iframe-block iframe");
 
     mainTitle.innerHTML = mainTitleText;
 
