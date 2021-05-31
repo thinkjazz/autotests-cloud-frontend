@@ -10125,7 +10125,7 @@ var Testcase = /*#__PURE__*/function (_AbstractComponent) {
   _createClass(Testcase, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return "<fieldset class=\"testcase mb-4\">\n    <div class=\"form-control mb-4\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered\"\n            name=\"testcase_".concat(this.number, "\">\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered max-h-36 mb-4\"\n            placeholder=\"scenario-").concat(this.number, "\" name=\"scenario_").concat(this.number, "\"></textarea>\n    </div>\n</fieldset>");
+      return "<div class=\"divider\"></div> <fieldset class=\"testcase mb-4\">\n    <div class=\"form-control mb-4\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered\"\n            name=\"testcase_".concat(this.number, "\">\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered h-36 mb-4\"\n            placeholder=\"scenario-").concat(this.number, "\" name=\"scenario_").concat(this.number, "\"></textarea>\n    </div>\n</fieldset>");
     }
   }]);
 
