@@ -2,7 +2,7 @@ const initDisco = () => {
   // const mainContainer = document.querySelector("#app");
   const consoleContainer = document.querySelector(".console-container");
   // const console = document.querySelector("#console");
-  const mainForm = document.querySelector("#objective");
+  const mainForm = document.querySelector("#main_url");
   const mainTitle = document.querySelector("h1");
   const discoBtn = document.querySelector(".tools__item--disco");
   const catParty = document.querySelector("#party");

@@ -1,0 +1,29 @@
+.objectives-block {
+  margin-top: -240px;
+
+  .btn-ghost {
+    color: #59b998;
+  }
+
+  textarea {
+    background: transparent;
+  }
+
+  .textarea-bordered {
+    --tw-border-opacity: 1;
+  }
+}
+
+.objectives-block--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.objective-form {
+  //   width: 49%;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}

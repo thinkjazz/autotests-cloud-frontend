@@ -27,8 +27,10 @@ class LocalLang {
       en_lang: {
         // title: "Test automation as a Service",
         // alert_success: "Automation has started!",
-        description: `Describe your manual test step by step`,
+        description: `1. Generate FREE autotests for your site`,
+        title_2: `2. Describe your tests`,
         test_title: "Test title",
+        // test_url: "Enter your sire URL",
         textarea: `Open 'https://github.com/login' 
 
 Set username 'Alex' 
@@ -43,9 +45,10 @@ Verify successful authorization as 'Alex'`,
       ru_lang: {
         // title: "Тест аутомейшн эс а сервис",
         // alert_success: "Аутомэйшн хэс стартед!",
-        description: `
-            Распишите ручной тест шаг за шагом`,
+        description: `1. Сгенерируйте бесплатные автотесты для вашего сайта`,
+        title_2: `2. Опишите ваши тесты`,
         test_title: "Название теста",
+        // test_url: "Введите URL вашего сайта",
         textarea: `Открыть 'https://github.com/login' 
 
 Ввести логин 'Alex' 

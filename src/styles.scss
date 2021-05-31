@@ -2,6 +2,7 @@
 @import "scss/blocks/info.scss";
 @import "scss/blocks/tailwind-important.scss";
 @import "scss/blocks/code-block.scss";
+@import "scss/blocks/objective-form.scss";
 
 :root {
   --p: 259 94% 51%;
@@ -43,7 +44,7 @@ body {
 }
 
 main {
-  min-height: 700px;
+  // min-height: 700px;
 
   @media (max-width: 1023px) {
     min-height: auto;
@@ -91,7 +92,7 @@ img.invertl {
 }
 
 .textarea {
-  height: 28rem;
+  // height: 28rem;
   background: #3c4850;
   &::placeholder {
     font-size: 1rem;
@@ -126,7 +127,7 @@ img.invertl {
 }
 
 .btn {
-  font-size: 1.25rem;
+  // font-size: 1.25rem;
   text-transform: inherit;
 
   &--custom {
