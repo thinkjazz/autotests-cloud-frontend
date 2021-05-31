@@ -118,7 +118,7 @@
 
                     </div>
 
-                    <button class="lang btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8"
+                    <button class="lang btn btn-sm btn--custom btn--red w-auto btn-success flex-row-reverse pr-8"
                         key="checkout_button">
                         Automate it!
                     </button>
@@ -132,8 +132,6 @@
                     <a href="/" target="_blank" rel="nofollow noopener"
                         class="btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8 btn--telegram hidden">
                         Ok, go to Telegram discussion </a>
-
-
                 </form>
 
 
@@ -236,13 +234,6 @@
                             amet a at eligendi
                             eveniet, quos fuga possimus? Dicta beatae debitis dolorem natus nemo repudiandae iure!
                             Ducimus, autem saepe!</p>
-
-                        <!-- <ul class="info__list list-decimal list-inside">
-                            <li class="info__item text-left">Lorem ipsum dolor</li>
-                            <li class="info__item text-left">It amet consectetur adipisicing elit</li>
-                            <li class="info__item text-left">Debitis dolorem natus nemo</li>
-                            <li class="info__item text-left">Ducimus, autem saepe!</li>
-                        </ul> -->
                     </div>
                 </div>
 
@@ -254,31 +245,29 @@
                     </h2>
                     <form onsubmit="event.preventDefault();" id="objective"
                         class="objective-form relative text-left mb-4">
-                        <div class="form-control mb-4">
-                            <!-- <label class="label">
-                                <span class="label-text">Username</span>
-                            </label> -->
-                            <input type="text" placeholder="Name your test case" class="input input-bordered"
-                                name="testcase_1">
-                        </div>
-                        <!-- <h3 class="textarea-header font-normal text-sm my-4 mb-3 w-full text-right transition-all list-auto"
-                            key="title_3">
-                            Scenario
-                        </h3> -->
 
-                        <div class="form-control form-control--scenario mb-4">
-                            <textarea class="textarea relative textarea-bordered max-h-20 mb-4" placeholder="scenario-1"
-                                name="scenario_1-1"></textarea>
+                        <fieldset class="testcase mb-4">
+                            <div class="form-control mb-4">
+                                <input type="text" placeholder="Name your test case" class="input input-bordered"
+                                    name="testcase_1">
+                            </div>
 
-                            <button class="btn btn-sm btn-ghost p-0 mb-4" id="scenario_btn">
-                                Add new scenario
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    class="inline-block w-4 h-4 ml-1 stroke-current transform rotate-45">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </button>
-                        </div>
+                            <div class="form-control form-control--scenario">
+                                <textarea class="textarea relative textarea-bordered max-h-36 mb-4"
+                                    placeholder="scenario-1" name="scenario_1"></textarea>
+
+
+                            </div>
+                        </fieldset>
+
+                        <button class="btn btn-sm btn-ghost block mx-auto place-self-center p-0 mb-4" id="scenario_btn">
+                            Add new scenario
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                class="inline-block w-4 h-4 ml-1 stroke-current transform rotate-45">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
 
                         <button class="btn btn-sm btn--custom w-auto btn-success flex-row-reverse pr-8"
                             key="checkout_button">

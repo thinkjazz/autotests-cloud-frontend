@@ -3305,6 +3305,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.create_UUID = create_UUID;
+exports.createElement = void 0;
 
 function create_UUID() {
   var dt = new Date().getTime();
@@ -3314,6 +3315,14 @@ function create_UUID() {
     return (c == "x" ? r : r & 0x3 | 0x8).toString(16);
   });
 }
+
+var createElement = function createElement(template) {
+  var newElement = document.createElement("div");
+  newElement.innerHTML = template;
+  return newElement.firstChild;
+};
+
+exports.createElement = createElement;
 },{}],"../node_modules/simplebar/node_modules/core-js/internals/global.js":[function(require,module,exports) {
 var global = arguments[3];
 var check = function (it) {
@@ -10010,13 +10019,130 @@ var initForm = function initForm() {
 };
 
 exports.initForm = initForm;
-},{"../sockets/sockjs.min":"js/sockets/sockjs.min.js","../sockets/stomp.min":"js/sockets/stomp.min.js","../utils/StringUtils":"js/utils/StringUtils.js","simplebar":"../node_modules/simplebar/dist/simplebar.esm.js"}],"js/modules/initTestForm.js":[function(require,module,exports) {
+},{"../sockets/sockjs.min":"js/sockets/sockjs.min.js","../sockets/stomp.min":"js/sockets/stomp.min.js","../utils/StringUtils":"js/utils/StringUtils.js","simplebar":"../node_modules/simplebar/dist/simplebar.esm.js"}],"js/modules/AbstractComponent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AbstractComponent = void 0;
+
+var _StringUtils = require("../utils/StringUtils");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var AbstractComponent = /*#__PURE__*/function () {
+  function AbstractComponent() {
+    _classCallCheck(this, AbstractComponent);
+
+    this._element = null;
+  }
+
+  _createClass(AbstractComponent, [{
+    key: "getElement",
+    value: function getElement() {
+      if (!this._element) {
+        this._element = (0, _StringUtils.createElement)(this.getTemplate());
+      }
+
+      return this._element;
+    }
+  }, {
+    key: "removeElement",
+    value: function removeElement() {
+      if (this._element) {
+        this._element = null;
+      }
+    }
+  }, {
+    key: "getTemplate",
+    value: function getTemplate() {
+      throw Error("Abstract method not implemented");
+    }
+  }, {
+    key: "addEvent",
+    value: function addEvent(eventName, callback) {
+      this.getElement().addEventListener(eventName, callback);
+    }
+  }]);
+
+  return AbstractComponent;
+}();
+
+exports.AbstractComponent = AbstractComponent;
+},{"../utils/StringUtils":"js/utils/StringUtils.js"}],"js/modules/Testcase.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Testcase = void 0;
+
+var _AbstractComponent2 = require("./AbstractComponent");
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var Testcase = /*#__PURE__*/function (_AbstractComponent) {
+  _inherits(Testcase, _AbstractComponent);
+
+  var _super = _createSuper(Testcase);
+
+  function Testcase(number) {
+    var _this;
+
+    _classCallCheck(this, Testcase);
+
+    _this = _super.call(this);
+    _this.number = number;
+    _this._element = null;
+    return _this;
+  }
+
+  _createClass(Testcase, [{
+    key: "getTemplate",
+    value: function getTemplate() {
+      return "<fieldset class=\"testcase mb-4\">\n    <div class=\"form-control mb-4\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered\"\n            name=\"testcase_".concat(this.number, "\">\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered max-h-36 mb-4\"\n            placeholder=\"scenario-").concat(this.number, "\" name=\"scenario_").concat(this.number, "\"></textarea>\n    </div>\n</fieldset>");
+    }
+  }]);
+
+  return Testcase;
+}(_AbstractComponent2.AbstractComponent);
+
+exports.Testcase = Testcase;
+},{"./AbstractComponent":"js/modules/AbstractComponent.js"}],"js/modules/initTestForm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.initTestForm = void 0;
+
+var _Testcase = require("./Testcase");
+
 var objectiveForm = document.querySelector("#objective");
 var scenarioFormControl = document.querySelector(".form-control--scenario");
 var scenarioButton = document.querySelector("#scenario_btn");
@@ -10038,8 +10164,8 @@ var initTestForm = function initTestForm() {
   function addNewScenario(event) {
     event.preventDefault();
     scenarioCount++;
-    var scenarioElement = "<textarea class=\"textarea textarea-bordered max-h-20 mb-4\" placeholder=\"scenario-".concat(scenarioCount, "\"\n    name=\"scenario_1-").concat(scenarioCount, "\"></textarea>");
-    scenarioButton.insertAdjacentHTML("beforebegin", scenarioElement);
+    var newTestcase = new _Testcase.Testcase(scenarioCount);
+    scenarioButton.insertAdjacentHTML("beforebegin", newTestcase.getTemplate());
   }
 
   objectiveForm.addEventListener("submit", submitForm);
@@ -10047,7 +10173,7 @@ var initTestForm = function initTestForm() {
 };
 
 exports.initTestForm = initTestForm;
-},{}],"js/modules/LocalLang.js":[function(require,module,exports) {
+},{"./Testcase":"js/modules/Testcase.js"}],"js/modules/LocalLang.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

@@ -3,15 +3,19 @@
 
   .btn-ghost {
     color: #59b998;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 
-  textarea {
-    background: transparent;
-  }
+  // textarea {
+  //   background: transparent;
+  // }
 
-  .textarea-bordered {
-    --tw-border-opacity: 1;
-  }
+  // .textarea-bordered {
+  //   --tw-border-opacity: 1;
+  // }
 }
 
 .objectives-block--disabled {

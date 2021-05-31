@@ -1,3 +1,5 @@
+import { Testcase } from "./Testcase";
+
 const objectiveForm = document.querySelector("#objective");
 const scenarioFormControl = document.querySelector(".form-control--scenario");
 const scenarioButton = document.querySelector("#scenario_btn");
@@ -23,9 +25,8 @@ const initTestForm = () => {
     event.preventDefault();
 
     scenarioCount++;
-    const scenarioElement = `<textarea class="textarea textarea-bordered max-h-20 mb-4" placeholder="scenario-${scenarioCount}"
-    name="scenario_1-${scenarioCount}"></textarea>`;
-    scenarioButton.insertAdjacentHTML("beforebegin", scenarioElement);
+    const newTestcase = new Testcase(scenarioCount);
+    scenarioButton.insertAdjacentHTML("beforebegin", newTestcase.getTemplate());
   }
 
   objectiveForm.addEventListener("submit", submitForm);
