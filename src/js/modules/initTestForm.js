@@ -11,11 +11,48 @@ const initTestForm = () => {
   function submitForm(event) {
     event.preventDefault();
 
-    const formData = new FormData(objectiveForm);
-    const values = Object.fromEntries(formData.entries());
+    if (!validateForm()) {
+      const formData = new FormData(objectiveForm);
+      const values = Object.fromEntries(formData.entries());
 
-    console.log(values);
-    clearForm();
+      console.log(values);
+      clearForm();
+    }
+  }
+
+  function validateForm() {
+    const allInputs = objectiveForm.querySelectorAll("input");
+    const allTextareas = objectiveForm.querySelectorAll("textarea");
+
+    let validateFlag = [];
+
+    allInputs.forEach((input) => {
+      if (!!input.value === false) {
+        validateFlag.push(false);
+        input.classList.add("border-red-500");
+
+        setTimeout(() => {
+          input.classList.remove("border-red-500");
+        }, 2000);
+      } else {
+        validateFlag.push(true);
+      }
+    });
+
+    allTextareas.forEach((textarea) => {
+      if (!!textarea.value === false) {
+        validateFlag.push(false);
+        textarea.classList.add("border-red-500");
+
+        setTimeout(() => {
+          textarea.classList.remove("border-red-500");
+        }, 2000);
+      } else {
+        validateFlag.push(true);
+      }
+    });
+
+    return validateFlag.includes(false);
   }
 
   function clearForm() {

@@ -4,7 +4,7 @@ import { initTestForm } from "./js/modules/initTestForm";
 import { initLanguage } from "./js/modules/initLanguage";
 import { initDisco } from "./js/modules/initDisco";
 
-import "SimpleBar"; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
+import "SimpleBar";
 import "simplebar/dist/simplebar.css";
 
 import "./styles.css";

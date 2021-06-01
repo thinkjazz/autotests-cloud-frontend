@@ -10162,10 +10162,42 @@ var scenarioCount = 1;
 var initTestForm = function initTestForm() {
   function submitForm(event) {
     event.preventDefault();
-    var formData = new FormData(objectiveForm);
-    var values = Object.fromEntries(formData.entries());
-    console.log(values);
-    clearForm();
+
+    if (!validateForm()) {
+      var formData = new FormData(objectiveForm);
+      var values = Object.fromEntries(formData.entries());
+      console.log(values);
+      clearForm();
+    }
+  }
+
+  function validateForm() {
+    var allInputs = objectiveForm.querySelectorAll("input");
+    var allTextareas = objectiveForm.querySelectorAll("textarea");
+    var validateFlag = [];
+    allInputs.forEach(function (input) {
+      if (!!input.value === false) {
+        validateFlag.push(false);
+        input.classList.add("border-red-500");
+        setTimeout(function () {
+          input.classList.remove("border-red-500");
+        }, 2000);
+      } else {
+        validateFlag.push(true);
+      }
+    });
+    allTextareas.forEach(function (textarea) {
+      if (!!textarea.value === false) {
+        validateFlag.push(false);
+        textarea.classList.add("border-red-500");
+        setTimeout(function () {
+          textarea.classList.remove("border-red-500");
+        }, 2000);
+      } else {
+        validateFlag.push(true);
+      }
+    });
+    return validateFlag.includes(false);
   }
 
   function clearForm() {
@@ -14427,7 +14459,6 @@ require("./styles.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// or "import SimpleBar from 'simplebar';" if you want to use it manually.
 (0, _initForm.initForm)();
 (0, _initTestForm.initTestForm)();
 (0, _initLanguage.initLanguage)();
@@ -14460,7 +14491,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61788" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51165" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
