@@ -10117,15 +10117,25 @@ var Testcase = /*#__PURE__*/function (_AbstractComponent) {
     _classCallCheck(this, Testcase);
 
     _this = _super.call(this);
-    _this.number = number;
-    _this._element = null;
+    _this._number = number;
+    _this._addRemoveButton = _this._addRemoveButton();
     return _this;
   }
 
   _createClass(Testcase, [{
+    key: "_addRemoveButton",
+    value: function _addRemoveButton() {
+      var _this2 = this;
+
+      var removeButton = this.getElement().querySelector("button");
+      removeButton.addEventListener("click", function () {
+        _this2._element.remove();
+      });
+    }
+  }, {
     key: "getTemplate",
     value: function getTemplate() {
-      return "<div class=\"divider\"></div> <fieldset class=\"testcase mb-4\">\n    <div class=\"form-control mb-4\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered\"\n            name=\"testcase_".concat(this.number, "\">\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered h-36 mb-4\"\n            placeholder=\"scenario-").concat(this.number, "\" name=\"scenario_").concat(this.number, "\"></textarea>\n    </div>\n</fieldset>");
+      return "<fieldset class=\"testcase testcase--added mb-4\">\n    <div class=\"form-control mb-4\">        \n        <div class=\"flex space-x-2\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered w-full\"\n        name=\"testcase_".concat(this._number, "\">\n            <button class=\"btn btn--red\" onclick=\"event.preventDefault()\">\n                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n                    class=\"inline-block w-4 h-4 stroke-current\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                        d=\"M6 18L18 6M6 6l12 12\"></path>\n                </svg>\n            </button>\n        </div>\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered h-36 mb-4\"\n            placeholder=\"scenario-").concat(this._number, "\" name=\"scenario_").concat(this._number, "\"></textarea>\n    </div>\n</fieldset>");
     }
   }]);
 
@@ -10150,22 +10160,28 @@ var testCount = 1;
 var scenarioCount = 1;
 
 var initTestForm = function initTestForm() {
-  console.log(objectiveForm);
-  console.log(scenarioFormControl);
-
   function submitForm(event) {
     event.preventDefault();
     var formData = new FormData(objectiveForm);
     var values = Object.fromEntries(formData.entries());
     console.log(values);
+    clearForm();
+  }
+
+  function clearForm() {
+    var allAddedTests = document.querySelectorAll(".testcase--added");
+    allAddedTests.forEach(function (element) {
+      element.remove();
+    });
     objectiveForm.reset();
+    scenarioCount = 1;
   }
 
   function addNewScenario(event) {
     event.preventDefault();
     scenarioCount++;
     var newTestcase = new _Testcase.Testcase(scenarioCount);
-    scenarioButton.insertAdjacentHTML("beforebegin", newTestcase.getTemplate());
+    scenarioButton.before(newTestcase.getElement());
   }
 
   objectiveForm.addEventListener("submit", submitForm);
@@ -14444,7 +14460,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63025" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61788" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

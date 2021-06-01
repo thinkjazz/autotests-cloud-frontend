@@ -8,9 +8,6 @@ const testCount = 1;
 let scenarioCount = 1;
 
 const initTestForm = () => {
-  console.log(objectiveForm);
-  console.log(scenarioFormControl);
-
   function submitForm(event) {
     event.preventDefault();
 
@@ -18,7 +15,16 @@ const initTestForm = () => {
     const values = Object.fromEntries(formData.entries());
 
     console.log(values);
+    clearForm();
+  }
+
+  function clearForm() {
+    const allAddedTests = document.querySelectorAll(".testcase--added");
+    allAddedTests.forEach((element) => {
+      element.remove();
+    });
     objectiveForm.reset();
+    scenarioCount = 1;
   }
 
   function addNewScenario(event) {
@@ -26,7 +32,7 @@ const initTestForm = () => {
 
     scenarioCount++;
     const newTestcase = new Testcase(scenarioCount);
-    scenarioButton.insertAdjacentHTML("beforebegin", newTestcase.getTemplate());
+    scenarioButton.before(newTestcase.getElement());
   }
 
   objectiveForm.addEventListener("submit", submitForm);
