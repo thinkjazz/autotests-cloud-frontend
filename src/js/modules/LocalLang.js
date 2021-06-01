@@ -30,6 +30,12 @@ class LocalLang {
         description: `1. Generate FREE autotests for your site`,
         title_2: `2. Describe your tests`,
         test_title: "Test title",
+        scenario_button: `Add new scenario <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        class="inline-block w-4 h-4 ml-1 stroke-current transform rotate-45">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+    </svg>`,
+        test_button: "Send test",
         // test_url: "Enter your sire URL",
         textarea: `Open 'https://github.com/login' 
 
@@ -48,6 +54,12 @@ Verify successful authorization as 'Alex'`,
         description: `1. Сгенерируйте бесплатные автотесты для вашего сайта`,
         title_2: `2. Опишите ваши тесты`,
         test_title: "Название теста",
+        scenario_button: `Добавить сценарий <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        class="inline-block w-4 h-4 ml-1 stroke-current transform rotate-45">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+    </svg>`,
+        test_button: "Отправить тест",
         // test_url: "Введите URL вашего сайта",
         textarea: `Открыть 'https://github.com/login' 
 

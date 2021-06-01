@@ -10278,6 +10278,8 @@ var LocalLang = /*#__PURE__*/function () {
           description: "1. Generate FREE autotests for your site",
           title_2: "2. Describe your tests",
           test_title: "Test title",
+          scenario_button: "Add new scenario <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n        class=\"inline-block w-4 h-4 ml-1 stroke-current transform rotate-45\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n            d=\"M6 18L18 6M6 6l12 12\"></path>\n    </svg>",
+          test_button: "Send test",
           // test_url: "Enter your sire URL",
           textarea: "Open 'https://github.com/login' \n\nSet username 'Alex' \nSet password '12%#5f'\nSubmit form \n\nVerify successful authorization as 'Alex'",
           checkout_button: "Automate it!" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>
@@ -10290,6 +10292,8 @@ var LocalLang = /*#__PURE__*/function () {
           description: "1. \u0421\u0433\u0435\u043D\u0435\u0440\u0438\u0440\u0443\u0439\u0442\u0435 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u044B\u0435 \u0430\u0432\u0442\u043E\u0442\u0435\u0441\u0442\u044B \u0434\u043B\u044F \u0432\u0430\u0448\u0435\u0433\u043E \u0441\u0430\u0439\u0442\u0430",
           title_2: "2. \u041E\u043F\u0438\u0448\u0438\u0442\u0435 \u0432\u0430\u0448\u0438 \u0442\u0435\u0441\u0442\u044B",
           test_title: "Название теста",
+          scenario_button: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0441\u0446\u0435\u043D\u0430\u0440\u0438\u0439 <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n        class=\"inline-block w-4 h-4 ml-1 stroke-current transform rotate-45\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n            d=\"M6 18L18 6M6 6l12 12\"></path>\n    </svg>",
+          test_button: "Отправить тест",
           // test_url: "Введите URL вашего сайта",
           textarea: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C 'https://github.com/login' \n\n\u0412\u0432\u0435\u0441\u0442\u0438 \u043B\u043E\u0433\u0438\u043D 'Alex' \n\u0412\u0432\u0435\u0441\u0442\u0438 \u043F\u0430\u0440\u043E\u043B\u044C '12%#5f' \n\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0444\u043E\u0440\u043C\u0443 \n\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C \u0443\u0441\u043F\u0435\u0448\u043D\u0443\u044E \u0430\u0432\u0442\u043E\u0440\u0438\u0437\u0430\u0446\u0438\u044E \u043F\u043E\u0434 'Alex'",
           checkout_button: "Автоматизировать!" // copyright: `<a target="_blank" class="green-link" href="https://qa.guru">qa.guru</a>

@@ -1,6 +1,10 @@
 .objectives-block {
   margin-top: -240px;
 
+  @media (max-width: 1024px) {
+    margin-top: 0;
+  }
+
   .btn-ghost {
     color: #59b998;
 
