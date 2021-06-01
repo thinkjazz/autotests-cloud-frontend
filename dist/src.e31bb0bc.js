@@ -9932,8 +9932,8 @@ function addSocketEvent(message) {
 
     case "telegram-notification":
       pre.className = "flex";
-      pre.innerHTML = "<code> </code>"; // displayNotification(message.content);
-
+      pre.innerHTML = "<code> </code>";
+      displayNotification(message.content);
       break;
 
     case "empty":
@@ -9964,9 +9964,10 @@ var initForm = function initForm() {
   function submitForm(event) {
     event.preventDefault();
     var formData = new FormData(mainForm);
-    var values = Object.fromEntries(formData.entries()); // if (values.url && values["g-recaptcha-response"]) {
+    var values = Object.fromEntries(formData.entries());
 
-    if (values.url) {
+    if (values.url && values["g-recaptcha-response"]) {
+      // if (values.url) {
       values.price = "free";
       values.email = "admin@qa.guru";
       values.captcha = values["g-recaptcha-response"];
@@ -9976,8 +9977,10 @@ var initForm = function initForm() {
       consoleContainer.classList.remove("hidden");
       mainForm.classList.add("hidden");
       infoBlock.classList.add("hidden");
-      objectivesBlock.classList.remove("objectives-block--disabled");
-      document.querySelector("#telegram-post-autotests_cloud-17").classList.remove("hidden");
+      objectivesBlock.classList.remove("objectives-block--disabled"); // document
+      //   .querySelector("#telegram-post-autotests_cloud-17")
+      //   .classList.remove("hidden");
+
       scroll = new _simplebar.default(consoleWindow, {
         autoHide: false
       });
@@ -10135,7 +10138,7 @@ var Testcase = /*#__PURE__*/function (_AbstractComponent) {
   }, {
     key: "getTemplate",
     value: function getTemplate() {
-      return "<fieldset class=\"testcase testcase--added mb-4\">\n    <div class=\"form-control mb-4\">        \n        <div class=\"flex space-x-2\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered w-full\"\n        name=\"testcase_".concat(this._number, "\">\n            <button class=\"btn btn--red\" onclick=\"event.preventDefault()\">\n                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n                    class=\"inline-block w-4 h-4 stroke-current\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                        d=\"M6 18L18 6M6 6l12 12\"></path>\n                </svg>\n            </button>\n        </div>\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered h-36 mb-4\"\n            placeholder=\"scenario-").concat(this._number, "\" name=\"scenario_").concat(this._number, "\"></textarea>\n    </div>\n</fieldset>");
+      return "<fieldset class=\"testcase testcase--added mb-4\">\n    <div class=\"form-control mb-4\">        \n        <div class=\"flex space-x-2\">\n        <input type=\"text\" placeholder=\"Name your test case\" class=\"input input-bordered w-full\"\n        name=\"testcase_".concat(this._number, "\">\n            <button class=\"btn btn--red\" onclick=\"event.preventDefault()\">\n                <svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\"\n                    class=\"inline-block w-4 h-4 stroke-current\">\n                    <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"\n                        d=\"M6 18L18 6M6 6l12 12\"></path>\n                </svg>\n            </button>\n        </div>\n    </div>\n\n    <div class=\"form-control form-control--scenario\">\n        <textarea class=\"textarea relative textarea-bordered h-36 max-h-44 mb-4\"\n            placeholder=\"scenario-").concat(this._number, "\" name=\"scenario_").concat(this._number, "\"></textarea>\n    </div>\n</fieldset>");
     }
   }]);
 
@@ -14495,7 +14498,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51165" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56774" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
