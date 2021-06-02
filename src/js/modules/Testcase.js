@@ -32,7 +32,7 @@ export class Testcase extends AbstractComponent {
     </div>
 
     <div class="form-control form-control--scenario">
-        <textarea class="textarea relative textarea-bordered h-36 max-h-44 mb-4"
+        <textarea class="textarea textarea--real relative textarea-bordered h-36 max-h-44 mb-4"
             placeholder="scenario-${this._number}" name="scenario_${this._number}"></textarea>
     </div>
 </fieldset>`;

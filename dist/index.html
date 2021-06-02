@@ -84,12 +84,13 @@
         <main class="container max-w-screen-xl mx-auto flex flex-wrap flex-col md:flex-row justify-start items-start">
 
             <div class="relative w-full md:w-full px-6 md:px-6 text-center transition-all flex flex-wrap justify-start">
-                <h2 class="lang textarea-header font-bold text-base my-4 mb-3 w-full text-left transition-all list-auto" key="description">
+                <!-- <h2 class="lang textarea-header font-bold text-base my-4 mb-3 w-full text-left transition-all list-auto"
+                    key="description">
                     1. Generate FREE autotests for your site
-                </h2>
+                </h2> -->
                 <form onsubmit="event.preventDefault();" id="main_url" class="relative text-left w-full lg:w-3/5 lg:w-2/3 mb-56">
 
-                    <div class="relative form-control mb-2">
+                    <div class="relative form-control form-control--border mb-6">
 
                         <!-- <label class="label hidden" for="input-title">
                             <span class="label-text">Test title</span>
@@ -97,7 +98,16 @@
                         <input type="text" placeholder="Test title" id="input-title" name="title" key="test_title"
                             class="lang input input-bordered mb-4"> -->
 
-                        <input type="text" placeholder="https://" id="input-url" name="url" key="test_url" class="input input-bordered mb-4">
+                        <h2 class="lang textarea-header font-bold text-base w-full text-left transition-all list-auto absolute top-3" key="description">
+                            1. Generate FREE autotests for your site
+                        </h2>
+
+                        <div class="flex space-x-2">
+                            <input type="text" placeholder="https://" id="input-url" name="url" key="test_url" class="input input-bordered w-full">
+                            <button class="lang btn" key="checkout_button">
+                                Generate!
+                            </button>
+                        </div>
 
                         <!-- <textarea class="lang textarea notes textarea textarea-bordered pt-4 mb-2 resize-none"
                               id="textarea-main" name="steps" key="textarea"
@@ -111,11 +121,12 @@
 
                     </div>
 
-                    <button class="lang btn btn-sm btn--custom btn--red w-auto btn-success flex-row-reverse pr-8" key="checkout_button">
+                    <!-- <button class="lang btn btn-sm btn--custom btn--red w-auto btn-success flex-row-reverse pr-8"
+                        key="checkout_button">
                         Automate it!
-                    </button>
+                    </button> -->
 
-                    <div class="captcha absolute right-0 top-20 transform -translate-y-2">
+                    <div class="captcha absolute left-0 top-40 transform -translate-y-2">
                         <div class="g-recaptcha" data-theme="dark" data-sitekey="6LfGt8caAAAAALiwMqXHiwZnq1eKtBUa7wK_axWt"></div>
                         <span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
                     </div>
@@ -126,7 +137,7 @@
 
 
 
-                <img src="/party.0d71ca5d.gif" alt="" class="party w-full lg:w-3/5 lg:w-2/3  mb-8 lg:mb-0 object-contain hidden" id="party">
+                <img src="/party.0d71ca5d.gif" alt="" class="party w-full lg:w-3/5 lg:w-2/3 self-start mb-8 lg:mb-0 object-contain z-10 -mt-6 hidden" id="party">
 
                 <div class="console-container relative mb-8 lg:mb-0 w-full lg:w-3/5 hidden">
                     <div class="absolute mockup-code__window"></div>
@@ -215,7 +226,7 @@
                         src="https://t.me/autotests_cloud_chat/596?embed=1&dark=1" frameborder="0"
                         scrolling="yes"></iframe> -->
 
-                    <div class="info w-full pl-4 mt-4 lg:mt-0">
+                    <div class="info w-full pl-4 mt-4 lg:mt-10">
                         <h3 class="info__title font-bold text-base text-left mb-3">How to use</h3>
                         <p class="info__text text-left mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Fugit
@@ -238,13 +249,11 @@
                             </div>
 
                             <div class="form-control form-control--scenario">
-                                <textarea class="textarea relative textarea-bordered h-36 max-h-44 mb-4" placeholder="scenario-1" name="scenario_1"></textarea>
-
-
+                                <textarea class="textarea textarea--real relative textarea-bordered h-36 max-h-44 mb-4" placeholder="scenario-1" name="scenario_1"></textarea>
                             </div>
                         </fieldset>
 
-                        <button class="lang btn btn-sm btn-ghost block mx-auto place-self-center p-0 mb-4" id="scenario_btn" key="scenario_button" onclick="event.preventDefault()">
+                        <button class="lang btn btn-sm btn-ghost block w-full mx-auto place-self-center p-0 mb-8" id="scenario_btn" key="scenario_button" onclick="event.preventDefault()">
                             Add new scenario
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 ml-1 stroke-current transform rotate-45">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>

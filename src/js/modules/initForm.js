@@ -1,7 +1,7 @@
 import SockJS from "../sockets/sockjs.min";
 import { Stomp } from "../sockets/stomp.min";
 import { create_UUID } from "../utils/StringUtils";
-import SimpleBar from "simplebar"; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
+import SimpleBar from "simplebar";
 
 const mainForm = document.querySelector("#main_url");
 const titleInput = document.querySelector("#input-title");
@@ -99,8 +99,8 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
-    // if (values.url && values["g-recaptcha-response"]) {
-    if (values.url) {
+    if (values.url && values["g-recaptcha-response"]) {
+      // if (values.url) {
       values.price = "free";
       values.email = "admin@qa.guru";
       values.captcha = values["g-recaptcha-response"];

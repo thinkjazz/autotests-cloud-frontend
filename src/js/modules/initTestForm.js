@@ -4,15 +4,11 @@ const objectiveForm = document.querySelector("#objective");
 const scenarioFormControl = document.querySelector(".form-control--scenario");
 const scenarioButton = document.querySelector("#scenario_btn");
 
-const testCount = 1;
 let scenarioCount = 1;
 
 const initTestForm = () => {
   const textarea = objectiveForm.querySelector("textarea");
-
-  console.log(textarea);
-
-  //   OverlayScrollbars(textarea, { className: "os-theme-light" });
+  OverlayScrollbars(textarea, { className: "os-theme-light" });
 
   function submitForm(event) {
     event.preventDefault();
@@ -28,7 +24,7 @@ const initTestForm = () => {
 
   function validateForm() {
     const allInputs = objectiveForm.querySelectorAll("input");
-    const allTextareas = objectiveForm.querySelectorAll("textarea");
+    const allTextareas = objectiveForm.querySelectorAll(".textarea--real");
 
     let validateFlag = [];
 
@@ -46,7 +42,13 @@ const initTestForm = () => {
     });
 
     allTextareas.forEach((textarea) => {
-      if (!!textarea.value === false) {
+      if (textarea.querySelector("textarea")) {
+        console.log(textarea.querySelector("textarea").value);
+      }
+      if (
+        textarea.querySelector("textarea") !== null &&
+        !!textarea.querySelector("textarea").value === false
+      ) {
         validateFlag.push(false);
         textarea.classList.add("border-red-500");
 
@@ -75,6 +77,10 @@ const initTestForm = () => {
 
     scenarioCount++;
     const newTestcase = new Testcase(scenarioCount);
+    const textarea = newTestcase.getElement().querySelector("textarea");
+
+    OverlayScrollbars(textarea, { className: "os-theme-light" });
+
     scenarioButton.before(newTestcase.getElement());
   }
 
