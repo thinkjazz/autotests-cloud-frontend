@@ -99,8 +99,8 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
-    if (values.url && values["g-recaptcha-response"]) {
-      // if (values.url) {
+    // if (values.url && values["g-recaptcha-response"]) {
+    if (values.url) {
       values.price = "free";
       values.email = "admin@qa.guru";
       values.captcha = values["g-recaptcha-response"];

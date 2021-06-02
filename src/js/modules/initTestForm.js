@@ -8,6 +8,12 @@ const testCount = 1;
 let scenarioCount = 1;
 
 const initTestForm = () => {
+  const textarea = objectiveForm.querySelector("textarea");
+
+  console.log(textarea);
+
+  //   OverlayScrollbars(textarea, { className: "os-theme-light" });
+
   function submitForm(event) {
     event.preventDefault();
 
