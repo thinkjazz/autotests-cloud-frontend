@@ -1,5 +1,6 @@
 import { Testcase } from "./Testcase";
 
+const objectivesBlock = document.querySelector(".objectives-block");
 const objectiveForm = document.querySelector("#objective");
 const scenarioFormControl = document.querySelector(".form-control--scenario");
 const scenarioButton = document.querySelector("#scenario_btn");
@@ -18,7 +19,8 @@ const initTestForm = () => {
       const values = Object.fromEntries(formData.entries());
 
       console.log(values);
-      clearForm();
+      // clearForm();
+      deleteForm();
     }
   }
 
@@ -70,6 +72,16 @@ const initTestForm = () => {
     });
     objectiveForm.reset();
     scenarioCount = 1;
+  }
+
+  function deleteForm() {
+    // objectiveForm.remove();
+
+    objectivesBlock.classList.add("objectives-block--disabled");
+
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 1000);
   }
 
   function addNewScenario(event) {

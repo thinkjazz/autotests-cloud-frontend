@@ -10155,6 +10155,7 @@ exports.initTestForm = void 0;
 
 var _Testcase = require("./Testcase");
 
+var objectivesBlock = document.querySelector(".objectives-block");
 var objectiveForm = document.querySelector("#objective");
 var scenarioFormControl = document.querySelector(".form-control--scenario");
 var scenarioButton = document.querySelector("#scenario_btn");
@@ -10172,8 +10173,9 @@ var initTestForm = function initTestForm() {
     if (!validateForm()) {
       var formData = new FormData(objectiveForm);
       var values = Object.fromEntries(formData.entries());
-      console.log(values);
-      clearForm();
+      console.log(values); // clearForm();
+
+      deleteForm();
     }
   }
 
@@ -10217,6 +10219,17 @@ var initTestForm = function initTestForm() {
     });
     objectiveForm.reset();
     scenarioCount = 1;
+  }
+
+  function deleteForm() {
+    // objectiveForm.remove();
+    objectivesBlock.classList.add("objectives-block--disabled");
+    setTimeout(function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }, 1000);
   }
 
   function addNewScenario(event) {
@@ -18269,7 +18282,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60208" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62147" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
