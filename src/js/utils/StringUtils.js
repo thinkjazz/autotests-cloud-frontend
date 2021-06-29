@@ -7,10 +7,4 @@ function create_UUID() {
   });
 }
 
-const createElement = (template) => {
-  const newElement = document.createElement(`div`);
-  newElement.innerHTML = template;
-  return newElement.firstChild;
-};
-
-export { create_UUID, createElement };
+export { create_UUID };

@@ -1,18 +1,16 @@
 import SockJS from "../sockets/sockjs.min";
 import { Stomp } from "../sockets/stomp.min";
 import { create_UUID } from "../utils/StringUtils";
-import SimpleBar from "simplebar";
+import SimpleBar from "simplebar"; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
 
-const mainForm = document.querySelector("#main_url");
-const titleInput = document.querySelector("#input-title");
-const urlInput = document.querySelector("#input-url");
+const mainForm = document.querySelector("#objective");
+const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const consoleContainer = document.querySelector(".console-container");
 const codeBlock = document.querySelector(".mockup-code");
 const consoleWindow = document.querySelector("#console");
 const iframeBlock = document.querySelector(".iframe-block");
 const infoBlock = document.querySelector(".info");
-const objectivesBlock = document.querySelector(".objectives-block");
 
 let stompClient = null;
 let uuid = create_UUID();
@@ -99,8 +97,9 @@ const initForm = () => {
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
-    if (values.url && values["g-recaptcha-response"]) {
-      // if (values.url) {
+    console.log(values);
+
+    if (!!values.title && values["g-recaptcha-response"]) {
       values.price = "free";
       values.email = "admin@qa.guru";
       values.captcha = values["g-recaptcha-response"];
@@ -112,13 +111,8 @@ const initForm = () => {
 
       consoleContainer.classList.remove("hidden");
       mainForm.classList.add("hidden");
+      iframeBlock.classList.remove("hidden");
       infoBlock.classList.add("hidden");
-
-      objectivesBlock.classList.remove("objectives-block--disabled");
-
-      // document
-      //   .querySelector("#telegram-post-autotests_cloud-17")
-      //   .classList.remove("hidden");
 
       scroll = new SimpleBar(consoleWindow, { autoHide: false });
 
@@ -139,22 +133,17 @@ const initForm = () => {
 
       mainForm.reset();
     } else {
-      // if (!mainTextarea.value) {
-      //   mainTextarea.classList.add("border-red-500");
-      // }
+      if (!mainTextarea.value) {
+        mainTextarea.classList.add("border-red-500");
+      }
 
-      // if (!titleInput.value) {
-      //   titleInput.classList.add("border-red-500");
-      // }
-
-      if (!urlInput.value) {
-        urlInput.classList.add("border-red-500");
+      if (!titleTextarea.value) {
+        titleTextarea.classList.add("border-red-500");
       }
 
       setTimeout(() => {
-        // mainTextarea.classList.remove("border-red-500");
-        // titleInput.classList.remove("border-red-500");
-        urlInput.classList.remove("border-red-500");
+        mainTextarea.classList.remove("border-red-500");
+        titleTextarea.classList.remove("border-red-500");
       }, 2000);
     }
   }
