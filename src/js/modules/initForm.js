@@ -99,7 +99,7 @@ const initForm = () => {
 
     console.log(values);
 
-    if (!!values.steps && values.title && values["g-recaptcha-response"]) {
+    if (!!values.title && values["g-recaptcha-response"]) {
       values.price = "free";
       values.email = "admin@qa.guru";
       values.captcha = values["g-recaptcha-response"];
