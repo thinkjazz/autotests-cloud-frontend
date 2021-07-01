@@ -12,7 +12,7 @@ let path = {
 	src: {
 		html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
 		css: source_folder + "/css/style.scss",
-		js: source_folder + "/js/script.js",
+		js: source_folder + "/js/*.js",
 		img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
 		fonts: source_folder + "/fonts/*"
 	},
@@ -92,11 +92,11 @@ function js() {
 		// .pipe(
 		// 	uglify()
 		// 	)
-		.pipe(
-			rename({
-				extname: ".min.js"
-			})
-			)
+		// .pipe(
+		// 	rename({
+		// 		extname: ".min.js"
+		// 	})
+		// 	)
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream())
 }
