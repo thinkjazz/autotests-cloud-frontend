@@ -1,36 +1,27 @@
 {
-  "name": "test-automation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.html",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "scripts": {
-    "clean": "rm dist/bundle.js",
-    "start": "parcel src/index.html",
-    "build-prod": "parcel build src/index.html"
-  },
-  "dependencies": {
-    "daisyui": "^0.14.6",
-    "iframe-resizer": "^4.3.1",
-    "parcel": "^2.0.0-beta.2",
-    "scroll-lock": "^2.1.5",
-    "simplebar": "^5.3.3"
-  },
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-beta.2",
-    "autoprefixer": "^9.8.6",
-    "browser-sync": "2.26.14",
-    "eslint": "^7.22.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "parcel-bundler": "^1.12.5",
-    "postcss": "^7.0.35",
-    "postcss-modules": "^4.0.0",
-    "prettier": "^2.2.1",
-    "sass": "^1.32.8",
-    "swiper": "^6.5.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2"
-  }
+	"name": "gulp_one",
+	"version": "1.0.0",
+	"description": "Сборка 0",
+	"main": "index.html",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "T",
+	"license": "ISC",
+	"devDependencies": {
+		"browser-sync": "^2.26.14",
+		"del": "^6.0.0",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^7.0.1",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-file-include": "^2.3.0",
+		"gulp-group-css-media-queries": "^1.2.2",
+		"gulp-imagemin": "^7.1.0",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^4.1.0",
+		"gulp-uglify-es": "^2.0.0",
+		"gulp-webp": "^4.0.1",
+		"gulp-webp-html": "^1.0.2",
+		"rename": "^1.0.4"
+	}
 }

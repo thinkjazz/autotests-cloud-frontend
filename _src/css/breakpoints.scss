@@ -1,0 +1,190 @@
+@media screen and (max-width: 1200px) {
+	body {
+		section {
+			padding: 64px 36px;
+		}
+		header, footer {
+			padding: 24px 36px;
+		}
+	}
+
+	.col-3>div {
+		h4 {
+			font-size: 19px;
+			letter-spacing: -0.4px;
+		}
+
+		p, ul li {
+			font-size: 16.5px;
+		}
+	}
+
+	.col-50.forms {
+		.forms-container {
+			width: 600px;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		section {
+			padding: 36px 20px;
+		}
+
+		>header {
+			padding: 36px 20px;
+
+			>div {
+				flex-direction: column;
+			}
+
+			.branding {
+				margin-bottom: 28px;
+
+				h3 {
+					font-size: 22px;
+				}
+			}
+
+			.links {
+				width: 200px;
+
+				a {
+					font-size: 16px;
+				}
+			}
+		}
+
+		>footer {
+			padding: 36px 20px;
+			.copyright {
+				text-align: center;
+			}
+		}
+	}
+
+	.col-main {
+		padding-right: 0;
+	}
+	
+	.block-1 h1 {
+		font-size: 12vw;
+	}
+
+	h2 {
+		font-size: 28px;
+		line-height: 1.2;
+		letter-spacing: -1.2px;
+	}
+
+	.branding {
+		h3 {
+			font-size: 16px;
+		}
+
+		img {
+			padding: 5px;
+			width: 36px;
+			border-radius: 10px;
+		}
+	}
+
+	p, ul li {
+		font-size: 17px;
+	}
+
+	button {
+		font-size: 18px;
+		padding: 12px 24px;
+
+		img {
+			margin-right: 12px;
+		}
+
+		&.img-right img {
+			margin-left: 12px;
+		}
+	}
+
+	.col-3 {
+		flex-direction: column;
+
+		>div {
+			width: 100%;
+			margin-right: 0;
+		}
+	}
+
+	.col-50 {
+		flex-direction: column;
+
+		>div {
+			width: 100%;
+
+			&:first-child div {
+				margin-top: unset;
+			}
+		}
+
+		.pics {
+			width: 100%;
+			order: -1;
+			margin-bottom: 48px;
+		}
+
+		&.forms {
+			margin-top: 80px;
+			padding-top: 0;
+
+			.forms-container {
+				width: 100%;
+			}
+		}
+	}
+
+	.shadow-1 {
+		order: -1;
+		margin-bottom: 36px;
+	}
+
+	.col-main.var-2 {
+		margin-top: 80px;
+		padding-top: 0;
+		margin-bottom: 0;
+	}
+
+	input,
+	textarea {
+		font-size: 14px;
+		letter-spacing: -.6px;
+	}
+	.col-main {
+		background-image: none!important;
+	}
+	section.one-frame {
+		min-height: unset;
+	}
+	.col-main {
+		min-height: unset;
+	}
+	.branding h3 span {
+		display: none;
+	}
+	main .wrapper {
+		>div, form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+	section:last-child {
+		margin-bottom: 14px;
+	}
+	.tests-app .col-50.forms div {
+		width: 100%;
+	}
+	.tests-app .pictogram {
+		justify-content: center;
+	}
+}

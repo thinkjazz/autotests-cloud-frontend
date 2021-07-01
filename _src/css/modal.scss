@@ -1,0 +1,90 @@
+.modal-active {
+	overflow-y: hidden !important;
+
+	header,
+	footer,
+	main {
+		pointer-events: none;
+	}
+}
+
+
+#modal_main {
+	width: 100vw;
+	height: 100vh;
+	background: #0000007d;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 36px;
+
+	@media screen and (max-width: 768px) {
+		padding: 22px;
+	}
+
+	.wrapper {
+		background: #fff;
+		padding: 32px;
+		max-width: 680px;
+		border-radius: 3px;
+
+		@media screen and (max-width: 768px) {
+			padding: 24px;
+			max-width: 100vw;
+		}
+	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		position: relative;
+		margin-bottom: 20px;
+
+		&:after {
+			content: "";
+			display: block;
+			width: 100%;
+			height: 1px;
+			position: absolute;
+			background: $neutral;
+			bottom: -10px;
+		}
+	}
+
+	h2 {
+		font-size: 36px;
+		@media screen and (max-width: 768px) {
+			font-size: 26px;
+		}
+	}
+
+	button {
+		&.close-btn {
+			padding: 10px 14px;
+
+			picture {
+				width: 14px;
+				margin-right: 0;
+			}
+		}
+	}
+}
+
+.message-send {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	p {
+		text-align: center;
+		font-size: 2em;
+	}
+}

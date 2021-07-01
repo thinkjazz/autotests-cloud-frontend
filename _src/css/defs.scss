@@ -1,0 +1,132 @@
+// FONTS
+$font: 'Inter', sans-serif;
+
+// COLORS
+$white: #fff;
+$dark: #18214D;
+$paragraph: #3E4462;
+$border: #ccc;
+$orange: #CD5920;
+$orange-l: #FAEEE9;
+$placeholder: #EFF2F6;
+$neutral: #DFE4EA;
+
+
+
+// PARAMETERS
+$border-radius-1: 8px;
+$border-radius-2: 13px;
+$padding: 82px 145px;
+
+
+body {
+	font-weight: 400;
+	background: $white;
+	color: $paragraph;
+	font-family: $font;
+	align-items: center;
+	font-size: 18px;
+	line-height: 1.6;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: center;
+
+	>main {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		flex-grow: 1;
+		width: 100%;
+
+	}
+	section {
+		padding: $padding;
+		width: 100%;
+	}
+}
+.wrapper {
+	width: 100%;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+
+h1, h2, h3, h4, h5 {
+	font-weight: 600;
+	color: $dark;
+}
+h2 {
+	font-size: 56px;
+	line-height: 1.1;
+	letter-spacing: -2.4px;
+	margin-bottom: 28px;
+}
+h4 {
+	font-size: 22px;
+	letter-spacing: -0.55px;
+	margin-bottom: 18px;
+}
+p {
+	font-size: 18px;
+	color: $paragraph;
+	line-height: 1.6;
+	letter-spacing: -0.3px;
+	margin-bottom: 0.5em;
+	&.bold {
+		font-weight: 600;
+	}
+}
+
+button, input.button {
+	background: $orange;
+	color: $white;
+	font-weight: 600;
+	font-size: 20px;
+	padding: 16px 28px;
+	border-radius: $border-radius-1;
+	margin: 25px 0;
+	letter-spacing: -0.5px;
+	display: inline-flex;
+	align-items: center;
+	width: unset;
+	img {
+		margin-right: 16px;
+	}
+	&.img-right img {
+		margin-right: unset;
+		margin-left: 16px;
+	}
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+	display: inline-flex;
+}
+label {
+	font-weight: 600;
+	color: $dark;
+}
+input, textarea, .tests-app .result #result {
+	background: $placeholder;
+	padding: 16px 12px;
+	font-size: 16px;
+	width: 100%;
+	text-align: left;
+	margin-top: 12px;
+	letter-spacing: -0.3px;
+	border-radius: $border-radius-1;
+	border: 2px solid $placeholder;
+	transition: border 0.4s ease-in-out;
+	&::placeholder {
+		color: $paragraph;
+		opacity: 0.5;
+	}
+	&:focus {
+		border-color: $border;
+		transition: border 0.1s ease-in-out;
+	}
+}
