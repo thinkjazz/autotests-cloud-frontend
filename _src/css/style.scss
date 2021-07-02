@@ -242,6 +242,12 @@ section {
 
 
 .tests-app {
+	>header>div:after {
+		display: none;
+	}
+	section {
+		padding-top: 32px;
+	}
 	.pictogram {
 		display: flex;
 		flex-direction: row;
@@ -249,11 +255,16 @@ section {
 		justify-content: flex-start;
 		align-content: center;
 		align-items: center;
+		margin-top: 16px;
+		&:after {
+			display: block;
+		}
 
 		img {
-			width: 36px;
-			margin-right: 8px;
-			margin-bottom: 8px;
+			width: 26px;
+			margin-right: 4px;
+			margin-bottom: 4px;
+
 		}
 	}
 
@@ -279,7 +290,7 @@ section {
 }
 
 
-@import "modal.scss";
+// @import "modal.scss";
 @import "breakpoints.scss";
 @import "fixed-header.scss";
-@import "slider.scss";
+// @import "slider.scss";
