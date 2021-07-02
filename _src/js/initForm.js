@@ -1,5 +1,5 @@
-import SockJS from "./sockjs.min.js";
-import { Stomp } from "./stomp.min.js";
+import * as SockJS from "./sockjs.min.js";
+import * as Stomp from "./stomp.min.js";
 import { create_UUID } from "./StringUtils.js";
 
 const mainForm = document.querySelector("#objective");
