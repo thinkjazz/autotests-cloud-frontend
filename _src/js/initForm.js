@@ -1,6 +1,6 @@
-import SockJS from "sockjs.min.js";
-import { Stomp } from "stomp.min.js";
-import { create_UUID } from "StringUtils.js";
+import SockJS from "./sockjs.min.js";
+import { Stomp } from "./stomp.min.js";
+import { create_UUID } from "./StringUtils.js";
 
 const mainForm = document.querySelector("#objective");
 const titleTextarea = document.querySelector("#input-title");
