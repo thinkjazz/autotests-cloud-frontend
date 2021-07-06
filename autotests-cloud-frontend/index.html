@@ -64,8 +64,13 @@
 					<form id="objective" class="start">
 	<label>Бесплатный автотест для твоего сайта:</label>
 	<input type="url" placeholder="https://" id="input-title" name="title" key="test_title">
-	<button key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
+	<button onclick="urlVal()" key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
 </form>
+<script>
+function urlVal() {
+	alert(document.getElementById('input-title').value);
+}
+</script>
 
 				</div>
 				<div class="info">
