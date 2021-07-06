@@ -255,6 +255,9 @@ section {
 		justify-content: flex-start;
 		align-content: center;
 		align-items: center;
+		width: 100%;
+		max-width: 1400px;
+		margin: 0 auto;
 		margin-top: 16px;
 		&:after {
 			display: block;
