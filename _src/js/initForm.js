@@ -2,7 +2,11 @@ import * as SockJS from "./sockjs.min.js";
 import * as Stomp from "./stomp.min.js";
 import { create_UUID } from "./StringUtils.js";
 
+const body = document.querySelector("body.tests-app");
 const mainForm = document.querySelector("#objective");
+const mainBtn = document.querySelector("button.main");
+const modalBtn = document.querySelector("button.modal");
+const modalBtnClose = document.querySelector("button.modal-close");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const consoleContainer = document.querySelector(".console-container");
@@ -149,9 +153,19 @@ const initForm = () => {
     }
   }
 
-  mainForm.addEventListener("submit", submitForm);
+  mainBtn.addEventListener("click", submitForm);
 };
 
 export { initForm };
 
 initForm();
+
+function modalOpen() {
+ body.classList.add("modal");
+}
+function modalClose() {
+ body.classList.remove("modal");
+}
+
+modalBtn.addEventListener("click", modalOpen);
+modalBtnClose.addEventListener("click", modalClose);
