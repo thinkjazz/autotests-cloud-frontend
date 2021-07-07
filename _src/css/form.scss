@@ -59,6 +59,9 @@
 		transform: rotate(45deg);
 	}
 
+	&.blocked {
+		pointer-events: none;
+	}
 	&.disabled {
 		opacity: 0.5;
 		pointer-events: none;
