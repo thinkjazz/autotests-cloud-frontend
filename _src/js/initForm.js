@@ -135,16 +135,16 @@ const initForm = () => {
 
       mainForm.reset();
     } else {
-      if (!mainTextarea.value) {
-        mainTextarea.classList.add("border-red-500");
-      }
+      // if (!mainTextarea.value) {
+      //   mainTextarea.classList.add("border-red-500");
+      // }
 
       if (!titleTextarea.value) {
         titleTextarea.classList.add("border-red-500");
       }
 
       setTimeout(() => {
-        mainTextarea.classList.remove("border-red-500");
+        // mainTextarea.classList.remove("border-red-500");
         titleTextarea.classList.remove("border-red-500");
       }, 2000);
     }
