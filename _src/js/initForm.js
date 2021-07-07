@@ -1,3 +1,9 @@
+const element = document.querySelector('form');
+element.addEventListener('submit', event => {
+  initForm();
+});
+
+
 import * as SockJS from "./sockjs.min.js";
 import * as Stomp from "./stomp.min.js";
 import { create_UUID } from "./StringUtils.js";
@@ -15,13 +21,15 @@ let stompClient = null;
 let uuid = create_UUID();
 let scroll;
 
+
 function connect() {
+  console.log('connect +');
   // const socket = new SockJS("https://api.autotests.cloud/ws"); // todo add exception
   const socket = new SockJS("http://localhost:8080/ws"); // todo add exception
   stompClient = Stomp.over(socket);
-  stompClient.connect({}, function (status) {
+  stompClient.connect({}, function(status) {
     console.log("Connected: " + status);
-    stompClient.subscribe(`/topic/${uuid}`, function (message) {
+    stompClient.subscribe(`/topic/${uuid}`, function(message) {
       console.log("Message: " + message);
       // todo add exception
       addSocketEvent(JSON.parse(message.body));
@@ -30,6 +38,7 @@ function connect() {
 }
 
 function addSocketEvent(message) {
+  console.log('sockets +');
   let scrollContent = document.querySelector(".simplebar-content");
   let pre = document.createElement("pre");
   pre.setAttribute("data-prefix", message.prefix);
@@ -91,6 +100,7 @@ const initForm = () => {
   connect();
 
   function submitForm(event) {
+    console.log(document.getElementById('input-title').value);
     event.preventDefault();
 
     const formData = new FormData(mainForm);
@@ -151,3 +161,5 @@ const initForm = () => {
 };
 
 export { initForm };
+
+console.log('initForm connected');

@@ -1,10 +1,35 @@
-<form id="objective" class="start">
+<form id="objective" class="start" onsubmit="event.preventDefault()">
 	<label>Бесплатный автотест для твоего сайта:</label>
 	<input type="url" placeholder="https://" id="input-title" name="title" key="test_title">
-	<button onclick="urlVal()" key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
+	<div class="checkboxes">
+		<div class="form-group">
+			<input type="checkbox" id="option1">
+			<label for="option1">Option 1</label>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option2">
+			<label for="option2">Option 2</label>
+		</div>
+		<div class="form-group disabled">
+			<input type="checkbox" id="option3">
+			<label for="option3">Option 3 (disabled)</label>
+		</div>
+		<div class="form-group disabled">
+			<input type="checkbox" id="option4">
+			<label for="option4">Option 4 (disabled)</label>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option5">
+			<label for="option5">Option 5</label>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option6">
+			<label for="option6">Option 6</label>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option7">
+			<label for="option7">Option 7</label>
+		</div>
+	</div>
+	<button key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
 </form>
-<script>
-function urlVal() {
-	alert(document.getElementById('input-title').value);
-}
-</script>
