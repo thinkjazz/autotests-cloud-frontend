@@ -95,12 +95,16 @@ button.small {
 	display: none;
 	position: fixed;
 	width: 100%;
+	max-width: 1400px;
 	height: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-	z-index: 5;
+	z-index: 10;
+	padding: 12px;
+	margin-top: 0!important;
+
 
 	.wrapper {
 		width: 100%;
@@ -110,6 +114,8 @@ button.small {
 		border: 2px solid $border;
 		border-radius: 5px;
 		box-shadow: 0 0 50px #00000045;
+		margin-right: auto;
+		margin-left: 0;
 	}
 
 	.header {
@@ -131,6 +137,5 @@ button.small {
 
 	.modal-body {
 		display: flex;
-		pointer-events: auto;
 	}
 }

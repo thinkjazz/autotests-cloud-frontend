@@ -175,7 +175,7 @@
 		>div, form {
 			display: flex;
 			flex-direction: column;
-			align-items: center;
+			align-items: flex-start;
 		}
 	}
 	section:last-child {
@@ -186,5 +186,11 @@
 	}
 	.tests-app .pictogram {
 		justify-content: center;
+	}
+	.modal-body .wrapper {
+		padding: 8px 14px;
+	}
+	.checkboxes {
+		margin-top: 24px!important;
 	}
 }
