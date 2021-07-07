@@ -93,7 +93,6 @@ const initForm = () => {
   // connect();
 
   function submitForm(event) {
-    console.log(document.getElementById('input-title').value);
     event.preventDefault();
 
     const formData = new FormData(mainForm);
@@ -155,5 +154,4 @@ const initForm = () => {
 
 export { initForm };
 
-console.log('initForm connected');
 initForm();
