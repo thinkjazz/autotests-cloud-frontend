@@ -1,9 +1,3 @@
-const element = document.querySelector('form');
-element.addEventListener('submit', event => {
-  initForm();
-});
-
-
 import * as SockJS from "./sockjs.min.js";
 import * as Stomp from "./stomp.min.js";
 import { create_UUID } from "./StringUtils.js";
@@ -38,7 +32,6 @@ function connect() {
 }
 
 function addSocketEvent(message) {
-  console.log('sockets +');
   let scrollContent = document.querySelector(".simplebar-content");
   let pre = document.createElement("pre");
   pre.setAttribute("data-prefix", message.prefix);
@@ -97,7 +90,7 @@ function displayNotification(messagePath) {
 }
 
 const initForm = () => {
-  connect();
+  // connect();
 
   function submitForm(event) {
     console.log(document.getElementById('input-title').value);
@@ -163,3 +156,4 @@ const initForm = () => {
 export { initForm };
 
 console.log('initForm connected');
+initForm();
