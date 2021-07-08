@@ -1,5 +1,3 @@
-import * as SockJS from "./sockjs.min.js";
-import * as Stomp from "./stomp.min.js";
 import { create_UUID } from "./StringUtils.js";
 
 const body = document.querySelector("body.tests-app");
@@ -94,20 +92,22 @@ function displayNotification(messagePath) {
 }
 
 const initForm = () => {
-  // connect();
+  connect();
 
   function submitForm(event) {
     event.preventDefault();
+    alert(document.getElementById('input-title').value);
 
     const formData = new FormData(mainForm);
     const values = Object.fromEntries(formData.entries());
 
     console.log(values);
 
-    if (!!values.title && values["g-recaptcha-response"]) {
+    if (values.title) {
       values.price = "free";
       values.email = "admin@qa.guru";
-      values.captcha = values["g-recaptcha-response"];
+      values.steps = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+      // values.captcha = values["g-recaptcha-response"];
       delete values["g-recaptcha-response"];
 
       console.log(values);

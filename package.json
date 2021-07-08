@@ -23,5 +23,10 @@
 		"gulp-webp": "^4.0.1",
 		"gulp-webp-html": "^1.0.2",
 		"rename": "^1.0.4"
+	},
+	"dependencies": {
+		"jquery": "^3.6.0",
+		"sockjs-client": "^1.5.1",
+		"stompjs": "^2.3.3"
 	}
 }
