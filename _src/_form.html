@@ -1,14 +1,14 @@
 <form id="objective" class="start" onsubmit="event.preventDefault()">
 	<label>Бесплатный автотест для твоего сайта:</label>
 	<input type="url" placeholder="https://" id="input-title" name="title" key="test_title">
-	<div class="buttons-block">
+	<div class="buttons-block first">
 		<button class="main" key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
-		<button class="options"></button>
+		<div class="captcha">
+			<div class="g-recaptcha" data-theme="light" data-sitekey="6LfGt8caAAAAALiwMqXHiwZnq1eKtBUa7wK_axWt"></div>
+			<span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
+		</div>
 	</div>
-						<div class="captcha">
-						<div class="g-recaptcha" data-theme="light" data-sitekey="6LfGt8caAAAAALiwMqXHiwZnq1eKtBUa7wK_axWt"></div>
-						<span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
-					</div>
+	<button class="options"></button>
 	<div class="checkboxes">
 		<div class="form-group checked blocked">
 			<input type="checkbox" id="option1" name="opt1" checked>
@@ -43,9 +43,9 @@
 			<label for="option8">Слинковать с задачей в Jira</label>
 		</div>
 		<button class="small modal"><img src="img/plus-solid.svg">Add manual test-cases</button>
-	<ul class="added-tc">
-		<li>Добавленный тест-кейс 1</li>
-		<li>Добавленный тест-кейс 2</li>
-	</ul>
+		<ul class="added-tc">
+			<li>Добавленный тест-кейс 1</li>
+			<li>Добавленный тест-кейс 2</li>
+		</ul>
 	</div>
 </form>
