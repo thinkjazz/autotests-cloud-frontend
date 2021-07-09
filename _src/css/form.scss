@@ -1,14 +1,46 @@
+.buttons-block {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	align-content: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+	margin: 16px 0;
+	button {
+		margin: 0;
+		margin-right: 12px;
+		margin-bottom: 6px;
+		margin-top: 6px;
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+button.options:after {
+	content: "Показать опции";
+}
+.options-open button.options:after {
+	content: "Скрыть опции";
+}
+.wrapper .added-tc {
+	font-size: 0.8em;
+	li {
+		list-style: none;
+		margin-left: 0;
+		margin-bottom: 0;
+	}
+}
 .checkboxes {
 	margin-top: 24px;
-	display: flex;
+	display: none;
 	flex-wrap: wrap;
 	align-items: flex-start;
 	justify-content: flex-start;
-
-
 	flex-direction: column;
 }
-
+.options-open .checkboxes {
+	display: flex;
+}
 .form-group {
 	display: block;
 	margin-bottom: 18px;
@@ -74,13 +106,11 @@
 	}
 }
 
-button.small {
+button.small, button.options {
 	padding: 6px 14px;
 	font-size: 0.8em;
 	background: $placeholder;
 	color: $dark;
-	margin-bottom: 12px;
-	margin-top: 0;
 
 	img {
 		width: 0.9em;
@@ -114,8 +144,8 @@ button.small {
 		border: 2px solid $border;
 		border-radius: 5px;
 		box-shadow: 0 0 50px #00000045;
-		margin-right: auto;
-		margin-left: 0;
+		margin-right: 0;
+		margin-left: auto;
 	}
 
 	.header {

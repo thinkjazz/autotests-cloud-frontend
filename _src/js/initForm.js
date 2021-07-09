@@ -4,6 +4,7 @@ const body = document.querySelector("body.tests-app");
 const mainForm = document.querySelector("#objective");
 const mainBtn = document.querySelector("button.main");
 const modalBtn = document.querySelector("button.modal");
+const optionsBtn = document.querySelector("button.options");
 const modalBtnClose = document.querySelector("button.modal-close");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
@@ -166,6 +167,10 @@ function modalOpen() {
 function modalClose() {
  body.classList.remove("modal");
 }
+function optionsToggle() {
+ body.classList.toggle("options-open");
+}
 
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
+optionsBtn.addEventListener("click", optionsToggle);
