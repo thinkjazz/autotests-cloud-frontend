@@ -6,6 +6,8 @@ const mainBtn = document.querySelector("button.main");
 const modalBtn = document.querySelector("button.modal");
 const optionsBtn = document.querySelector("button.options");
 const modalBtnClose = document.querySelector("button.modal-close");
+const addNew = document.querySelector("#add_new");
+const formAdd = document.querySelector("#modal_form .input-block");
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 const consoleContainer = document.querySelector(".console-container");
@@ -170,7 +172,20 @@ function modalClose() {
 function optionsToggle() {
  body.classList.toggle("options-open");
 }
+function addNewField() {
+  formAdd.insertAdjacentHTML("beforeend", `<div class="input-block"><input type="text" placeholder="Lorem ipsum dolor sit">
+        <textarea name="test-case" id="text_case" rows="8" placeholder="Lorem ipsum dolor sit amet,
+consectetur adipisicing elit, sed do eiusmod
+
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat"></textarea></div>`);
+}
+
 
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
 optionsBtn.addEventListener("click", optionsToggle);
+
+addNew.addEventListener("click", addNewField);
+
