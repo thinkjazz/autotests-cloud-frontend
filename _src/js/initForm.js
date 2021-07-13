@@ -5,6 +5,9 @@ const mainForm = document.querySelector("#objective");
 const mainBtn = document.querySelector("button.main");
 const modalBtn = document.querySelector("button.modal");
 const optionsBtn = document.querySelector("button.options");
+const tcTitle = document.querySelector("#tc_title");
+const addTestCase = document.querySelector("#add_test_case");
+const tcList = document.querySelector(".added-tc");
 const modalBtnClose = document.querySelector("button.modal-close");
 const addNew = document.querySelector("#add_new");
 const formAdd = document.querySelector("#modal_form .input-block");
@@ -173,7 +176,7 @@ function optionsToggle() {
  body.classList.toggle("options-open");
 }
 function addNewField() {
-  formAdd.insertAdjacentHTML("beforeend", `<div class="input-block"><input type="text" placeholder="Lorem ipsum dolor sit">
+  formAdd.insertAdjacentHTML("beforeend", `<div class="input-block"><input type="text" id="tc_title_` + 1 + `" placeholder="Lorem ipsum dolor sit">
         <textarea name="test-case" id="text_case" rows="8" placeholder="Lorem ipsum dolor sit amet,
 consectetur adipisicing elit, sed do eiusmod
 
@@ -181,11 +184,15 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat"></textarea></div>`);
 }
+function createTestCase() {
+  tcList.insertAdjacentHTML("beforeend", `<li>` + tcTitle.value + `</li>`);
+}
+
 
 
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
 optionsBtn.addEventListener("click", optionsToggle);
-
 addNew.addEventListener("click", addNewField);
+addTestCase.addEventListener("click", createTestCase);
 
