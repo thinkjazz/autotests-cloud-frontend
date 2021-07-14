@@ -104,7 +104,6 @@ const initForm = () => {
 
 	function submitForm(event) {
 		event.preventDefault();
-		alert(document.getElementById('input-title').value);
 
 		const formData = new FormData(mainForm);
 		const values = Object.fromEntries(formData.entries());
