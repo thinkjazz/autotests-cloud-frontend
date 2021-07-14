@@ -168,6 +168,8 @@ export { initForm };
 
 initForm();
 
+
+
 function modalOpen() {
 	body.classList.add("modal");
 }
@@ -182,34 +184,27 @@ function optionsToggle() {
 
 // localStorage.clear();
 
-var tcTitles = [];
-var tcTexts = [];
+var scenarioCount = 1;
 
 
 function createTestCase() {
-
 	if (!tcTitle.value) {
 		tcTitle.classList.add("border-red-500");
 	}
-
 	setTimeout(() => {
 		tcTitle.classList.remove("border-red-500");
 	}, 2000);
 	if (tcTitle.value) {
-	tcList.insertAdjacentHTML("beforeend", `<li>` + tcTitle.value + `</li>`);
-		tcTitles.push(tcTitle.value);
-		tcTexts.push(tcText.value);
-		localStorage.setItem('title', tcTitles);
-		localStorage.setItem('text', tcTexts);
+		scenarioCount++;
+		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcText.value + `</span></li>`);
+		localStorage.setItem('title' + scenarioCount, tcTitle.value);
+		localStorage.setItem('text' + scenarioCount, tcText.value);
 		modalForm.reset();
 		body.classList.remove("modal");
 	}
 }
 
-
-
 function addNewField() {
-
 	if (!tcTitle.value) {
 		tcTitle.classList.add("border-red-500");
 	}
@@ -217,15 +212,13 @@ function addNewField() {
 		tcTitle.classList.remove("border-red-500");
 	}, 2000);
 	if (tcTitle.value) {
-		tcList.insertAdjacentHTML("beforeend", `<li>` + tcTitle.value + `</li>`);
-		tcTitles.push(tcTitle.value);
-		tcTexts.push(tcText.value);
-		localStorage.setItem('title', tcTitles);
-		localStorage.setItem('text', tcTexts);
+		scenarioCount++;
+		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcText.value + `</span></li>`);
+		localStorage.setItem('title' + scenarioCount, tcTitle.value);
+		localStorage.setItem('text' + scenarioCount, tcText.value);
 		modalForm.reset();
 	}
 }
-
 
 
 modalBtn.addEventListener("click", modalOpen);
