@@ -113,9 +113,10 @@ button.options:after {
 		pointer-events: none;
 	}
 
-	&.child {
+	.form-group {
 		margin-left: 18px;
-		margin-top: -8px;
+		margin-top: 12px;
+		margin-bottom: 0;
 	}
 }
 
