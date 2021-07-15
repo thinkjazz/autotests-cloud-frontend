@@ -112,7 +112,8 @@ const initForm = () => {
 
 	function submitForm(event) {
 		event.preventDefault();
-		alert(document.getElementById('input-title').value);
+		// alert(document.getElementById('input-title').value);
+			consoleContainer.classList.remove("hidden");
 
 		const formData = new FormData(mainForm);
 		const values = Object.fromEntries(formData.entries());
@@ -130,7 +131,7 @@ const initForm = () => {
 
 			stompClient.send(`/app/orders/${uuid}`, {}, JSON.stringify(values));
 
-			consoleContainer.classList.remove("hidden");
+			// consoleContainer.classList.remove("hidden");
 			mainForm.classList.add("hidden");
 			iframeBlock.classList.remove("hidden");
 			infoBlock.classList.add("hidden");
