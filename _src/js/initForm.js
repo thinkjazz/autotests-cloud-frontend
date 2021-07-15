@@ -2,6 +2,7 @@ import { create_UUID } from "./StringUtils.js";
 
 const body = document.querySelector("body.tests-app");
 const mainForm = document.querySelector("#objective");
+const appBlock = document.querySelector("#app");
 const mainBtn = document.querySelector("button.main");
 
 const modalForm = document.querySelector("#modal_form");
@@ -23,6 +24,9 @@ const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 
 const consoleContainer = document.querySelector(".console-container");
+
+
+
 const codeBlock = document.querySelector(".mockup-code");
 const consoleWindow = document.querySelector("#console");
 const iframeBlock = document.querySelector(".iframe-block");
@@ -114,6 +118,9 @@ const initForm = () => {
 		event.preventDefault();
 		// alert(document.getElementById('input-title').value);
 			consoleContainer.classList.remove("hidden");
+			appBlock.classList.add("hidden");
+
+
 
 		const formData = new FormData(mainForm);
 		const values = Object.fromEntries(formData.entries());
