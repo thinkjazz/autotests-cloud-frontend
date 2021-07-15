@@ -31,6 +31,7 @@ const infoBlock = document.querySelector(".info");
 let stompClient = null;
 let uuid = create_UUID();
 let scroll;
+let scenarioCount = 0;
 // localStorage.clear();
 
 function connect() {
@@ -186,7 +187,7 @@ function optionsToggle() {
 	body.classList.toggle("options-open");
 }
 
-var scenarioCount = 1;
+
 
 function createTestCase() {
 	if (!tcTitle.value) {
