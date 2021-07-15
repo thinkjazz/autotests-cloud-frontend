@@ -6,30 +6,37 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 	margin: 16px 0;
+
 	button {
 		margin: 0;
 		margin-right: 12px;
 		margin-bottom: 6px;
 		margin-top: 6px;
+
 		&:last-child {
 			margin-right: 0;
 		}
 	}
+
 	&.first {
 		justify-content: space-between;
 	}
 }
+
 button.options:after {
 	content: "Показать опции";
 }
+
 .options-open button.options:after {
 	content: "Скрыть опции";
 }
+
 .wrapper .added-tc {
 	font-size: 0.7em;
 	position: relative;
 	top: -12px;
 	z-index: 5;
+
 	li {
 		list-style: none;
 		margin-left: 0;
@@ -39,11 +46,13 @@ button.options:after {
 		margin-bottom: 6px;
 		cursor: pointer;
 		border-bottom: 2px dotted #ccc;
+
 		span {
 			display: none;
 		}
 	}
 }
+
 .checkboxes {
 	display: none;
 	flex-wrap: wrap;
@@ -51,9 +60,11 @@ button.options:after {
 	justify-content: flex-start;
 	flex-direction: column;
 }
+
 .options-open .checkboxes {
 	display: flex;
 }
+
 .form-group {
 	display: block;
 	margin-bottom: 18px;
@@ -120,7 +131,8 @@ button.options:after {
 	}
 }
 
-button.small, button.options {
+button.small,
+button.options {
 	padding: 6px 14px;
 	font-size: 0.8em;
 	background: $placeholder;
@@ -147,7 +159,7 @@ button.small, button.options {
 	align-content: center;
 	z-index: 10;
 	padding: 12px;
-	margin-top: 0!important;
+	margin-top: 0 !important;
 	padding-bottom: 72px;
 
 
@@ -183,10 +195,29 @@ button.small, button.options {
 		display: flex;
 	}
 }
+
 .console-container {
 	width: 100%;
 	height: 300px;
 	display: block;
-	background: $neutral;
-	color: $dark;
+	background: #000;
+	border-radius: 3px;
+	color: #0ff;
+	font-family: monospace;
+	font-size: 14px;
+	padding: 8px;
+	overflow-y: scroll;
+
+	&::-webkit-scrollbar {
+		width: 5px;
+	}
+	&::-webkit-scrollbar-track {
+		background: #444;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #0ff;
+	}
+	&::-webkit-scrollbar-thumb:hover {
+		background: #0ff;
+	}
 }
