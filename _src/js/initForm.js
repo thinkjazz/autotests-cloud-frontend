@@ -3,18 +3,25 @@ import { create_UUID } from "./StringUtils.js";
 const body = document.querySelector("body.tests-app");
 const mainForm = document.querySelector("#objective");
 const mainBtn = document.querySelector("button.main");
+
 const modalForm = document.querySelector("#modal_form");
 const modalBtn = document.querySelector("button.modal");
+const modalBtnClose = document.querySelector("button.modal-close");
+
 const optionsBtn = document.querySelector("button.options");
+
 const tcTitle = document.querySelector("#tc_title");
 const tcText = document.querySelector("#text_case");
-const addTestCase = document.querySelector("#add_test_case");
 const tcList = document.querySelector(".added-tc");
-const modalBtnClose = document.querySelector("button.modal-close");
+
+const addTestCase = document.querySelector("#add_test_case");
+
 const addNew = document.querySelector("#add_new");
 const formAdd = document.querySelector("#modal_form .input-block");
+
 const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
+
 const consoleContainer = document.querySelector(".console-container");
 const codeBlock = document.querySelector(".mockup-code");
 const consoleWindow = document.querySelector("#console");
@@ -24,7 +31,7 @@ const infoBlock = document.querySelector(".info");
 let stompClient = null;
 let uuid = create_UUID();
 let scroll;
-
+// localStorage.clear();
 
 function connect() {
 	console.log('connect +');
@@ -104,6 +111,7 @@ const initForm = () => {
 
 	function submitForm(event) {
 		event.preventDefault();
+		alert(document.getElementById('input-title').value);
 
 		const formData = new FormData(mainForm);
 		const values = Object.fromEntries(formData.entries());
@@ -113,7 +121,7 @@ const initForm = () => {
 		if (values.title) {
 			values.price = "free";
 			values.email = "admin@qa.guru";
-			values.steps = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+      values.steps = allStorage(); //Вызываем функцию которая возвращает массив объектов
 			// values.captcha = values["g-recaptcha-response"];
 			delete values["g-recaptcha-response"];
 
@@ -161,6 +169,7 @@ const initForm = () => {
 	}
 
 	mainBtn.addEventListener("click", submitForm);
+
 };
 
 export { initForm };
@@ -181,10 +190,7 @@ function optionsToggle() {
 	body.classList.toggle("options-open");
 }
 
-// localStorage.clear();
-
 var scenarioCount = 1;
-
 
 function createTestCase() {
 	if (!tcTitle.value) {
@@ -196,12 +202,12 @@ function createTestCase() {
 	if (tcTitle.value) {
 		scenarioCount++;
 		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcText.value + `</span></li>`);
-		localStorage.setItem('title' + scenarioCount, tcTitle.value);
-		localStorage.setItem('text' + scenarioCount, tcText.value);
+                setItemToLocalStorage(); //Записываем в localStorage при отправки формы
 		modalForm.reset();
 		body.classList.remove("modal");
 	}
 }
+
 
 function addNewField() {
 	if (!tcTitle.value) {
@@ -210,15 +216,42 @@ function addNewField() {
 	setTimeout(() => {
 		tcTitle.classList.remove("border-red-500");
 	}, 2000);
+
 	if (tcTitle.value) {
 		scenarioCount++;
 		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcText.value + `</span></li>`);
-		localStorage.setItem('title' + scenarioCount, tcTitle.value);
-		localStorage.setItem('text' + scenarioCount, tcText.value);
-		modalForm.reset();
+    		setItemToLocalStorage(); // Записываем в localStorage
+ 		modalForm.reset();
 	}
 }
 
+
+function setItemToLocalStorage() {
+  //Эта функция setItemToLocalStorage записывает в объект steps наши шаги и потом серилизует и передаёт в localStorage
+  //Записываем  tcTitle.value, tcText.value в отдельный объект
+  const steps = {
+    title: tcTitle.value,
+    text: tcText.value, 
+  };
+  //Кладём все это в ключ step предварительно объект серилизуем и прибавляем итерацию scenarioCount
+  localStorage.setItem('step' + scenarioCount,  JSON.stringify(steps));
+ 
+}
+
+function allStorage() {
+  //Эта функция возвращает массив объектов с добавлеными полями из разобраной строки из localStorage
+
+  let archive = []; // Массив выходных данных
+  let keys = Object.keys(localStorage); //Возвращаем массив из собственных перечисляемых свойств переданного объекта, в том же порядке, в котором они бы обходились циклом for... in - это быстрее
+  let i = 0;
+  let key;
+  // Проходим циклом и добавляем в массив объекты из localStorage
+    for (; key = keys[i]; i++) {
+        archive.push(JSON.parse(localStorage.getItem(key)));
+    }
+
+    return archive;
+}
 
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
