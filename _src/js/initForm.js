@@ -121,7 +121,7 @@ const initForm = () => {
 		if (values.title) {
 			values.price = "free";
 			values.email = "admin@qa.guru";
-      values.steps = allStorage(); //Вызываем функцию которая возвращает массив объектов
+      			values.steps = allStorage(); //Вызываем функцию которая возвращает массив объектов
 			// values.captcha = values["g-recaptcha-response"];
 			delete values["g-recaptcha-response"];
 
@@ -140,11 +140,8 @@ const initForm = () => {
 				let pre = document.createElement("pre");
 				let scrollContent = document.querySelector(".simplebar-content");
 				pre.setAttribute("data-prefix", "$");
-
 				pre.innerHTML = `<code>npm i daisyui</code>`;
-
 				scrollContent.append(pre);
-
 				scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
 				// scroll.getScrollElement().scrollTop = scroll.getScrollElement().scrollHeight;
 			}
@@ -175,7 +172,6 @@ const initForm = () => {
 export { initForm };
 
 initForm();
-
 
 
 function modalOpen() {
