@@ -196,30 +196,4 @@ button.options {
 	}
 }
 
-.console-container {
-	width: 100%;
-	height: 300px;
-	display: block;
-	background: #000;
-	border-radius: 3px;
-	color: #0ff;
-	font-family: monospace;
-	font-size: 14px;
-	line-height: 1.2;
-	padding: 8px;
-	overflow-y: scroll;
-
-	&::-webkit-scrollbar {
-		width: 5px;
-	}
-	&::-webkit-scrollbar-track {
-		background: #444;
-	}
-	&::-webkit-scrollbar-thumb {
-		background: #0ff;
-	}
-	&::-webkit-scrollbar-thumb:hover {
-		background: #0ff;
-	}
-}
 
