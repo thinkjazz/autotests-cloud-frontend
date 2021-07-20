@@ -31,6 +31,7 @@ const codeBlock = document.querySelector(".mockup-code");
 const consoleWindow = document.querySelector("#console");
 const iframeBlock = document.querySelector(".iframe-block");
 const infoBlock = document.querySelector(".info");
+const telegramBlock = document.querySelector(".telegram-block");
 
 let stompClient = null;
 let uuid = create_UUID();
@@ -119,6 +120,8 @@ const initForm = () => {
 		// alert(document.getElementById('input-title').value);
 			consoleContainer.classList.remove("hidden");
 			appBlock.classList.add("hidden");
+			telegramBlock.classList.remove("hidden");
+			infoBlock.classList.add("hidden");
 
 
 
@@ -142,6 +145,7 @@ const initForm = () => {
 			mainForm.classList.add("hidden");
 			iframeBlock.classList.remove("hidden");
 			infoBlock.classList.add("hidden");
+			telegramBlock.classList.remove("hidden");
 
 			scroll = new SimpleBar(consoleWindow, { autoHide: false });
 
