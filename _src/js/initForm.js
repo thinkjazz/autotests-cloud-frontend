@@ -12,7 +12,7 @@ const modalBtnClose = document.querySelector("button.modal-close");
 const optionsBtn = document.querySelector("button.options");
 
 const tcTitle = document.querySelector("#tc_title");
-const tcText = document.querySelector("#text_case");
+const tcSteps = document.querySelector("#text_case");
 const tcList = document.querySelector(".added-tc");
 
 const addTestCase = document.querySelector("#add_test_case");
@@ -130,11 +130,11 @@ const initForm = () => {
 
 		console.log(values);
 
-		if (values.title) {
+		if (values.url) {
 			values.price = "free";
 			values.email = "admin@qa.guru";
-      			values.steps = allStorage(); //Вызываем функцию которая возвращает массив объектов
-			// values.captcha = values["g-recaptcha-response"];
+			values.tests = allStorage(); //Вызываем функцию которая возвращает массив объектов
+			values.captcha = values["g-recaptcha-response"];
 			delete values["g-recaptcha-response"];
 
 			console.log(values);
@@ -210,7 +210,7 @@ function createTestCase() {
 	}, 2000);
 	if (tcTitle.value) {
 		scenarioCount++;
-		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcText.value + `</span></li>`);
+		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcSteps.value + `</span></li>`);
                 setItemToLocalStorage(); //Записываем в localStorage при отправки формы
 		modalForm.reset();
 		body.classList.remove("modal");
@@ -228,7 +228,7 @@ function addNewField() {
 
 	if (tcTitle.value) {
 		scenarioCount++;
-		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcText.value + `</span></li>`);
+		tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcSteps.value + `</span></li>`);
     		setItemToLocalStorage(); // Записываем в localStorage
  		modalForm.reset();
 	}
@@ -237,10 +237,10 @@ function addNewField() {
 
 function setItemToLocalStorage() {
   //Эта функция setItemToLocalStorage записывает в объект steps наши шаги и потом серилизует и передаёт в localStorage
-  //Записываем  tcTitle.value, tcText.value в отдельный объект
+  //Записываем  tcTitle.value, tcSteps.value в отдельный объект
   const steps = {
     title: tcTitle.value,
-    text: tcText.value, 
+    steps: tcSteps.value,
   };
   //Кладём все это в ключ step предварительно объект серилизуем и прибавляем итерацию scenarioCount
   localStorage.setItem('step' + scenarioCount,  JSON.stringify(steps));
