@@ -24,8 +24,7 @@ const titleTextarea = document.querySelector("#input-title");
 const mainTextarea = document.querySelector("#textarea-main");
 
 const consoleContainer = document.querySelector(".console-container");
-
-
+const consoleContainerContent = consoleContainer.querySelector(".content");
 
 const codeBlock = document.querySelector(".mockup-code");
 const consoleWindow = document.querySelector("#console");
@@ -35,7 +34,6 @@ const telegramBlock = document.querySelector(".telegram-block");
 
 let stompClient = null;
 let uuid = create_UUID();
-let scroll;
 let scenarioCount = 0;
 // localStorage.clear();
 
@@ -55,7 +53,6 @@ function connect() {
 }
 
 function addSocketEvent(message) {
-	let scrollContent = document.querySelector(".simplebar-content");
 	let pre = document.createElement("pre");
 	pre.setAttribute("data-prefix", message.prefix);
 
@@ -103,12 +100,13 @@ function addSocketEvent(message) {
 			pre.innerHTML = `<code>${message.content}</code>`;
 			break;
 	}
-	scrollContent.append(pre);
-	scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
+	consoleContainerContent.append(pre);
+	// scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
 }
 
 function displayNotification(messagePath) {
-	iframeBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
+	telegramBlock.classList.remove("hidden");
+	telegramBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe w-full h-full h-80"
 					src="https://t.me/${messagePath}?embed=1&discussion=1&comments_limit=5&dark=1"></iframe>`;
 }
 
@@ -120,10 +118,8 @@ const initForm = () => {
 		// alert(document.getElementById('input-title').value);
 			consoleContainer.classList.remove("hidden");
 			appBlock.classList.add("hidden");
-			telegramBlock.classList.remove("hidden");
+			// telegramBlock.classList.remove("hidden");
 			infoBlock.classList.add("hidden");
-
-
 
 		const formData = new FormData(mainForm);
 		const values = Object.fromEntries(formData.entries());
@@ -131,33 +127,36 @@ const initForm = () => {
 		console.log(values);
 
 		if (values.url) {
-			values.price = "free";
-			values.email = "admin@qa.guru";
+			// values.price = "free";
+			// values.email = "admin@qa.guru";
 			values.tests = allStorage(); //Вызываем функцию которая возвращает массив объектов
 			values.captcha = values["g-recaptcha-response"];
 			delete values["g-recaptcha-response"];
 
-			console.log(values);
+			let stringValues = JSON.stringify(values)
+				.replaceAll('"on"', true)
+				.replaceAll('"off"', false);
+			console.log(stringValues);
 
-			stompClient.send(`/app/orders/${uuid}`, {}, JSON.stringify(values));
+			stompClient.send(`/app/orders/${uuid}`, {}, stringValues);
 
 			// consoleContainer.classList.remove("hidden");
 			mainForm.classList.add("hidden");
 			iframeBlock.classList.remove("hidden");
 			infoBlock.classList.add("hidden");
-			telegramBlock.classList.remove("hidden");
+			// telegramBlock.classList.remove("hidden");
 
-			scroll = new SimpleBar(consoleWindow, { autoHide: false });
+			// scroll = new SimpleBar(consoleWindow, { autoHide: false });
 
-			function add() {
-				let pre = document.createElement("pre");
-				let scrollContent = document.querySelector(".simplebar-content");
-				pre.setAttribute("data-prefix", "$");
-				pre.innerHTML = `<code>npm i daisyui</code>`;
-				scrollContent.append(pre);
-				scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
-				// scroll.getScrollElement().scrollTop = scroll.getScrollElement().scrollHeight;
-			}
+			// function add() {
+			// 	let pre = document.createElement("pre");
+			// 	// let scrollContent = document.querySelector(".simplebar-content");
+			// 	pre.setAttribute("data-prefix", "$");
+			// 	pre.innerHTML = `<code>npm i daisyui</code>`;
+			// 	scrollContent.append(pre);
+			// 	scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
+			// 	// scroll.getScrollElement().scrollTop = scroll.getScrollElement().scrollHeight;
+			// }
 
 			// window.setInterval(add, 2500);
 
