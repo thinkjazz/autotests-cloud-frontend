@@ -211,7 +211,7 @@ section {
 }
 
 .hidden {
-	display: none !important;
+	display: none;
 }
 
 .border-red-500 {
@@ -291,11 +291,14 @@ section {
 		}
 	}
 }
-
+.list-number a {
+	color: $orange;
+}
 
 // @import "modal.scss";
 @import "breakpoints.scss";
 @import "fixed-header.scss";
 @import "form.scss";
 @import "console.scss";
+@import "effects.scss";
 // @import "slider.scss";
