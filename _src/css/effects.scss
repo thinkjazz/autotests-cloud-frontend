@@ -1,0 +1,64 @@
+button.main, button#add_test_case {
+		transition-property: box-shadow;
+		transition-duration: 0.3s;
+		transition-timing-function: ease-in;
+	&:hover {
+		box-shadow: 0 0 15px #cd5920;
+		transition-property: box-shadow;
+		transition-duration: 0.15s;
+		transition-timing-function: ease-out;
+	}
+}
+button.options, button.small {
+	transition-property: background;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in;
+	&:hover {
+		transition-property: background;
+		transition-duration: 0.15s;
+		transition-timing-function: ease-out;
+		background: #e0e0e0;
+	}
+}
+.tests-app .col-50.forms>div.cv-code, .telegram-block {
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+	transition-delay: 0.5s;
+	transition-timing-function: ease-in;
+	position: absolute;
+	pointer-events: auto;
+	z-index: 2;
+	&.hidden {
+		opacity: 0;
+		display: flex;
+		pointer-events: none;
+	}
+}
+.telegram-block {
+	right: 0;
+}
+.list-number a {
+	transition-property: border;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in;
+	border-bottom: 1px solid #ffffff00;
+	&:hover {
+	transition-property: border;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
+	border-bottom: 1px solid;
+	}
+}
+body>header .links a {
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in;
+	transform: scale(1);
+	&:hover {
+	transition-property: transform;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
+	transform: scale(1.05);
+	}
+}
