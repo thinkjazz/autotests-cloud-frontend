@@ -294,6 +294,18 @@ section {
 	color: $orange;
 }
 
+.telegram-block {
+	height: 100%;
+	max-width: 100%;
+
+	.telegram-iframe {
+		width: 100%;
+		height: 100%;
+		max-width: 100%;
+	}
+}
+
+
 // @import "modal.scss";
 @import "breakpoints.scss";
 @import "fixed-header.scss";
