@@ -11,6 +11,7 @@ $background-code: #1f1e1e;
   overflow: hidden;
   background: $background-code;
   width: 100%;
+  min-height: 30rem;
 
   &-header {
     display: flex;
