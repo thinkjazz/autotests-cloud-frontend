@@ -32,6 +32,12 @@ const iframeBlock = document.querySelector(".iframe-block");
 const infoBlock = document.querySelector(".info");
 const telegramBlock = document.querySelector(".telegram-block");
 
+
+
+const telegramTestBtn = document.querySelector(".logo");
+
+
+
 let stompClient = null;
 let uuid = create_UUID();
 let scenarioCount = 0;
@@ -273,6 +279,19 @@ function allStorage() {
 
     return archive;
 }
+
+
+
+
+function testTelegram() {
+    telegramBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe" src="https://t.me/11111?embed=1&discussion=1&comments_limit=5&light=1"></iframe>`;
+    telegramBlock.classList.remove("hidden");
+    infoBlock.classList.add("hidden");
+}
+telegramTestBtn.addEventListener("click", testTelegram);
+
+
+
 
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
