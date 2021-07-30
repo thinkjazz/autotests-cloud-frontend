@@ -284,8 +284,7 @@ function allStorage() {
 
 
 function testTelegram() {
-    telegramBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe" src="https://t.me/11111?embed=1&discussion=1&comments_limit=5&light=1"></iframe>`;
-    telegramBlock.classList.remove("hidden");
+    displayNotification("autotests_cloud_test/97");
     infoBlock.classList.add("hidden");
 }
 telegramTestBtn.addEventListener("click", testTelegram);
