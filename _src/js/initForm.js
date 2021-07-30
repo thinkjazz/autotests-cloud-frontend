@@ -283,15 +283,6 @@ function allStorage() {
 
 
 
-function testTelegram() {
-    displayNotification("autotests_cloud_test/97");
-    infoBlock.classList.add("hidden");
-}
-telegramTestBtn.addEventListener("click", testTelegram);
-
-
-
-
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
 optionsBtn.addEventListener("click", optionsToggle);

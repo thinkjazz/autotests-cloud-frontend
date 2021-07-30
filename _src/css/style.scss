@@ -309,7 +309,7 @@ section {
 	height: 100%;
 	max-width: 100%;
 	display: block;
-	position: relative;
+	position: absolute;
 
 	&.hidden {
 		display: none;
