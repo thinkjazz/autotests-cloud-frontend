@@ -294,16 +294,7 @@ section {
 	color: $orange;
 }
 
-.telegram-block {
-	height: 100%;
-	max-width: 100%;
 
-	.telegram-iframe {
-		width: 100%;
-		height: 100%;
-		max-width: 100%;
-	}
-}
 
 
 // @import "modal.scss";
@@ -313,3 +304,21 @@ section {
 @import "console.scss";
 @import "effects.scss";
 // @import "slider.scss";
+
+.telegram-block {
+	height: 100%;
+	max-width: 100%;
+	display: block;
+	position: relative;
+
+	&.hidden {
+		display: none;
+	}
+
+	.telegram-iframe {
+		width: 100%;
+		height: 100%;
+		max-width: 100%;
+		min-height: 800px;
+	}
+}
