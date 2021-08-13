@@ -292,6 +292,24 @@ section {
 	}
 }
 
+/* Edit Test Case */
+ul li input[type=text] {
+  display:none;
+}
+ul li textarea[name=text-area] {
+  display:none;
+}
+
+ul li.editMode input[type=text] {
+  display:block;
+}
+
+ul li.editMode textarea[name=text-area] {
+  display:block;
+}
+ul li.editMode label {
+  display:none;
+}
 
 // @import "modal.scss";
 @import "breakpoints.scss";
