@@ -12,7 +12,12 @@ const optionsBtn = document.querySelector("button.options"); // Кнопка п�
 
 const tcTitle = document.querySelector("#tc_title"); // Input ввода в открытом модальном окне
 const tcSteps = document.querySelector("#text_case"); // Textarea в открытом модальном окне для теста
+<<<<<<< HEAD
 const tcList = document.querySelector(".added-tc"); // Родительский список <ul> || let testTasksHolder = document.getElementById("tc-list");
+=======
+const tcList = document.querySelector(".added-tc"); // Родительский список <ul> || let testTasksHolder = document.getElementById("tc-list"); 
+
+>>>>>>> start
 
 const addTestCase = document.querySelector("#add_test_case"); // Большая кнопка добавить в модальном окне
 const addNew = document.querySelector("#add_new"); // Кнопка добавить еще один тест
@@ -224,6 +229,10 @@ export { initForm };
 
 initForm();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> start
 // Функция открытия модального окна
 function modalOpen() {
   body.classList.add("modal");
@@ -237,6 +246,7 @@ function optionsToggle() {
   body.classList.toggle("options-open");
 }
 
+<<<<<<< HEAD
 // Эта функция создает новый элемент <li> списка задач c lable, span, input#edit,
 // textarea#edit, button#edit, button#delete внутри и принимает два параметра
 // @param inputTestCaseString строка из input
@@ -287,21 +297,93 @@ let createNewTestElement = (
   return listItem;
 };
 
+=======
+// Функция добавления в тест таск холдер нового элемента и закпытия модального окна
+function createTestCase() {
+
+    if (!tcTitle.value) {
+        tcTitle.classList.add("border-red-500");
+    }
+    setTimeout(() => {
+        tcTitle.classList.remove("border-red-500");
+    }, 2000);
+
+    if (tcTitle.value) {
+        scenarioCount++;
+        tcList.insertAdjacentHTML("beforeend", `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcSteps.value + `</span></li>`);
+        setItemToLocalStorage(); // Записываем в localStorage при отправки формы
+        modalForm.reset();
+        body.classList.remove("modal");
+    }
+}
+
+// Эта функция создает новый элемент <li> списка задач c lable, span, input#edit,
+// textarea#edit, button#edit, button#delete внутри и принимает два параметра 
+// @param inputTestCaseString строка из input 
+// @param textAreaTestCaseString строка из textarea 
+
+let createNewTestElement = function (inputTestCaseString, textAreaTestCaseString) {
+  // Создать элемент списка
+  let listItem = document.createElement("li");
+  // Cоздать span который будет потом скрыт
+  let span = document.createElement("span");
+  // Создать label
+  let label = document.createElement("label");
+  // Создать input (text)
+  let editInput = document.createElement("input");
+  // Создать textarea (text)
+  let editTextArea = document.createElement("textarea");
+  // Создать button.edit
+  let editButton = document.createElement("button");
+  // Создать button.delete
+  let deleteButton = document.createElement("button");
+
+  // Каждый элемент, требующий модификации 
+  editInput.type = "text";
+  editTextArea.name = "text-area";
+  editButton.innerHTML = `<img src="img/edit.svg" width="20" height="20"></img> Изменить`;
+  editButton.className = "medium modal edit";
+  deleteButton.innerHTML = `<img src="img/trash.svg" width="20" height="20"></img> Удалить`;
+  deleteButton.className = "medium modal delete";
+  // label и span присваиваем параметры которые пойдут из value с модального окна
+  label.innerText = inputTestCaseString;
+  span.innerText = textAreaTestCaseString;
+  // Скрываем span
+  span.setAttribute("hidden", "");
+
+  // В listItem добавляем все дочерние элементы. т.е каждый элемент который нуждается в добавлении
+  listItem.appendChild(label);
+  listItem.appendChild(editInput);
+  listItem.appendChild(span);
+  listItem.appendChild(editTextArea);
+  listItem.appendChild(editButton);
+  listItem.appendChild(deleteButton);
+
+  return listItem;
+};
+
+>>>>>>> start
 // Добавить новый test case
 let addTestCaseItem = function () {
   console.log("Add test case");
   // При нажатии кнопки
   // Создайте новый элемент списка с текстом из нового тест-задания
+<<<<<<< HEAD
   let listItem = createNewTestElement(
     tcTitle.value,
     tcSteps.value,
     scenarioCount++
   );
 
+=======
+  let listItem = createNewTestElement(tcTitle.value, tcSteps.value);
+ 
+>>>>>>> start
   // Добавить listItem в tcList
   if (tcTitle.value.length > 0 && tcSteps.value.length > 0) {
     tcList.appendChild(listItem);
     bindTestCaseEvents(listItem);
+<<<<<<< HEAD
     // tcTitle.value = "";
     // tcSteps.value = "";
   } else if (!tcTitle.value) {
@@ -312,6 +394,114 @@ let addTestCaseItem = function () {
     tcTitle.classList.remove("border-red-500");
   }, 2000);
 };
+=======
+    tcTitle.value = "";
+    tcSteps.value = "";
+
+  } else if (tcTitle.value === tcSteps.value ) {
+    console.warn("title and scenatrio have same name!");
+  }
+};
+
+// Редактирование существующий test case
+let editTestCase = function () {
+  console.log("Edit test case");
+
+  let listItem = this.parentNode;
+  let editButton = this;
+  let editInput = listItem.querySelector("input[type=text]");
+  let editText = listItem.querySelector("textarea[name=text-area]");
+  let label = listItem.querySelector("label");
+  let spanText = listItem.querySelector("span");
+  let containsClass = listItem.classList.contains("editMode");
+
+  // Если класс родителя - .editMode
+  if (containsClass) {
+    // Переключаем из .editMode
+    // Label text становится input's (text) value
+    label.innerText = editInput.value;
+    editButton.innerHTML = `<img src="img/edit.svg" width="20" height="20"></img> Изменить`;
+    // Span text становится text-area's (text-area) value
+    spanText.innerText = editText.value;
+
+  } else {
+    // Переключаем в .editMode
+    // input (text) value становится label's text
+    editInput.value = label.innerText;
+    editButton.innerHTML = `<img src="img/floppy-disk.svg" width="20" height="20"></img> Сохранить`;
+
+    // textarea (text-area) value становится span text
+    editText.value = spanText.innerText;
+  }
+  // Toggle Переключиться на .editMode в li
+  listItem.classList.toggle("editMode");
+
+};
+
+// Удалить существующый test case
+let deleteTestCase = function () {
+  console.log("Delete task");
+  let listItem = this.parentNode;
+  let ul = listItem.parentNode;
+  // Удаляем <li> из ul
+  ul.removeChild(listItem);
+};
+
+// Пометить test case как добавленый
+let addedTestCase = function () {
+  console.log("Test task done");
+  // Добавьте test case  <li></li> в #test-tasks
+  let listItem = this.parentNode;
+  tcList.appendChild(listItem);
+  bindTestCaseEvents(listItem);
+  
+};
+
+let bindTestCaseEvents = function (taskListItem) {
+  console.log("Bind list item events");
+  // Выбираем дочерние элементы taskListItems
+  let editButton = taskListItem.querySelector("button.edit");
+  let deleteButton = taskListItem.querySelector("button.delete");
+
+ // привязать editTask к кнопке редактирования
+  editButton.onclick = editTestCase;
+
+  // привязать deleteTask к кнопке удаления
+  deleteButton.onclick = deleteTestCase;
+
+};
+// Установите обработчик щелчка на функцию addTask
+addTestCase.addEventListener("click", addTestCaseItem);
+
+
+// перебор элементов списка родительского ul
+for (let i = 0; i < tcList.children.length; i++) {
+  // привязываем события к дочерним элементам списка  
+  bindTestCaseEvents(tcList.children[i]);
+}
+
+
+
+// Функция добавления теста к таскхолдеру и не закрытия модалки, что одно и тоже.
+function addNewField() {
+
+    if (!tcTitle.value) {
+        tcTitle.classList.add("border-red-500");
+    }
+    setTimeout(() => {
+        tcTitle.classList.remove("border-red-500");
+    }, 2000);
+
+    if (tcTitle.value) {
+        scenarioCount++;
+        tcList.insertAdjacentHTML("beforeend",
+            `<li class="added-tc-item" id="item_` + scenarioCount + `">` + tcTitle.value + `<span>` + tcSteps.value + `</span></li>`);
+        setItemToLocalStorage(); // Записываем в localStorage
+        modalForm.reset();
+    }
+
+}
+>>>>>>> start
 
 // Редактирование существующий test case
 let editTestCase = function () {
@@ -406,15 +596,19 @@ function loadingStateFromStorage() {
   for (; (key = keys[i]); i++) {
     console.log("i: " + i);
     console.log("key: " + key);
-    if (key > 0) {
+    if (key > 0 && key !== "_grecaptcha") {
       console.log("localStorage.getItem(key): " + localStorage.getItem(key));
       console.log(
         "JSON.parse(localStorage.getItem(key)): " +
           JSON.parse(localStorage.getItem(key))
       );
       archive.push(JSON.parse(localStorage.getItem(key)));
+    } else if  (key !== "_grecaptcha") {
+      localStorage.removeItem('_grecaptcha')
+      continue; // пропустит такие ключи, как "setItem", "getItem" и так далее
     }
-  }
+  } 
+
   console.log("archive: " + JSON.stringify(archive));
 
   return archive;
@@ -463,7 +657,10 @@ function testTelegram() {
 
 telegramTestBtn.addEventListener("click", testTelegram);
 
+<<<<<<< HEAD
  
+=======
+>>>>>>> start
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
 optionsBtn.addEventListener("click", optionsToggle);
