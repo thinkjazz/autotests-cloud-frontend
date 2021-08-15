@@ -1,4 +1,6 @@
-import { create_UUID } from "./StringUtils.js"; // Утилита для создание уникального UUID
+import {
+  create_UUID
+} from "./StringUtils.js"; // Утилита для создание уникального UUID
 
 const body = document.querySelector("body.tests-app"); // Выбираем корневой селектор класса tests-app
 const appBlock = document.querySelector("#app"); // Выбираем div#app который оборачивает from#objective, что ниже
@@ -220,7 +222,9 @@ const initForm = () => {
   mainBtn.addEventListener("click", submitForm);
 };
 
-export { initForm };
+export {
+  initForm
+};
 
 initForm();
 
@@ -241,11 +245,7 @@ function optionsToggle() {
 // textarea#edit, button#edit, button#delete внутри и принимает два параметра
 // @param inputTestCaseString строка из input
 // @param textAreaTestCaseString строка из textarea
-let createNewTestElement = (
-  inputTestCaseString,
-  textAreaTestCaseString,
-  itemID
-) => {
+let createNewTestElement = (inputTestCaseString, textAreaTestCaseString,itemID) => {
   // Создать элемент списка
   let listItem = document.createElement("li");
   listItem.id = itemID;
@@ -292,11 +292,7 @@ let addTestCaseItem = function () {
   console.log("Add test case");
   // При нажатии кнопки
   // Создайте новый элемент списка с текстом из нового тест-задания
-  let listItem = createNewTestElement(
-    tcTitle.value,
-    tcSteps.value,
-    scenarioCount++
-  );
+  let listItem = createNewTestElement( tcTitle.value, tcSteps.value, scenarioCount++);
 
   // Добавить listItem в tcList
   if (tcTitle.value.length > 0 && tcSteps.value.length > 0) {
@@ -403,21 +399,22 @@ function loadingStateFromStorage() {
   // Проходим циклом и добавляем в массив объекты из localStorage
   console.log("localStorage: " + localStorage);
   console.log("keys Object.keys(localStorage): " + keys);
-  for (; (key = keys[i]); i++) {
+  for (;
+    (key = keys[i]); i++) {
     console.log("i: " + i);
     console.log("key: " + key);
     if (key > 0 && key !== "_grecaptcha") {
       console.log("localStorage.getItem(key): " + localStorage.getItem(key));
       console.log(
         "JSON.parse(localStorage.getItem(key)): " +
-          JSON.parse(localStorage.getItem(key))
+        JSON.parse(localStorage.getItem(key))
       );
       archive.push(JSON.parse(localStorage.getItem(key)));
-    } else if  (key !== "_grecaptcha") {
+    } else if (key !== "_grecaptcha") {
       localStorage.removeItem('_grecaptcha')
       continue; // пропустит и удалить ключи _grecaptcha
     }
-  } 
+  }
 
   console.log("archive: " + JSON.stringify(archive));
 
@@ -451,7 +448,7 @@ function setItemToLocalStorage(id, titleValue, stepsValue) {
     title: titleValue,
     steps: stepsValue,
     timestamp: new Date().getTime(),
-    // date: new Date().toLocaleString(),
+    dateLocaleString: new Date().toLocaleString(),
   };
 
   // Кладём все это в ключ test предварительно объект серилизуем и прибавляем итерацию scenarioCount
@@ -467,7 +464,7 @@ function testTelegram() {
 
 telegramTestBtn.addEventListener("click", testTelegram);
 
- 
+
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
 optionsBtn.addEventListener("click", optionsToggle);
