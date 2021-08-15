@@ -415,7 +415,7 @@ function loadingStateFromStorage() {
       archive.push(JSON.parse(localStorage.getItem(key)));
     } else if  (key !== "_grecaptcha") {
       localStorage.removeItem('_grecaptcha')
-      continue; // пропустит такие ключи, как "setItem", "getItem" и так далее
+      continue; // пропустит и удалить ключи _grecaptcha
     }
   } 
 
