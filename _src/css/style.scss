@@ -11,17 +11,17 @@ section {
 		min-height: 100vh;
 	}
 
-	&.center .wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-	}
+	// &.center .wrapper {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	align-items: center;
+	// 	justify-content: center;
+	// 	text-align: center;
+	// }
 
-	&.dark {
-		background: $orange-l;
-	}
+	// &.dark {
+	// 	background: $orange-l;
+	// }
 }
 
 .branding {
@@ -92,31 +92,31 @@ section {
 	}
 }
 
-.col-3 {
-	display: flex;
-	position: relative;
-	margin-top: 48px;
+// .col-3 {
+// 	display: flex;
+// 	position: relative;
+// 	margin-top: 48px;
 
-	&:before {
-		content: "";
-		display: block;
-		width: 100%;
-		height: 1px;
-		position: absolute;
-		background: $neutral;
-		top: -48px;
-	}
+// 	&:before {
+// 		content: "";
+// 		display: block;
+// 		width: 100%;
+// 		height: 1px;
+// 		position: absolute;
+// 		background: $neutral;
+// 		top: -48px;
+// 	}
 
-	>div {
-		width: 30%;
-		flex-grow: 1;
-		margin-right: 24px;
+// 	>div {
+// 		width: 30%;
+// 		flex-grow: 1;
+// 		margin-right: 24px;
 
-		&:last-child {
-			margin-right: 0;
-		}
-	}
-}
+// 		&:last-child {
+// 			margin-right: 0;
+// 		}
+// 	}
+// }
 
 .col-50 {
 	display: flex;
@@ -132,14 +132,13 @@ section {
 	>div {
 		width: 47%;
 
-		&:first-child>div {
-			margin-top: 60px;
-		}
+		// &:first-child>div {
+		// 	margin-top: 60px;
+		// }
 	}
 
 	&.forms {
-		margin-top: 148px;
-		padding-top: 50px;
+		margin-top: 120px;
 		position: relative;
 
 		&:before {
@@ -154,22 +153,22 @@ section {
 	}
 }
 
-.shadow-1 {
-	position: relative;
+// .shadow-1 {
+// 	position: relative;
 
-	&:before {
-		content: "";
-		width: calc(100% - 55px);
-		height: calc(73% - 55px);
-		position: absolute;
-		display: block;
-		background: $orange-l;
-		border-radius: $border-radius-2;
-		right: 55px;
-		top: 55px;
-		z-index: -1;
-	}
-}
+// 	&:before {
+// 		content: "";
+// 		width: calc(100% - 55px);
+// 		height: calc(73% - 55px);
+// 		position: absolute;
+// 		display: block;
+// 		background: $orange-l;
+// 		border-radius: $border-radius-2;
+// 		right: 55px;
+// 		top: 55px;
+// 		z-index: -1;
+// 	}
+// }
 
 .forms-container {
 	button {
@@ -211,7 +210,7 @@ section {
 }
 
 .hidden {
-	display: none !important;
+	display: none;
 }
 
 .border-red-500 {
@@ -291,10 +290,49 @@ section {
 		}
 	}
 }
+.list-number a {
+	color: $orange;
+}
 
+.telegram-block {
+	height: 100%;
+	max-width: 100%;
+
+	.telegram-iframe {
+		width: 100%;
+		height: 100%;
+		max-width: 100%;
+	}
+}
+
+/* Edit Test Case */
+ul li input[type=text] {
+  display:none;
+}
+ul li textarea[name=text-area] {
+  display:none;
+}
+
+ul li.editMode input[type=text] {
+  display:block;
+}
+
+ul li.editMode textarea[name=text-area] {
+  display:block;
+}
+ul li.editMode label {
+  display:none;
+}
+
+label.testItemText {
+  font-size: medium;
+ 
+}
 
 // @import "modal.scss";
 @import "breakpoints.scss";
 @import "fixed-header.scss";
 @import "form.scss";
+@import "console.scss";
+@import "effects.scss";
 // @import "slider.scss";

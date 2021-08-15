@@ -3,7 +3,9 @@
 		section {
 			padding: 64px 36px;
 		}
-		header, footer {
+
+		header,
+		footer {
 			padding: 24px 36px;
 		}
 	}
@@ -14,7 +16,8 @@
 			letter-spacing: -0.4px;
 		}
 
-		p, ul li {
+		p,
+		ul li {
 			font-size: 16.5px;
 		}
 	}
@@ -23,6 +26,13 @@
 		.forms-container {
 			width: 600px;
 		}
+	}
+
+	.modal-body .wrapper {
+		margin-left: auto;
+		margin-right: auto;
+		width: 80vw;
+		max-width: unset;
 	}
 }
 
@@ -58,6 +68,7 @@
 
 		>footer {
 			padding: 36px 20px;
+
 			.copyright {
 				text-align: center;
 			}
@@ -67,7 +78,7 @@
 	.col-main {
 		padding-right: 0;
 	}
-	
+
 	.block-1 h1 {
 		font-size: 12vw;
 	}
@@ -90,7 +101,8 @@
 		}
 	}
 
-	p, ul li {
+	p,
+	ul li {
 		font-size: 17px;
 	}
 
@@ -159,38 +171,56 @@
 		font-size: 14px;
 		letter-spacing: -.6px;
 	}
+
 	.col-main {
-		background-image: none!important;
+		background-image: none !important;
 	}
+
 	section.one-frame {
 		min-height: unset;
 	}
+
 	.col-main {
 		min-height: unset;
 	}
+
 	.branding h3 span {
 		display: none;
 	}
+
 	main .wrapper {
-		>div, form {
+
+		>div,
+		form {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
 		}
 	}
+
 	section:last-child {
 		margin-bottom: 14px;
 	}
+
 	.tests-app .col-50.forms div {
 		width: 100%;
 	}
+
 	.tests-app .pictogram {
 		justify-content: center;
 	}
+
 	.modal-body .wrapper {
 		padding: 8px 14px;
 	}
+
 	.checkboxes {
-		margin-top: 24px!important;
+		margin-top: 24px !important;
+	}
+	.modal-body .wrapper {
+		width: 96vw;
+	}
+	.modal-body .modal-close {
+		margin-left: 8px;
 	}
 }

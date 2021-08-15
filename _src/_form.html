@@ -1,6 +1,6 @@
 <form id="objective" class="start" onsubmit="event.preventDefault()">
-	<label>Бесплатный автотест для твоего сайта:</label>
-	<input type="url" placeholder="https://" id="input-title" name="title" key="test_title">
+	<label>Бесплатные автотесты для вашего сайта:</label>
+	<input type="url" placeholder="https://" id="input-title" name="url" key="test_title">
 	<div class="buttons-block first">
 		<button class="main" key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
 		<div class="captcha">
@@ -10,41 +10,41 @@
 	</div>
 	<button class="options"></button>
 	<div class="checkboxes">
-		<div class="form-group checked blocked">
-			<input type="checkbox" id="option1" name="opt1" checked>
+		<div class="form-group checked">
+			<input type="checkbox" id="option1" name="githubRepo" checked>
 			<label for="option1">Сгенерировать репозиторий в GitHub</label>
-		</div>
-		<div class="form-group checked child">
-			<input type="checkbox" id="option2" name="opt2" checked>
-			<label for="option2">Сгенерировать 2 автотеста</label>
+			<div class="form-group">
+				<input type="checkbox" id="option2" name="githubTests" checked>
+				<label for="option2">Сгенерировать 2 автотеста</label>
+			</div>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option3" name="opt3">
+			<input type="checkbox" id="option3" name="jenkinsJob" checked>
 			<label for="option3">Сгенерировать задачу в Jenkins</label>
-		</div>
-		<div class="form-group child">
-			<input type="checkbox" id="option4">
-			<label for="option4">Запустить задачу в Jenkins</label>
+			<div class="form-group">
+				<input type="checkbox" id="option4" name="jenkinsRun" checked>
+				<label for="option4">Запустить задачу в Jenkins</label>
+			</div>
+			<div class="form-group">
+				<input type="checkbox" id="option5" name="jenkinsAllure" checked>
+				<label for="option5">Сформировать отчет со скриншотами и видео</label>
+			</div>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option5">
-			<label for="option5">Сформировать отчет со скриншотами и видео</label>
-		</div>
-		<div class="form-group">
-			<input type="checkbox" id="option6">
+			<input type="checkbox" id="option6" name="telegramNotification" checked>
 			<label for="option6">Отправить уведомление в Telegram</label>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option7">
-			<label for="option7">Создать проект в TMS Allure TestOps</label>
+			<input type="checkbox" id="option8" name="jiraIntegration" checked>
+			<label for="option8">Интегрировать с задачей в Jira</label>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option8">
-			<label for="option8">Слинковать с задачей в Jira</label>
+			<input type="checkbox" id="option7" name="allureTestops" checked>
+			<label for="option7">Интегрировать с проектом в TMS Allure TestOps</label>
 		</div>
-		<button class="small modal"><img src="img/plus-solid.svg">Add manual test-cases</button>
-		<ul class="added-tc">
-			
+		<button class="small modal"><img src="img/plus-solid.svg">Добавить ручной тест-кейс для автоматизации</button>
+    <!-- <button id="storage" class="small modal"><img src="img/floppy-disk.svg">Загрузить ранее сохраненные тесты</button> -->
+		<ul id="tc-list" class="added-tc">
 		</ul>
 	</div>
 </form>

@@ -1,0 +1,80 @@
+$window-close: #f77669;
+$window-minify: #ffcb6b;
+$window-expand: #c3e88d;
+
+$background-header: #393d3e;
+$background-code: #1f1e1e;
+
+.cv-code {
+  content-visibility: auto;
+  border-radius: .5rem;
+  overflow: hidden;
+  background: $background-code;
+  width: 100%;
+  min-height: 30rem;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    background: $background-header;
+    color: #eee;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: .5rem .5rem 0 0;
+    position: relative;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  &-buttons {
+    margin-right: 1rem;
+    display: flex;
+    gap: 6px;
+
+    .fake-button[data-close] {
+      width: .7rem;
+      height: .7rem;
+      border-radius: 50%;
+      background: $window-close;
+    }
+
+    .fake-button[data-minify] {
+      width: .7rem;
+      height: .7rem;
+      border-radius: 50%;
+      background: $window-minify;
+    }
+
+    .fake-button[data-expand] {
+      width: .7rem;
+      height: .7rem;
+      border-radius: 50%;
+      background: $window-expand;
+    }
+  }
+
+  &-title {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .content {
+    color: white;
+    padding: 1rem;
+    font-family: 'Encode Sans Expanded', sans-serif;
+    font-size: 0.8rem;
+
+    .instruction {
+      display: block;
+      padding: 0 0 7px 0;
+    }
+
+    .user {
+      color: #6db928;
+    }
+
+    .path,
+    .command {
+      color: #6fa5cd;
+    }
+  }
+}

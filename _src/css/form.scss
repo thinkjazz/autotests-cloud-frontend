@@ -6,44 +6,65 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 	margin: 16px 0;
+
 	button {
 		margin: 0;
 		margin-right: 12px;
 		margin-bottom: 6px;
 		margin-top: 6px;
+
 		&:last-child {
 			margin-right: 0;
 		}
 	}
+
 	&.first {
 		justify-content: space-between;
 	}
 }
+
 button.options:after {
 	content: "Показать опции";
 }
+
 .options-open button.options:after {
 	content: "Скрыть опции";
 }
+
 .wrapper .added-tc {
-	font-size: 0.8em;
+	font-size: 0.7em;
+	position: relative;
+	top: -12px;
+	z-index: 5;
+
 	li {
 		list-style: none;
 		margin-left: 0;
 		margin-bottom: 0;
+		line-height: 1em;
+		padding: 2px;
+		margin-bottom: 6px;
+		cursor: pointer;
+		border-bottom: 2px dotted #ccc;
+
+		span {
+			display: none;
+		}
 	}
 }
+
 .checkboxes {
-	margin-top: 24px;
 	display: none;
 	flex-wrap: wrap;
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: column;
 }
+
 .options-open .checkboxes {
 	display: flex;
 }
+
 .form-group {
 	display: block;
 	margin-bottom: 18px;
@@ -103,13 +124,15 @@ button.options:after {
 		pointer-events: none;
 	}
 
-	&.child {
+	.form-group {
 		margin-left: 18px;
-		margin-top: -8px;
+		margin-top: 12px;
+		margin-bottom: 0;
 	}
 }
 
-button.small, button.options {
+button.small,
+button.options {
 	padding: 6px 14px;
 	font-size: 0.8em;
 	background: $placeholder;
@@ -117,6 +140,18 @@ button.small, button.options {
 
 	img {
 		width: 0.9em;
+		margin-right: 6px;
+	}
+}
+
+button.medium {
+	padding: 6px 14px;
+	font-size: 1.5em;
+	background: #fff;
+	color: $dark;
+
+	img {
+		width: 1em;
 		margin-right: 6px;
 	}
 }
@@ -136,7 +171,7 @@ button.small, button.options {
 	align-content: center;
 	z-index: 10;
 	padding: 12px;
-	margin-top: 0!important;
+	margin-top: 0 !important;
 	padding-bottom: 72px;
 
 
@@ -149,7 +184,6 @@ button.small, button.options {
 		border-radius: 5px;
 		box-shadow: 0 0 50px #00000045;
 		margin-left: 360px;
-		overflow-y: scroll;
 	}
 
 	.header {
@@ -173,3 +207,5 @@ button.small, button.options {
 		display: flex;
 	}
 }
+
+
