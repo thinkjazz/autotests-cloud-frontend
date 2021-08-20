@@ -7,7 +7,6 @@ const appBlock = document.querySelector("#app"); // Выбираем div#app к�
 const mainForm = document.querySelector("#objective"); // Выбираем основную форму form#objective
 const mainBtn = document.querySelector("button.main"); // Основная кнопка сгенерировать
 
-const modalForm = document.querySelector("#modal_form"); // Модальная форма, которая вызывается для  добавления ручных тестов
 const modalBtn = document.querySelector("button.modal"); // Кнопка для small modal для вызова мольного окна
 const modalBtnClose = document.querySelector("button.modal-close"); // Кнопка для закрытия модального окна
 const optionsBtn = document.querySelector("button.options"); // Кнопка показать \ скрыть опции
@@ -19,16 +18,11 @@ const tcList = document.querySelector(".added-tc"); // Родительский 
 const addTestCase = document.querySelector("#add_test_case"); // Большая кнопка добавить в модальном окне
 const addNew = document.querySelector("#add_new"); // Кнопка добавить еще один тест
 
-const formAdd = document.querySelector("#modal_form .input-block"); // Div который оборачивает input & textarea в модальном окне, который лежит в форме
-
 const titleTextarea = document.querySelector("#input-title"); // Главный Input c https://
-const mainTextarea = document.querySelector("#textarea-main"); // null непонятный селектор
 
 const consoleContainer = document.querySelector(".console-container"); // Консоль которая выводится при получении данных с бекэнда
 const consoleContainerContent = consoleContainer.querySelector(".content"); // Блок с классом контейнер в консоле
 
-const codeBlock = document.querySelector(".mockup-code"); // null
-const consoleWindow = document.querySelector("#console"); // null
 const iframeBlock = document.querySelector(".iframe-block"); // div info iframe-block
 const infoBlock = document.querySelector(".info"); // выбирает тот же самый блок div info iframe-block
 const telegramBlock = document.querySelector(".telegram-block"); // Блок отрисовки телеграма
@@ -39,7 +33,15 @@ let stompClient = null; // stompClient создан, но ничего нет в
 let uuid = create_UUID(); // Создаем уникальный идентификатор
 let scenarioCount = 0; // Глобальный счётчик scenarioCount от него идёт инкрименты всех сценаривев и элементов списка .added-tc-item + scenarioCount
 
-// localStorage.clear();
+const checkbox = document.getElementById('option1');
+
+checkbox.addEventListener('change', (event) => {
+  if (event.currentTarget.checked) {
+    alert('TRUE');
+  } else {
+    alert('FALSE');
+  }
+});
 
 // Функция connect() создаёт экземпляр new SockJS с адресом сокета и подключается к серверу
 // Подключение к серверу и отправака сокетов в spring
@@ -69,7 +71,6 @@ function connect() {
 
 // Данная функция получает в параметр сообщения с бекэнда и создает элементы div.instruction -> span.command
 // В зависимости от contentType switch \ case рендерит сообщения в зависимости от ответов с бекэнда
-
 function addSocketEvent(message) {
   let lineCodeBlock = document.createElement("div");
   lineCodeBlock.className = "instruction";
@@ -159,7 +160,9 @@ const initForm = () => {
     // В переменую values которая является объектом присваиваем результаты работы метода Object.fromEntries() преобразующего список пар ключ-значение в объект из
     // метод FormData.entries() который в свою очередь возвращает [Symbol.iterator], позволяющему пройтись по всем ключам/значениям в этом объекте.
     // Ключ каждой пары - это объект USVString, значение - это USVString или Blob.
-    const values = Object.fromEntries(formData.entries());
+    let values = Object.fromEntries(formData.entries());
+    
+ 
 
     console.log(values);
     console.log(values instanceof Object);
@@ -171,9 +174,9 @@ const initForm = () => {
       values.tests = loadingStateFromStorage(); //В свойство tests объекта values присваиваем результаты работы вызова функции loadingStateFromStorage() которая возвращает массив объектов
       delete values["g-recaptcha-response"]; // Удаляем рекапчу
       // В переменую присваиваем строку JSON из объекта values заменяя on \ off на булиновы значения
-      let stringValues = JSON.stringify(values)
-        .replaceAll('"on"', true)
-        .replaceAll('"off"', false);
+      let stringValues = JSON.stringify(values);
+        // .replaceAll('"on"', true)
+        // .replaceAll('"off"', false);
       console.log("данные с заменой " + stringValues);
 
       // Передаем
@@ -181,33 +184,13 @@ const initForm = () => {
 
       // consoleContainer.classList.remove("hidden");
       // Убираем главную форму
-      mainForm.classList.add("hidden");
-      // Тут не понятно, показывыем iframeBlock
-      iframeBlock.classList.remove("hidden");
-      // И скрываем .info
-      infoBlock.classList.add("hidden");
-      // telegramBlock.classList.remove("hidden");
-
-      // scroll = new SimpleBar(consoleWindow, { autoHide: false });
-
-      // function add() {
-      // 	let pre = document.createElement("pre");
-      // 	// let scrollContent = document.querySelector(".simplebar-content");
-      // 	pre.setAttribute("data-prefix", "$");
-      // 	pre.innerHTML = `<code>npm i daisyui</code>`;
-      // 	scrollContent.append(pre);
-      // 	scroll.getScrollElement().scrollTo({ top: 5000, behavior: "smooth" });
-      // 	// scroll.getScrollElement().scrollTop = scroll.getScrollElement().scrollHeight;
-      // }
-
-      // window.setInterval(add, 2500);
+      mainForm.classList.add("hidden"); // Показывыем iframeBlock
+      iframeBlock.classList.remove("hidden"); // И скрываем .info
+      infoBlock.classList.add("hidden");    // telegramBlock.classList.remove("hidden");
 
       mainForm.reset();
     } else {
-      // if (!mainTextarea.value) {
-      //   mainTextarea.classList.add("border-red-500");
-      // }
-
+    
       if (!titleTextarea.value) {
         titleTextarea.classList.add("border-red-500");
       }
@@ -245,37 +228,32 @@ function optionsToggle() {
 // textarea#edit, button#edit, button#delete внутри и принимает два параметра
 // @param inputTestCaseString строка из input
 // @param textAreaTestCaseString строка из textarea
-let createNewTestElement = (inputTestCaseString, textAreaTestCaseString,itemID) => {
+let createNewTestElement = (inputTestCaseString, textAreaTestCaseString, itemID) => {
   // Создать элемент списка
   let listItem = document.createElement("li");
   listItem.id = itemID;
-  // Cоздать span который будет потом скрыт
-  let span = document.createElement("span");
-  // Создать label
-  let label = document.createElement("label");
+  let span = document.createElement("span");  // Cоздать span который будет потом скрыт
+  span.innerText = textAreaTestCaseString; // в span присваиваем параметры которые пойдут из textarea.value с модального окна
+  span.setAttribute("hidden", ""); // Скрываем span
+  let label = document.createElement("label");  // Создать label
+  label.innerText = inputTestCaseString; // В label присваиваем параметры которые пойдут из input.value с модального окна
+  label.className = "testItemText";
   // Создать input (text)
   let editInput = document.createElement("input");
+  editInput.type = "text";
   // Создать textarea (text)
   let editTextArea = document.createElement("textarea");
+  editTextArea.name = "text-area";
   // Создать button.edit
   let editButton = document.createElement("button");
-  // Создать button.delete
-  let deleteButton = document.createElement("button");
-
-  setItemToLocalStorage(itemID++, inputTestCaseString, textAreaTestCaseString); // Записываем в localStorage для дальнейшей отправки формы
-  // Каждый элемент, требующий модификации
-  editInput.type = "text";
-  editTextArea.name = "text-area";
   editButton.innerHTML = `<img src="img/edit.svg" width="20" height="20"></img>`;
   editButton.className = "medium modal edit";
+  // Создать button.delete
+  let deleteButton = document.createElement("button");
   deleteButton.innerHTML = `<img src="img/trash.svg" width="20" height="20"></img>`;
   deleteButton.className = "medium modal delete";
-  // label и span присваиваем параметры которые пойдут из value с модального окна
-  label.innerText = inputTestCaseString;
-  label.className = "testItemText";
-  span.innerText = textAreaTestCaseString;
-  // Скрываем span
-  span.setAttribute("hidden", "");
+  // Каждый элемент, требующий модификации
+
   // В listItem добавляем все дочерние элементы. т.е каждый элемент который нуждается в добавлении
   listItem.appendChild(label);
   listItem.appendChild(editInput);
@@ -283,7 +261,7 @@ let createNewTestElement = (inputTestCaseString, textAreaTestCaseString,itemID) 
   listItem.appendChild(editTextArea);
   listItem.appendChild(editButton);
   listItem.appendChild(deleteButton);
-
+  setItemToLocalStorage(itemID++, inputTestCaseString, textAreaTestCaseString); // Записываем в localStorage для дальнейшей отправки формы
   return listItem;
 };
 
@@ -292,7 +270,7 @@ let addTestCaseItem = function () {
   console.log("Add test case");
   // При нажатии кнопки
   // Создайте новый элемент списка с текстом из нового тест-задания
-  let listItem = createNewTestElement( tcTitle.value, tcSteps.value, scenarioCount++);
+  let listItem = createNewTestElement(tcTitle.value, tcSteps.value, scenarioCount++);
 
   // Добавить listItem в tcList
   if (tcTitle.value.length > 0 && tcSteps.value.length > 0) {
@@ -356,16 +334,6 @@ let deleteTestCase = function () {
   localStorage.removeItem(listItemID);
 };
 
-// Пометить test case как добавленый
-let addedTestCase = function () {
-  console.log("Test task done");
-  // Добавьте test case  <li></li> в #test-tasks
-  let listItem = this.parentNode;
-  tcList.appendChild(listItem);
-  bindTestCaseEvents(listItem);
-
-};
-
 let bindTestCaseEvents = function (taskListItem) {
   console.log("Bind list item events");
   // Выбираем дочерние элементы taskListItems
@@ -403,17 +371,24 @@ function loadingStateFromStorage() {
     (key = keys[i]); i++) {
     console.log("i: " + i);
     console.log("key: " + key);
-    if (key > 0 && key !== "_grecaptcha") {
-      console.log("localStorage.getItem(key): " + localStorage.getItem(key));
-      console.log(
-        "JSON.parse(localStorage.getItem(key)): " +
-        JSON.parse(localStorage.getItem(key))
-      );
-      archive.push(JSON.parse(localStorage.getItem(key)));
-    } else if (key !== "_grecaptcha") {
-      localStorage.removeItem('_grecaptcha')
-      continue; // пропустит и удалить ключи _grecaptcha
-    }
+
+    if(key.match(/[0-9]+/)) {
+			console.log("localStorage.getItem(key): " + localStorage.getItem(key));
+        	console.log("JSON.parse(localStorage.getItem(key)): " + JSON.parse(localStorage.getItem(key)));
+			archive.push(JSON.parse(localStorage.getItem(key)));
+		}
+    // if (key !== "_grecaptcha" && Number.isInteger(key)) {
+      
+    //   console.log("localStorage.getItem(key): " + localStorage.getItem(key));
+    //   console.log(
+    //     "JSON.parse(localStorage.getItem(key)): " +
+    //     JSON.parse(localStorage.getItem(key))
+    //   );
+      
+    //   archive.push(JSON.parse(localStorage.getItem(key)));
+    //   localStorage.removeItem('_grecaptcha')
+    //   continue; // пропустит и удалить ключи _grecaptcha
+    // } 
   }
 
   console.log("archive: " + JSON.stringify(archive));
@@ -448,7 +423,6 @@ function setItemToLocalStorage(id, titleValue, stepsValue) {
     title: titleValue,
     steps: stepsValue,
     timestamp: new Date().getTime(),
-    dateLocaleString: new Date().toLocaleString(),
   };
 
   // Кладём все это в ключ test предварительно объект серилизуем и прибавляем итерацию scenarioCount
