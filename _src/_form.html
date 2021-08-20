@@ -9,12 +9,13 @@
 		</div>
 	</div>
 	<button class="options"></button>
+
 	<div class="checkboxes">
 		<div class="form-group checked">
 			<input type="checkbox" id="option1" name="githubRepo" checked>
 			<label for="option1">Сгенерировать репозиторий в GitHub</label>
 			<div class="form-group">
-				<input type="checkbox" id="option2" name="githubTests" checked>
+				<input type="checkbox" id="option2" class="github" name="githubTests" checked>
 				<label for="option2">Сгенерировать 2 автотеста</label>
 			</div>
 		</div>
@@ -22,11 +23,11 @@
 			<input type="checkbox" id="option3" name="jenkinsJob"  checked>
 			<label for="option3">Сгенерировать задачу в Jenkins</label>
 			<div class="form-group">
-				<input type="checkbox" id="option4" name="jenkinsRun"  checked>
+				<input type="checkbox" id="option4" class="jenkins" name="jenkinsRun"  checked>
 				<label for="option4">Запустить задачу в Jenkins</label>
 			</div>
 			<div class="form-group">
-				<input type="checkbox" id="option5" name="jenkinsAllure"  checked >
+				<input type="checkbox" id="option5" class="jenkins" name="jenkinsAllure"  checked >
 				<label for="option5">Сформировать отчет со скриншотами и видео</label>
 			</div>
 		</div>
@@ -42,8 +43,10 @@
 			<input type="checkbox" id="option7" name="allureTestops"  checked>
 			<label for="option7">Интегрировать с проектом в TMS Allure TestOps</label>
 		</div>
+
+
 		<button class="small modal"><img src="img/plus-solid.svg">Добавить ручной тест-кейс для автоматизации</button>
-    <!-- <button id="storage" class="small modal"><img src="img/floppy-disk.svg">Загрузить ранее сохраненные тесты</button> -->
+ 
 		<ul id="tc-list" class="added-tc">
 		</ul>
 	</div>
