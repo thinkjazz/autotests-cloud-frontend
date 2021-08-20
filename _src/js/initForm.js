@@ -29,19 +29,51 @@ const telegramBlock = document.querySelector(".telegram-block"); // Блок о�
 
 const telegramTestBtn = document.querySelector(".logo"); // Логотип
 
+let checkAllGithub = document.getElementById('option1');//Родительский чекбокс гитхаба
+let checkBoxesGithub = document.querySelectorAll('input.github'); 
+
+let checkAllJenkins = document.getElementById('option3'); //Родительский чекбокс Jenkins
+let checkBoxesJenkins = document.querySelectorAll('input.jenkins');
+
+
 let stompClient = null; // stompClient создан, но ничего нет в нём
 let uuid = create_UUID(); // Создаем уникальный идентификатор
 let scenarioCount = 0; // Глобальный счётчик scenarioCount от него идёт инкрименты всех сценаривев и элементов списка .added-tc-item + scenarioCount
 
-const checkbox = document.getElementById('option1');
 
-checkbox.addEventListener('change', (event) => {
-  if (event.currentTarget.checked) {
-    alert('TRUE');
-  } else {
-    alert('FALSE');
-  }
-});
+ 
+// перебор  дерева гитхаба
+for(let i=0; i<checkBoxesGithub.length; i++) {
+    checkBoxesGithub[i].onclick = function() {
+        let checkedCount = document.querySelectorAll('input.github:checked').length;
+        
+        checkAllGithub.checked = checkedCount > 0;
+        checkAllGithub.indeterminate = checkedCount > 0 && checkedCount < checkBoxesGithub.length;
+    }
+}
+
+checkAllGithub.onclick = function() {
+    for(let i=0; i<checkBoxesGithub.length; i++) {
+        checkBoxesGithub[i].checked = this.checked;
+    }
+}
+
+// перебор  дерева jenkins
+
+for(let i=0; i<checkBoxesJenkins.length; i++) {
+   checkBoxesJenkins[i].onclick = function() {
+        let checkedCount = document.querySelectorAll('input.jenkins:checked').length;
+        
+        checkAllJenkins.checked = checkedCount > 0;
+        checkAllJenkins.indeterminate = checkedCount > 0 && checkedCount < checkBoxesJenkins.length;
+    }
+}
+
+checkAllJenkins.onclick = function() {
+    for(let i=0; i<checkBoxesJenkins.length; i++) {
+      checkBoxesJenkins[i].checked = this.checked;
+    }
+}
 
 // Функция connect() создаёт экземпляр new SockJS с адресом сокета и подключается к серверу
 // Подключение к серверу и отправака сокетов в spring
@@ -377,34 +409,13 @@ function loadingStateFromStorage() {
         	console.log("JSON.parse(localStorage.getItem(key)): " + JSON.parse(localStorage.getItem(key)));
 			archive.push(JSON.parse(localStorage.getItem(key)));
 		}
-    // if (key !== "_grecaptcha" && Number.isInteger(key)) {
-      
-    //   console.log("localStorage.getItem(key): " + localStorage.getItem(key));
-    //   console.log(
-    //     "JSON.parse(localStorage.getItem(key)): " +
-    //     JSON.parse(localStorage.getItem(key))
-    //   );
-      
-    //   archive.push(JSON.parse(localStorage.getItem(key)));
-    //   localStorage.removeItem('_grecaptcha')
-    //   continue; // пропустит и удалить ключи _grecaptcha
-    // } 
   }
 
   console.log("archive: " + JSON.stringify(archive));
 
   return archive;
 }
-
-// function getItemsFromStorage() {
-//   let steps = loadingStateFromStorage();
-
-// steps.forEach(el => {
-
-//   console.log(el.title, el.steps, el.id);
-
-// })
-// }
+ 
 
 
 function addNewFields() {
@@ -425,9 +436,11 @@ function setItemToLocalStorage(id, titleValue, stepsValue) {
     timestamp: new Date().getTime(),
   };
 
-  // Кладём все это в ключ test предварительно объект серилизуем и прибавляем итерацию scenarioCount
+  // Кладём все это в ключ test предварительно объект серилизуем
   localStorage.setItem(id, JSON.stringify(tests));
 }
+
+
 
 // ТЕСТ ТЕЛЕГИ
 function testTelegram() {
