@@ -1,3 +1,4 @@
 node_modules/
+./idea
 autotests-cloud-frontend/
 package-lock.json

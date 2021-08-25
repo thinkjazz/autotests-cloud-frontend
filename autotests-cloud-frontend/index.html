@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+	<link rel="stylesheet" href="css/style.min.css">
+	<title>Autotests.Cloud</title>
+	<meta property="og:image" content="img/autotests-1.png">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="vk:image" content="img/autotests-1.png">
+	<link rel="icon" href="img/autotests-1-32x32.png" sizes="32x32">
+	<link rel="icon" href="img/autotests-1-192x192.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="img/autotests-1-180x180.png">
+	<meta name="msapplication-TileImage" content="img/autotests-1-270x270.png">
+	<meta property="og:title" content="Autotests.cloud">
+	<meta property="og:description" content="Test automation as a Service">
+	<link rel="canonical" href="https://start.autotests.cloud/">
+	<link rel="shortlink" href="https://start.autotests.cloud/">
+	<script type="text/javascript"  src="./js/stomp.min.js"></script>
+	<script type="text/javascript"  src="./js/sockjs.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
+</head>
+
+<body class="tests-app">
+<header>
+	<div class="wrapper">
+		<div class="branding">
+			<img src="img/logo.svg" class="logo">
+			<h3>Autotests.cloud<span> - test automation as a Service</span></h3>
+		</div>
+		<div class="links">
+			<a href="tg://resolve?domain=qa_guru_chat" target="_blank"><img src="img/telegram-plane-brands.svg">Telegram</a>
+			<a href="https://github.com/autotests-cloud" target="_blank"><img src="img/github-brands.svg">Github</a>
+		</div>
+	</div>
+			<div class="pictogram">
+	<img src="img/pictogram/Intelij_IDEA.svg">
+	<img src="img/pictogram/Java.svg">
+	<img src="img/pictogram/Gradle.svg">
+	<img src="img/pictogram/JUnit5.svg">
+	<img src="img/pictogram/Rest-Assured.svg">
+	<img src="img/pictogram/Selenium.svg">
+	<img src="img/pictogram/Appium.svg">
+	<img src="img/pictogram/Selenide.png">
+	<img src="img/pictogram/Allure_Report.png">
+	<img src="img/pictogram/Github.svg">
+	<img src="img/pictogram/Jenkins.svg">
+	<img src="img/pictogram/Docker.svg">
+	<img src="img/pictogram/Selenoid.svg">
+	<img src="img/pictogram/Browserstack.svg">
+	<img src="img/pictogram/Allure_TestOps.svg">
+	<img src="img/pictogram/Jira.svg">
+	<img src="img/pictogram/Telegram.svg">
+	<img src="img/pictogram/Slack.svg">
+</div>
+
+</header>
+<main>
+    <section>
+        <div class="wrapper">
+            <div class="col-50 forms">
+                <div class="cv-code console-container hidden">
+  <div class="cv-code-header">
+    <div class="cv-code-buttons">
+      <span class="fake-button --close" data-close=""></span>
+      <span class="fake-button --minify" data-minify=""></span>
+      <span class="fake-button --expand" data-expand=""></span>
+    </div>
+    <span class="cv-code-title">Generate...</span>
+  </div>
+  <div class="content">
+
+<!--    <div class="instruction">-->
+<!--      <span class="user">any code here</span>: <span>Lorem, ipsum dolor sit.</span>-->
+<!--    </div>-->
+    <div class="instruction">
+      <span class="user">autotests@cloud</span>: <span class="path">~</span>$ <span class="command">test automation has started</span>
+    </div>
+  </div>
+</div>
+
+                <div id="app" class="forms-container col-50">
+                    <form id="objective" class="start" onsubmit="event.preventDefault()">
+	<label>Бесплатные автотесты для вашего сайта:</label>
+	<input type="url" placeholder="https://" id="input-title" name="url" key="test_title">
+	<div class="buttons-block first">
+		<button class="main" key="checkout_button"><img src="img/icon_1.svg">Сгенерировать</button>
+		<div class="captcha">
+			<div class="g-recaptcha" data-theme="light" data-sitekey="6LfGt8caAAAAALiwMqXHiwZnq1eKtBUa7wK_axWt"></div>
+			<span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
+		</div>
+	</div>
+	<button class="options"></button>
+	<div class="checkboxes">
+		<div class="form-group checked">
+			<input type="checkbox" id="option1" name="githubRepo" checked>
+			<label for="option1">Сгенерировать репозиторий в GitHub</label>
+			<div class="form-group">
+				<input type="checkbox" id="option2" name="githubTests" checked>
+				<label for="option2">Сгенерировать 2 автотеста</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option3" name="jenkinsJob"  checked>
+			<label for="option3">Сгенерировать задачу в Jenkins</label>
+			<div class="form-group">
+				<input type="checkbox" id="option4" name="jenkinsRun"  checked>
+				<label for="option4">Запустить задачу в Jenkins</label>
+			</div>
+			<div class="form-group">
+				<input type="checkbox" id="option5" name="jenkinsAllure"  checked >
+				<label for="option5">Сформировать отчет со скриншотами и видео</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option6" name="telegramNotification"  checked>
+			<label for="option6">Отправить уведомление в Telegram</label>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option8" name="jiraIntegration"  checked>
+			<label for="option8">Интегрировать с задачей в Jira</label>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" id="option7" name="allureTestops"  checked>
+			<label for="option7">Интегрировать с проектом в TMS Allure TestOps</label>
+		</div>
+		<button class="small modal"><img src="img/plus-solid.svg">Добавить ручной тест-кейс для автоматизации</button>
+    <!-- <button id="storage" class="small modal"><img src="img/floppy-disk.svg">Загрузить ранее сохраненные тесты</button> -->
+		<ul id="tc-list" class="added-tc">
+		</ul>
+	</div>
+</form>
+
+                </div>
+                <div class="info iframe-block">
+    <div class="info-block">
+        <h3>Как использовать сервис</h3>
+        <p>Укажите адрес вашего сайта, если необходимо - выберите опции (но можно и по умолчанию), сгенерируйте проект</p>
+        <ul class="list-number">
+            <li>Используйте сгенерированный проект для последующей разработки - код, инфраструктура вам доступна</li>
+            <li>Не можете автоматизировать тесты сами? Инженеры qa.guru сделают это быстро, просто заполните заявку на <a href="https://autotests.cloud">autotests.cloud</a> </li>
+            <li>Остались вопросы? Задайте в чате <a href="tg://resolve?domain=qa_guru_chat" target="_blank">@qa_guru_chat</a></li>
+        </ul>
+    </div>
+</div>
+
+                <div class="telegram-block hidden">
+
+<!-- <script async src="https://telegram.org/js/telegram-widget.js?15" data-telegram-post="autotests_cloud_chat/1273" data-width="100%"></script> -->
+
+<!--<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe" src="https://t.me/${messagePath}?embed=1&discussion=1&comments_limit=5&light=1"></iframe>-->
+
+</div>
+            </div>
+            <div></div>
+        </div>
+        </div>
+    </section>
+</main>
+<div class="modal-body">
+	<div class="wrapper">
+		<div class="header">
+			<h4>Ручной тест для последующей автоматизации</h4>
+			<button class="modal-close">×</button>
+		</div>
+		<div class="content">
+			<form id="modal_form" onsubmit="event.preventDefault()">
+				<div class="input-block">
+					<input type="text" id="tc_title" placeholder="Successful login">
+					<textarea name="test-case" id="text_case" rows="8" placeholder="Open 'https://github.com/login'
+
+Set username 'Alex'
+Set password '12%#5f'
+Submit form
+
+Verify successful authorization as 'Alex'"></textarea>
+				</div>
+				<div class="buttons-block left">
+					<button id="add_test_case">Добавить</button>
+					<button class="small" id="add_new">Добавить ещё один</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<footer>
+	<div class="wrapper">
+		<div class="copyright">
+			<p>autotests.cloud & qa.guru &copy; 2021</p>
+		</div>
+	</div>
+</footer>
+<script type="module" src="js/initForm.js"></script>
+</body>
+</html>

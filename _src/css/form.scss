@@ -36,6 +36,7 @@ button.options:after {
 	position: relative;
 	top: -12px;
 	z-index: 5;
+  width: 100%;
 
 	li {
 		list-style: none;
@@ -144,9 +145,19 @@ button.options {
 	}
 }
 
+button.medium {
+	padding: 6px 14px;
+	font-size: 1.5em;
+	background: #fff;
+	color: $dark;
+
+	img {
+		width: 1em;
+		margin-right: 6px;
+	}
+}
 
 // MODAL
-
 .modal-body {
 	display: none;
 	position: fixed;
@@ -195,5 +206,3 @@ button.options {
 		display: flex;
 	}
 }
-
-
