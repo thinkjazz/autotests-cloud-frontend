@@ -1,6 +1,4 @@
-import {
-  create_UUID
-} from "./StringUtils.js"; // Утилита для создание уникального UUID
+import { create_UUID } from "./StringUtils.js"; // Утилита для создание уникального UUID
 
 const body = document.querySelector("body.tests-app"); // Выбираем корневой селектор класса tests-app
 const appBlock = document.querySelector("#app"); // Выбираем div#app который оборачивает from#objective, что ниже
@@ -29,51 +27,52 @@ const telegramBlock = document.querySelector(".telegram-block"); // Блок о�
 
 const telegramTestBtn = document.querySelector(".logo"); // Логотип
 
-let checkAllGithub = document.getElementById('option1');//Родительский чекбокс гитхаба
-let checkBoxesGithub = document.querySelectorAll('input.github'); 
+let checkAllGithub = document.getElementById("option1"); //Родительский чекбокс гитхаба
+let checkBoxesGithub = document.querySelectorAll("input.github");
 
-let checkAllJenkins = document.getElementById('option3'); //Родительский чекбокс Jenkins
-let checkBoxesJenkins = document.querySelectorAll('input.jenkins');
-
+let checkAllJenkins = document.getElementById("option3"); //Родительский чекбокс Jenkins
+let checkBoxesJenkins = document.querySelectorAll("input.jenkins");
 
 let stompClient = null; // stompClient создан, но ничего нет в нём
 let uuid = create_UUID(); // Создаем уникальный идентификатор
 let scenarioCount = 0; // Глобальный счётчик scenarioCount от него идёт инкрименты всех сценаривев и элементов списка .added-tc-item + scenarioCount
 
-
- 
 // перебор  дерева гитхаба
-for(let i=0; i<checkBoxesGithub.length; i++) {
-    checkBoxesGithub[i].onclick = function() {
-        let checkedCount = document.querySelectorAll('input.github:checked').length;
-        
-        checkAllGithub.checked = checkedCount > 0;
-        checkAllGithub.indeterminate = checkedCount > 0 && checkedCount < checkBoxesGithub.length;
-    }
+for (let i = 0; i < checkBoxesGithub.length; i++) {
+  checkBoxesGithub[i].onclick = function () {
+    let checkedCount = document.querySelectorAll("input.github:checked").length;
+
+    checkAllGithub.checked = checkedCount > 0;
+    checkAllGithub.indeterminate =
+      checkedCount > 0 && checkedCount < checkBoxesGithub.length;
+  };
 }
 
-checkAllGithub.onclick = function() {
-    for(let i=0; i<checkBoxesGithub.length; i++) {
-        checkBoxesGithub[i].checked = this.checked;
-    }
-}
+checkAllGithub.onclick = function () {
+  for (let i = 0; i < checkBoxesGithub.length; i++) {
+    checkBoxesGithub[i].checked = this.checked;
+  }
+};
 
 // перебор  дерева jenkins
 
-for(let i=0; i<checkBoxesJenkins.length; i++) {
-   checkBoxesJenkins[i].onclick = function() {
-        let checkedCount = document.querySelectorAll('input.jenkins:checked').length;
-        
-        checkAllJenkins.checked = checkedCount > 0;
-        checkAllJenkins.indeterminate = checkedCount > 0 && checkedCount < checkBoxesJenkins.length;
-    }
+for (let i = 0; i < checkBoxesJenkins.length; i++) {
+  checkBoxesJenkins[i].onclick = function () {
+    let checkedCount = document.querySelectorAll(
+      "input.jenkins:checked"
+    ).length;
+
+    checkAllJenkins.checked = checkedCount > 0;
+    checkAllJenkins.indeterminate =
+      checkedCount > 0 && checkedCount < checkBoxesJenkins.length;
+  };
 }
 
-checkAllJenkins.onclick = function() {
-    for(let i=0; i<checkBoxesJenkins.length; i++) {
-      checkBoxesJenkins[i].checked = this.checked;
-    }
-}
+checkAllJenkins.onclick = function () {
+  for (let i = 0; i < checkBoxesJenkins.length; i++) {
+    checkBoxesJenkins[i].checked = this.checked;
+  }
+};
 
 // Функция connect() создаёт экземпляр new SockJS с адресом сокета и подключается к серверу
 // Подключение к серверу и отправака сокетов в spring
@@ -193,8 +192,6 @@ const initForm = () => {
     // метод FormData.entries() который в свою очередь возвращает [Symbol.iterator], позволяющему пройтись по всем ключам/значениям в этом объекте.
     // Ключ каждой пары - это объект USVString, значение - это USVString или Blob.
     let values = Object.fromEntries(formData.entries());
-    
- 
 
     console.log(values);
     console.log(values instanceof Object);
@@ -207,8 +204,8 @@ const initForm = () => {
       delete values["g-recaptcha-response"]; // Удаляем рекапчу
       // В переменую присваиваем строку JSON из объекта values заменяя on \ off на булиновы значения
       let stringValues = JSON.stringify(values);
-        // .replaceAll('"on"', true)
-        // .replaceAll('"off"', false);
+      // .replaceAll('"on"', true)
+      // .replaceAll('"off"', false);
       console.log("данные с заменой " + stringValues);
 
       // Передаем
@@ -218,11 +215,10 @@ const initForm = () => {
       // Убираем главную форму
       mainForm.classList.add("hidden"); // Показывыем iframeBlock
       iframeBlock.classList.remove("hidden"); // И скрываем .info
-      infoBlock.classList.add("hidden");    // telegramBlock.classList.remove("hidden");
+      infoBlock.classList.add("hidden"); // telegramBlock.classList.remove("hidden");
 
       mainForm.reset();
     } else {
-    
       if (!titleTextarea.value) {
         titleTextarea.classList.add("border-red-500");
       }
@@ -237,9 +233,7 @@ const initForm = () => {
   mainBtn.addEventListener("click", submitForm);
 };
 
-export {
-  initForm
-};
+export { initForm };
 
 initForm();
 
@@ -260,14 +254,18 @@ function optionsToggle() {
 // textarea#edit, button#edit, button#delete внутри и принимает два параметра
 // @param inputTestCaseString строка из input
 // @param textAreaTestCaseString строка из textarea
-let createNewTestElement = (inputTestCaseString, textAreaTestCaseString, itemID) => {
+let createNewTestElement = (
+  inputTestCaseString,
+  textAreaTestCaseString,
+  itemID
+) => {
   // Создать элемент списка
   let listItem = document.createElement("li");
   listItem.id = itemID;
-  let span = document.createElement("span");  // Cоздать span который будет потом скрыт
+  let span = document.createElement("span"); // Cоздать span который будет потом скрыт
   span.innerText = textAreaTestCaseString; // в span присваиваем параметры которые пойдут из textarea.value с модального окна
   span.setAttribute("hidden", ""); // Скрываем span
-  let label = document.createElement("label");  // Создать label
+  let label = document.createElement("label"); // Создать label
   label.innerText = inputTestCaseString; // В label присваиваем параметры которые пойдут из input.value с модального окна
   label.className = "testItemText";
   // Создать input (text)
@@ -302,7 +300,11 @@ let addTestCaseItem = function () {
   console.log("Add test case");
   // При нажатии кнопки
   // Создайте новый элемент списка с текстом из нового тест-задания
-  let listItem = createNewTestElement(tcTitle.value, tcSteps.value, scenarioCount++);
+  let listItem = createNewTestElement(
+    tcTitle.value,
+    tcSteps.value,
+    scenarioCount++
+  );
 
   // Добавить listItem в tcList
   if (tcTitle.value.length > 0 && tcSteps.value.length > 0) {
@@ -383,7 +385,6 @@ addTestCase.addEventListener("click", addNewFields);
 // Установите обработчик щелчка на функцию addNewFields
 addNew.addEventListener("click", addTestCaseItem);
 
-
 // перебор элементов списка родительского ul
 for (let i = 0; i < tcList.children.length; i++) {
   // привязываем события к дочерним элементам списка
@@ -399,24 +400,24 @@ function loadingStateFromStorage() {
   // Проходим циклом и добавляем в массив объекты из localStorage
   console.log("localStorage: " + localStorage);
   console.log("keys Object.keys(localStorage): " + keys);
-  for (;
-    (key = keys[i]); i++) {
+  for (; (key = keys[i]); i++) {
     console.log("i: " + i);
     console.log("key: " + key);
 
-    if(key.match(/[0-9]+/)) {
-			console.log("localStorage.getItem(key): " + localStorage.getItem(key));
-        	console.log("JSON.parse(localStorage.getItem(key)): " + JSON.parse(localStorage.getItem(key)));
-			archive.push(JSON.parse(localStorage.getItem(key)));
-		}
+    if (key.match(/[0-9]+/)) {
+      console.log("localStorage.getItem(key): " + localStorage.getItem(key));
+      console.log(
+        "JSON.parse(localStorage.getItem(key)): " +
+          JSON.parse(localStorage.getItem(key))
+      );
+      archive.push(JSON.parse(localStorage.getItem(key)));
+    }
   }
 
   console.log("archive: " + JSON.stringify(archive));
 
   return archive;
 }
- 
-
 
 function addNewFields() {
   addTestCaseItem();
@@ -440,8 +441,6 @@ function setItemToLocalStorage(id, titleValue, stepsValue) {
   localStorage.setItem(id, JSON.stringify(tests));
 }
 
-
-
 // ТЕСТ ТЕЛЕГИ
 function testTelegram() {
   telegramBlock.innerHTML = `<iframe id="telegram-post-autotests_cloud-17" class="telegram-iframe" src="https://t.me/11111?embed=1&discussion=1&comments_limit=5&light=1"></iframe>`;
@@ -450,7 +449,6 @@ function testTelegram() {
 }
 
 telegramTestBtn.addEventListener("click", testTelegram);
-
 
 modalBtn.addEventListener("click", modalOpen);
 modalBtnClose.addEventListener("click", modalClose);
