@@ -7,29 +7,29 @@ const tasks = storage.tasks;
 const container = document.querySelector('.tasks');
 const template = document.querySelector('#task');
 
-const createTaskForm = document.querySelector('.create-task');
-const createTaskField = document.querySelector('.create-task__textarea');
+const createTestCaseForm = document.querySelector('.create-task');
+const createTestCaseField = document.querySelector('.create-task__textarea');
 const createStepField = document.querySelector('.create-steps__textarea');
 const createTaskButton = document.querySelector('.create-task__submit');
 
 
 
 tasks.forEach((data) => {
-  onCreateTask({data});
+  onCreateTestCase({data});
 });
 
-createTaskField.addEventListener('input', () => {
-  createTaskButton.disabled = !createTaskField.value;
+createTestCaseField.addEventListener('input', () => {
+  createTaskButton.disabled = !createTestCaseField.value;
 });
 
 createStepField.addEventListener('input', () => {
   createTaskButton.disabled = !createStepField.value;
 });
 
-createTaskForm.addEventListener('submit', (event) => {
+createTestCaseForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const title = createTaskField.value;
+  const title = createTestCaseField.value;
   const steps = createStepField.value;
 
   if (title) {
@@ -42,15 +42,14 @@ createTaskForm.addEventListener('submit', (event) => {
 
     storage.create(data);
 
-    onCreateTask({data});
+    onCreateTestCase({data});
 
-    createTaskForm.reset();
+    createTestCaseForm.reset();
   }
 });
 
-function onCreateTask({data}) {
+function onCreateTestCase({data}) {
   const clone = template.content.cloneNode(true);
-
   const task = clone.querySelector('.task');
   const title = clone.querySelector('.task__text');
   const step = clone.querySelector('.step__text');
