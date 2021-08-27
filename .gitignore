@@ -1,5 +1,10 @@
 node_modules/
+./idea
 autotests-cloud-frontend/
+<<<<<<< HEAD
 package-lock.json
 idea/
 autotests-cloud-frontend-start/
+=======
+package-lock.json
+>>>>>>> start
