@@ -329,6 +329,12 @@ label.testItemText {
  
 }
 
+.task__text, .step__text {
+  margin: 0 1rem;
+  flex-grow: 1;
+}
+
+
 // @import "modal.scss";
 @import "breakpoints.scss";
 @import "fixed-header.scss";

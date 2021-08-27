@@ -34,7 +34,7 @@ button.options:after {
 .wrapper .added-tc {
 	font-size: 0.7em;
 	position: relative;
-	top: -12px;
+	top: 0px;
 	z-index: 5;
   width: 100%;
 
@@ -86,6 +86,9 @@ button.options:after {
 		cursor: pointer;
 		font-size: 0.8em;
 	}
+  .add-tc-label {
+    padding: 1rem;
+  }
 
 	label:before {
 		content: '';
@@ -199,6 +202,10 @@ button.medium {
 		font-size: 28px;
 	}
 
+}
+div[contenteditable] {
+  background: rgba(0,0,0,0); /* transparent bg */
+  resize:none; /* disable resizing */
 }
 
 .modal {
