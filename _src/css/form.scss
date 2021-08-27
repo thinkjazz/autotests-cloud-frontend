@@ -86,9 +86,7 @@ button.options:after {
 		cursor: pointer;
 		font-size: 0.8em;
 	}
-  .add-tc-label {
-    padding: 1rem;
-  }
+  
 
 	label:before {
 		content: '';
@@ -133,6 +131,9 @@ button.options:after {
 		margin-top: 12px;
 		margin-bottom: 0;
 	}
+}
+.add-tc-label {
+  padding: 1rem;
 }
 
 button.small,
@@ -201,10 +202,6 @@ button.medium {
 	}
 
 }
-div[contenteditable] {
-  background: rgba(0,0,0,0); /* transparent bg */
-  resize:none; /* disable resizing */
-}
 
 .modal {
 	overflow: hidden;
@@ -212,4 +209,9 @@ div[contenteditable] {
 	.modal-body {
 		display: flex;
 	}
+}
+
+div[contenteditable] {
+  background: rgba(0,0,0,0); /* transparent bg */
+  resize:none; /* disable resizing */
 }

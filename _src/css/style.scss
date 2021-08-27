@@ -92,6 +92,11 @@ section {
 	}
 }
 
+.task__text, .step__text {
+  margin: 0 1rem;
+  flex-grow: 1;
+}
+
 // .col-3 {
 // 	display: flex;
 // 	position: relative;
@@ -305,34 +310,12 @@ section {
 	}
 }
 
-/* Edit Test Case */
-ul li input[type=text] {
-  display:none;
-}
-ul li textarea[name=text-area] {
-  display:none;
-}
-
-ul li.editMode input[type=text] {
-  display:block;
-}
-
-ul li.editMode textarea[name=text-area] {
-  display:block;
-}
-ul li.editMode label {
-  display:none;
-}
 
 label.testItemText {
   font-size: medium;
  
 }
 
-.task__text, .step__text {
-  margin: 0 1rem;
-  flex-grow: 1;
-}
 
 
 // @import "modal.scss";
