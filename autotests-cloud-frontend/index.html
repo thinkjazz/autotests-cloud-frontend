@@ -96,46 +96,111 @@
 		</div>
 	</div>
 	<button class="options"></button>
+
 	<div class="checkboxes">
 		<div class="form-group checked">
 			<input type="checkbox" id="option1" name="githubRepo" checked>
 			<label for="option1">Сгенерировать репозиторий в GitHub</label>
 			<div class="form-group">
-				<input type="checkbox" id="option2" name="githubTests" checked>
+				<input type="checkbox" id="option2" class="github" name="githubTests" checked>
 				<label for="option2">Сгенерировать 2 автотеста</label>
 			</div>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option3" name="jenkinsJob"  checked>
+			<input type="checkbox" id="option3" name="jenkinsJob" checked>
 			<label for="option3">Сгенерировать задачу в Jenkins</label>
 			<div class="form-group">
-				<input type="checkbox" id="option4" name="jenkinsRun"  checked>
+				<input type="checkbox" id="option4" class="jenkins" name="jenkinsRun" checked>
 				<label for="option4">Запустить задачу в Jenkins</label>
 			</div>
 			<div class="form-group">
-				<input type="checkbox" id="option5" name="jenkinsAllure"  checked >
+				<input type="checkbox" id="option5" class="jenkins" name="jenkinsAllure" checked>
 				<label for="option5">Сформировать отчет со скриншотами и видео</label>
 			</div>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option6" name="telegramNotification"  checked>
+			<input type="checkbox" id="option6" name="telegramNotification" checked>
 			<label for="option6">Отправить уведомление в Telegram</label>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option8" name="jiraIntegration"  checked>
+			<input type="checkbox" id="option8" name="jiraIntegration" checked>
 			<label for="option8">Интегрировать с задачей в Jira</label>
 		</div>
 		<div class="form-group">
-			<input type="checkbox" id="option7" name="allureTestops"  checked>
+			<input type="checkbox" id="option7" name="allureTestops" checked>
 			<label for="option7">Интегрировать с проектом в TMS Allure TestOps</label>
 		</div>
-		<button class="small modal"><img src="img/plus-solid.svg">Добавить ручной тест-кейс для автоматизации</button>
-    <!-- <button id="storage" class="small modal"><img src="img/floppy-disk.svg">Загрузить ранее сохраненные тесты</button> -->
-		<ul id="tc-list" class="added-tc">
+    <label class="add-tc-label">Добавить ручной тест-кейс для автоматизации</label>
+
+
+ 
+		<!-- <ul id="tc-list" class="added-tc">
+
 		</ul>
-	</div>
+
+     -->
+
 </form>
 
+<template id="task">
+
+  <li class="task tasks__task">
+ 
+    <p class="task__text" contenteditable onpaste="OnPaste_StripFormatting(this, event);"></p>
+    <div class="step__text" contenteditable onpaste="OnPaste_StripFormatting(this, event);"></div>
+    <button class="task__delete small modal" type="button"><img src="img/trash.svg" width="20" height="20"></img>
+      Удалить
+    </button>
+  </li>
+</template>
+
+<div class="container">
+  <ul class="tasks added-tc"></ul>
+
+  <form class="create-task">
+    <textarea class="create-task__textarea" placeholder="Successful login"></textarea>
+    <textarea class="create-steps__textarea" rows="8" placeholder="Open 'https://github.com/login'
+
+    Set username 'Alex'
+    Set password '12%#5f'
+    Submit form
+    
+    Verify successful authorization as 'Alex'"></textarea>
+    <button class="main create-task__submit" type="submit" disabled><img src="img/plus.svg" width="20" height="20">
+      Создать
+    </button>
+  </form>
+</div>
+	</div>
+  <script type="text/javascript">
+
+    var _onPaste_StripFormatting_IEPaste = false;
+
+    function OnPaste_StripFormatting(elem, e) {
+
+        if (e.originalEvent && e.originalEvent.clipboardData && e.originalEvent.clipboardData.getData) {
+            e.preventDefault();
+            var text = e.originalEvent.clipboardData.getData('text/plain');
+            window.document.execCommand('insertText', false, text);
+        }
+        else if (e.clipboardData && e.clipboardData.getData) {
+            e.preventDefault();
+            var text = e.clipboardData.getData('text/plain');
+            window.document.execCommand('insertText', false, text);
+        }
+        else if (window.clipboardData && window.clipboardData.getData) {
+            // Stop stack overflow
+            if (!_onPaste_StripFormatting_IEPaste) {
+                _onPaste_StripFormatting_IEPaste = true;
+                e.preventDefault();
+                window.document.execCommand('ms-pasteTextOnly', false);
+            }
+            _onPaste_StripFormatting_IEPaste = false;
+        }
+
+    }
+
+</script>
                 </div>
                 <div class="info iframe-block">
     <div class="info-block">
@@ -165,7 +230,7 @@
 <div class="modal-body">
 	<div class="wrapper">
 		<div class="header">
-			<h4>Ручной тест для последующей автоматизации</h4>
+			<label>Ручной тест для последующей автоматизации</label>
 			<button class="modal-close">×</button>
 		</div>
 		<div class="content">
@@ -182,7 +247,7 @@ Verify successful authorization as 'Alex'"></textarea>
 				</div>
 				<div class="buttons-block left">
 					<button id="add_test_case">Добавить</button>
-					<button class="small" id="add_new">Добавить ещё один</button>
+					<button class="small" id="add_new" type="submit" disabled>Добавить ещё один</button>
 				</div>
 			</form>
 		</div>
@@ -196,6 +261,10 @@ Verify successful authorization as 'Alex'"></textarea>
 		</div>
 	</div>
 </footer>
-<script type="module" src="js/initForm.js"></script>
+<script src="./js/LocalStorage.js" type="module"></script>
+<script src="./js/EditContent.js" type="module"></script>
+<script type="module" src="./js/initForm.js"></script>
+
+
 </body>
 </html>
