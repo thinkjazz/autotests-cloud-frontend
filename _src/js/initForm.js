@@ -27,52 +27,38 @@ const telegramBlock = document.querySelector(".telegram-block"); // Блок о�
 
 const telegramTestBtn = document.querySelector(".logo"); // Логотип
 
-let checkAllGithub = document.getElementById("option1"); //Родительский чекбокс гитхаба
-let checkBoxesGithub = document.querySelectorAll("input.github");
-
-let checkAllJenkins = document.getElementById("option3"); //Родительский чекбокс Jenkins
-let checkBoxesJenkins = document.querySelectorAll("input.jenkins");
 
 let stompClient = null; // stompClient создан, но ничего нет в нём
 let uuid = create_UUID(); // Создаем уникальный идентификатор
 let scenarioCount = 0; // Глобальный счётчик scenarioCount от него идёт инкрименты всех сценаривев и элементов списка .added-tc-item + scenarioCount
 
-// перебор  дерева гитхаба
-for (let i = 0; i < checkBoxesGithub.length; i++) {
-  checkBoxesGithub[i].onclick = function () {
-    let checkedCount = document.querySelectorAll("input.github:checked").length;
+let checkAllGithub = document.getElementById("option1"); //Родительский чекбокс гитхаба
+let checkBoxesGithub = document.querySelectorAll("input.github"); //Дочерний чекбокс
 
-    checkAllGithub.checked = checkedCount > 0;
-    checkAllGithub.indeterminate =
-      checkedCount > 0 && checkedCount < checkBoxesGithub.length;
+let checkAllJenkins = document.getElementById("option3"); //Родительский чекбокс Jenkins
+let checkBoxesJenkins = document.querySelectorAll("input.jenkins"); //Дочерний чекбокс
+
+function selectingAllNestedCheckboxes(parents, childs, className) {
+  for (let i = 0; i < childs.length; i++) {
+    childs[i].onclick = function () {
+      let checkedCount = document.querySelectorAll(
+        `input.${className}:checked`
+      ).length;
+
+      parents.checked = checkedCount > 0;
+      parents.indeterminate = checkedCount > 0 && checkedCount < childs.length;
+    };
+  }
+
+  parents.onclick = function () {
+    for (let i = 0; i < childs.length; i++) {
+      childs[i].checked = this.checked;
+    }
   };
 }
 
-checkAllGithub.onclick = function () {
-  for (let i = 0; i < checkBoxesGithub.length; i++) {
-    checkBoxesGithub[i].checked = this.checked;
-  }
-};
-
-// перебор  дерева jenkins
-
-for (let i = 0; i < checkBoxesJenkins.length; i++) {
-  checkBoxesJenkins[i].onclick = function () {
-    let checkedCount = document.querySelectorAll(
-      "input.jenkins:checked"
-    ).length;
-
-    checkAllJenkins.checked = checkedCount > 0;
-    checkAllJenkins.indeterminate =
-      checkedCount > 0 && checkedCount < checkBoxesJenkins.length;
-  };
-}
-
-checkAllJenkins.onclick = function () {
-  for (let i = 0; i < checkBoxesJenkins.length; i++) {
-    checkBoxesJenkins[i].checked = this.checked;
-  }
-};
+selectingAllNestedCheckboxes(checkAllGithub, checkBoxesGithub, "github"); // перебор  дерева гитхаба
+selectingAllNestedCheckboxes(checkAllJenkins, checkBoxesJenkins, "jenkins"); // перебор  дерева jenkins
 
 // Функция connect() создаёт экземпляр new SockJS с адресом сокета и подключается к серверу
 // Подключение к серверу и отправака сокетов в spring
