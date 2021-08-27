@@ -1,32 +1,30 @@
-import LocalStorage from './LocalStorage.js';
+import LocalStorage from "./LocalStorage.js";
 
 const storage = new LocalStorage();
 
 const tasks = storage.tasks;
 
-const container = document.querySelector('.tasks');
-const template = document.querySelector('#task');
+const container = document.querySelector(".tasks");
+const template = document.querySelector("#task");
 
-const createTestCaseForm = document.querySelector('.create-task');
-const createTestCaseField = document.querySelector('.create-task__textarea');
-const createStepField = document.querySelector('.create-steps__textarea');
-const createTaskButton = document.querySelector('.create-task__submit');
-
-
+const createTestCaseForm = document.querySelector(".create-task");
+const createTestCaseField = document.querySelector(".create-task__textarea");
+const createStepField = document.querySelector(".create-steps__textarea");
+const createTestCaseButton = document.querySelector(".create-task__submit");
 
 tasks.forEach((data) => {
-  onCreateTestCase({data});
+  onCreateTestCase({ data });
 });
 
-createTestCaseField.addEventListener('input', () => {
-  createTaskButton.disabled = !createTestCaseField.value;
+createTestCaseField.addEventListener("input", () => {
+  createTestCaseButton.disabled = !createTestCaseField.value;
 });
 
-createStepField.addEventListener('input', () => {
-  createTaskButton.disabled = !createStepField.value;
+createStepField.addEventListener("input", () => {
+  createTestCaseButton.disabled = !createStepField.value;
 });
 
-createTestCaseForm.addEventListener('submit', (event) => {
+createTestCaseForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const title = createTestCaseField.value;
@@ -37,44 +35,42 @@ createTestCaseForm.addEventListener('submit', (event) => {
       title,
       steps,
       timestamp: new Date().getTime(),
-     
     };
 
     storage.create(data);
 
-    onCreateTestCase({data});
+    onCreateTestCase({ data });
 
     createTestCaseForm.reset();
   }
 });
 
-function onCreateTestCase({data}) {
+function onCreateTestCase({ data }) {
   const clone = template.content.cloneNode(true);
-  const task = clone.querySelector('.task');
-  const title = clone.querySelector('.task__text');
-  const step = clone.querySelector('.step__text');
-  const del = clone.querySelector('.task__delete');
+  const testCase = clone.querySelector(".task");
+  const title = clone.querySelector(".task__text");
+  const step = clone.querySelector(".step__text");
+  const remove = clone.querySelector(".task__delete");
 
   title.innerHTML = data.title;
   step.innerHTML = data.steps;
- 
-  title.addEventListener('input', () => {
+
+  title.addEventListener("input", () => {
     data.title = title.innerHTML;
 
     storage.update(data);
   });
-  step.addEventListener('input', () => {
+  step.addEventListener("input", () => {
     data.steps = step.innerHTML;
 
     storage.update(data);
   });
 
-  del.addEventListener('click', () => {
+  remove.addEventListener("click", () => {
     storage.delete(data);
 
-    task.remove();
+    testCase.remove();
   });
 
   container.appendChild(clone);
 }
-

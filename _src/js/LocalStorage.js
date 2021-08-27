@@ -1,6 +1,6 @@
 export default class LocalStorage {
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem('steps')) || [];
+    this.tasks = JSON.parse(localStorage.getItem("steps")) || [];
   }
 
   create(data) {
@@ -8,7 +8,7 @@ export default class LocalStorage {
 
     this.tasks.push(data);
 
-    localStorage.setItem('steps', JSON.stringify(this.tasks));
+    localStorage.setItem("steps", JSON.stringify(this.tasks));
   }
 
   update(data) {
@@ -17,7 +17,7 @@ export default class LocalStorage {
     if (index !== -1) {
       this.tasks[index] = data;
 
-      localStorage.setItem('steps', JSON.stringify(this.tasks));
+      localStorage.setItem("steps", JSON.stringify(this.tasks));
     }
   }
 
@@ -30,7 +30,7 @@ export default class LocalStorage {
     if (index !== -1) {
       this.tasks.splice(index, 1);
 
-      localStorage.setItem('steps', JSON.stringify(this.tasks));
+      localStorage.setItem("steps", JSON.stringify(this.tasks));
     }
   }
 
@@ -45,6 +45,9 @@ export default class LocalStorage {
   }
 
   get token() {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    return (
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+    );
   }
-};
+}

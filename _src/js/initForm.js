@@ -30,7 +30,6 @@ const telegramTestBtn = document.querySelector(".logo"); // Логотип
 
 let stompClient = null; // stompClient создан, но ничего нет в нём
 let uuid = create_UUID(); // Создаем уникальный идентификатор
-let scenarioCount = 0; // Глобальный счётчик scenarioCount от него идёт инкрименты всех сценаривев и элементов списка .added-tc-item + scenarioCount
 
 let checkAllGithub = document.getElementById("option1"); //Родительский чекбокс гитхаба
 let checkBoxesGithub = document.querySelectorAll("input.github"); //Дочерний чекбокс
