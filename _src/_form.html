@@ -27,7 +27,7 @@
 				<label for="option4">Запустить задачу в Jenkins</label>
 			</div>
 			<div class="form-group">
-				<input type="checkbox" id="option5" class="jenkins" name="jenkinsAllure" checked >
+				<input type="checkbox" id="option5" class="jenkins" name="jenkinsAllure" checked>
 				<label for="option5">Сформировать отчет со скриншотами и видео</label>
 			</div>
 		</div>
@@ -43,11 +43,74 @@
 			<input type="checkbox" id="option7" name="allureTestops" checked>
 			<label for="option7">Интегрировать с проектом в TMS Allure TestOps</label>
 		</div>
+    <label class="add-tc-label">Добавить ручной тест-кейс для автоматизации</label>
 
 
-		<button class="small modal"><img src="img/plus-solid.svg">Добавить ручной тест-кейс для автоматизации</button>
  
-		<ul id="tc-list" class="added-tc">
+		<!-- <ul id="tc-list" class="added-tc">
+
 		</ul>
-	</div>
+
+     -->
+
 </form>
+
+<template id="task">
+
+  <li class="task tasks__task">
+ 
+    <p class="task__text" contenteditable onpaste="OnPaste_StripFormatting(this, event);"></p>
+    <div class="step__text" contenteditable onpaste="OnPaste_StripFormatting(this, event);"></div>
+    <button class="task__delete small modal" type="button"><img src="img/trash.svg" width="20" height="20"></img>
+      Удалить
+    </button>
+  </li>
+</template>
+
+<div class="container">
+  <ul class="tasks added-tc"></ul>
+
+  <form class="create-task">
+    <textarea class="create-task__textarea" placeholder="Successful login"></textarea>
+    <textarea class="create-steps__textarea" rows="8" placeholder="Open 'https://github.com/login'
+
+    Set username 'Alex'
+    Set password '12%#5f'
+    Submit form
+    
+    Verify successful authorization as 'Alex'"></textarea>
+    <button class="main create-task__submit" type="submit" disabled><img src="img/plus.svg" width="20" height="20">
+      Создать
+    </button>
+  </form>
+</div>
+	</div>
+  <script type="text/javascript">
+
+    var _onPaste_StripFormatting_IEPaste = false;
+
+    function OnPaste_StripFormatting(elem, e) {
+
+        if (e.originalEvent && e.originalEvent.clipboardData && e.originalEvent.clipboardData.getData) {
+            e.preventDefault();
+            var text = e.originalEvent.clipboardData.getData('text/plain');
+            window.document.execCommand('insertText', false, text);
+        }
+        else if (e.clipboardData && e.clipboardData.getData) {
+            e.preventDefault();
+            var text = e.clipboardData.getData('text/plain');
+            window.document.execCommand('insertText', false, text);
+        }
+        else if (window.clipboardData && window.clipboardData.getData) {
+            // Stop stack overflow
+            if (!_onPaste_StripFormatting_IEPaste) {
+                _onPaste_StripFormatting_IEPaste = true;
+                e.preventDefault();
+                window.document.execCommand('ms-pasteTextOnly', false);
+            }
+            _onPaste_StripFormatting_IEPaste = false;
+        }
+
+    }
+
+</script>
