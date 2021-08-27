@@ -1,4 +1,6 @@
 import { create_UUID } from "./StringUtils.js"; // Утилита для создание уникального UUID
+import { selectingAllNestedCheckboxes, checkAllGithub,  checkBoxesGithub, checkAllJenkins, checkBoxesJenkins } from "./selectNestedCheckboxes.js";
+import loadingStateFromStorage  from "./loadingStateFromStorage.js";
 
 const body = document.querySelector("body.tests-app"); // Выбираем корневой селектор класса tests-app
 const appBlock = document.querySelector("#app"); // Выбираем div#app который оборачивает from#objective, что ниже
@@ -30,31 +32,6 @@ const telegramTestBtn = document.querySelector(".logo"); // Логотип
 
 let stompClient = null; // stompClient создан, но ничего нет в нём
 let uuid = create_UUID(); // Создаем уникальный идентификатор
-
-let checkAllGithub = document.getElementById("option1"); //Родительский чекбокс гитхаба
-let checkBoxesGithub = document.querySelectorAll("input.github"); //Дочерний чекбокс
-
-let checkAllJenkins = document.getElementById("option3"); //Родительский чекбокс Jenkins
-let checkBoxesJenkins = document.querySelectorAll("input.jenkins"); //Дочерний чекбокс
-
-function selectingAllNestedCheckboxes(parents, childs, className) {
-  for (let i = 0; i < childs.length; i++) {
-    childs[i].onclick = function () {
-      let checkedCount = document.querySelectorAll(
-        `input.${className}:checked`
-      ).length;
-
-      parents.checked = checkedCount > 0;
-      parents.indeterminate = checkedCount > 0 && checkedCount < childs.length;
-    };
-  }
-
-  parents.onclick = function () {
-    for (let i = 0; i < childs.length; i++) {
-      childs[i].checked = this.checked;
-    }
-  };
-}
 
 selectingAllNestedCheckboxes(checkAllGithub, checkBoxesGithub, "github"); // перебор  дерева гитхаба
 selectingAllNestedCheckboxes(checkAllJenkins, checkBoxesJenkins, "jenkins"); // перебор  дерева jenkins
@@ -225,46 +202,19 @@ export { initForm };
 initForm();
 
 // Функция открытия модального окна
-function modalOpen() {
-  body.classList.add("modal");
-}
+// function modalOpen() {
+//   body.classList.add("modal");
+// }
 // Закрытие модального окна
-function modalClose() {
-  body.classList.remove("modal");
-}
+// function modalClose() {
+//   body.classList.remove("modal");
+// }
 // Функция тогл
 function optionsToggle() {
   body.classList.toggle("options-open");
 }
 
 
-// Эта функция возвращает массив объектов с добавлеными полями из разобраной строки из localStorage
-function loadingStateFromStorage() {
-  let archive = []; // Массив выходных данных
-  let keys = Object.keys(localStorage); //Возвращаем массив из собственных перечисляемых свойств переданного объекта, в том же порядке, в котором они бы обходились циклом for... in - это быстрее
-  let i = 0;
-  let key;
-  // Проходим циклом и добавляем в массив объекты из localStorage
-  console.log("localStorage: " + localStorage);
-  console.log("keys Object.keys(localStorage): " + keys);
-  for (; (key = keys[i]); i++) {
-    console.log("i: " + i);
-    console.log("key: " + key);
-
-    if (key.includes("steps")) {
-      console.log("localStorage.getItem(key): " + localStorage.getItem(key));
-      console.log(
-        "JSON.parse(localStorage.getItem(key)): " +
-          JSON.parse(localStorage.getItem(key))
-      );
-      archive.push(JSON.parse(localStorage.getItem(key)));
-    }
-  }
-
-  console.log("archive: " + JSON.stringify(archive));
-
-  return archive;
-}
 
 // ТЕСТ ТЕЛЕГИ
 function testTelegram() {
